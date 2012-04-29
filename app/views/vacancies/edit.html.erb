@@ -1,6 +1,5 @@
 <% content_for :meta_title, t(".meta_title") %>
 
-<div class="span12">
-  <div class="page-header"><h1><%= t(".title") %></h1></div>
-  <%= render :partial => "form", :locals => { :vacancy => @vacancy } %>
+<div>
+  <%= form_for(@vacancy, html: { class: 'form-horizontal' }) { |f| render f } %>
 </div>

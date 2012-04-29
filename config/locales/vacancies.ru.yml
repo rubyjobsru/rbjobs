@@ -1,6 +1,7 @@
 ru:
   vacancies:
     form:
+      description: "Описание"
       create: "Отправить"
       update: "Сохранить"
       cancel: "Отмена"

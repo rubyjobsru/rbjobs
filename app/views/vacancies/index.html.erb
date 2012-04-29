@@ -2,15 +2,15 @@
 <% content_for :sidebar do %>
   <h1><%= t(".sidebar.title") %></h1>
   <p><%= t(".sidebar.description") %></p>
-  <p><%= link_to t(".add"), new_vacancy_url, :class => "large btn primary" %></p>
+  <p><%= link_to t(".add"), new_vacancy_url, :class => "btn btn-primary btn-large" %></p>
 <% end %>
 
 <% @vacancies.in_groups_of(2, false) do |group| %>
 <div class="row">
   <% for vacancy in group %>
-  <article class="span6">
+  <article class="span4">
     <h1><%= link_to vacancy.title, vacancy %></h1>
-    <h4 class="muted"><%= company_location_tag(vacancy) %></h4>
+    <h4 class="muted company"><%= company_location_tag(vacancy) %></h4>
     <%= vacancy.excerpt_html.html_safe %>
   </article>
   <% end %>

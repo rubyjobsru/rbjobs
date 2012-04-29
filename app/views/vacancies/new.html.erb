@@ -4,8 +4,6 @@
   <p><%= t(".sidebar.description") %></p>
 <% end %>
 
-
-<div class="span12">
-  <div class="page-header"><h1><%= t(".title") %></h1></div>
-  <%= render :partial => "form", :locals => { :vacancy => @vacancy } %>
+<div>
+  <%= form_for(@vacancy, html: { class: 'form-horizontal' }) { |f| render f } %>
 </div>

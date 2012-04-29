@@ -13,13 +13,13 @@
 <body>
   <div class="container">
     <% flash.each do |key, value| %>
-    <div class="alert-message <%= key %> fade in" data-alert="alert">
-      <a class="close" href="#">×</a>
+    <div class="alert <%= key %> fade in">
+      <a class="close" href="#" class="close" data-dismiss="alert">×</a>
       <p><%= value %></p>
     </div>
     <% end %>
     <div class="row content-section">
-      <div class="span4 sidebar">
+      <div class="span2 sidebar">
         <div class="logo">
           <%= link_to_if !current_page?(root_url), image_tag("rubyjobs-logo.png", :size => "76x67", :alt => t(".meta_title")), root_url %>
         </div>
@@ -27,25 +27,25 @@
           <%= yield(:sidebar) %>
         </div>
       </div>
-      <div class="span12">
+      <div class="span8 offset2">
         <%= yield %>
       </div>
     </div>
     <% if current_page?(root_url) %>
     <hr />
     <div class="row content-section">
-      <div class="span4 sidebar">
+      <div class="span2 sidebar">
         <h1>Интересные события и проекты</h1>
       </div>
-      <div class="span12">
+      <div class="span8 offset2">
         <div class="row">
-          <div class="span6">
+          <div class="span4">
             <p><%= link_to image_tag('travis-ci202x100.png', :size => '202x100'), 'http://travis-ci.org/' %></p>
             <p>Travis CI&nbsp;&mdash; простой и мощный сервис непрерывной
             интеграции для ваших проектов с открытым кодом.</p>
             <p><%= link_to 'http://travis-ci.org', 'http://travis-ci.org' %></p>
           </div>
-          <div class="span6">
+          <div class="span4">
             <p><%= link_to image_tag('devconf240x55.png', :size => '240x55'), 'http://devconf.ru/' %></p>
             <p>DevConf&nbsp;&mdash; профессиональная конференция, посвященная ведущим технологиям программирования и веб-разработки.</p>
             <p>В рамках DevConf 2012, 9 июня 2012, пройдут 5 конференций и ряд уникальных мастер-классов.</p>
@@ -54,14 +54,14 @@
         </div>
         <hr />
         <div class="row">
-          <div class="span6">
+          <div class="span4">
             <p><%= link_to image_tag("rubyflow135x80.png", :size => "135x80"), "http://rubyflow.ru/" %></p>
             <p>Коллективный блог сообщества разработчиков.</p>
             <p>Более 1 200 статей на тему Ruby, Rails, Sinatra и других известных и не очень библиотек. Советы, обзоры и примеры кода.</p>
             <p>Формат коллективного блога позволяет каждому опубликовать статью. Без регистрации :)</p>
             <p><%= link_to 'http://rubyflow.ru', 'http://rubyflow.ru' %></p>
           </div>
-          <div class="span6">
+          <div class="span4">
             <p><%= link_to image_tag("rubyhire200x80.png", :size => "200x80"), "http://www.rubyhire.me/" %></p>
             <p>Есть мнение, что на современном рынке веб-разработки спрос на Ruby on Rails программистов превышает предложение квалифицированных кадров.</p>
             <p>Задача этого проекта доказать, что хорошие специалисты есть всегда и нужно лишь помочь работодателям и разработчикам найти друг друга.</p>
@@ -72,14 +72,17 @@
     </div>
     <% end %>
     <footer class="row footer">
-      <div class="span4">
-        <p>&copy;&nbsp;2008&mdash;2012, <%= link_to "Alex Soulim", "http://soulim.com" %></p>
+      <div class="span2">
+        <p>
+          &copy;&nbsp;2008&mdash;2012<br />
+          <%= link_to "Alex Soulim", "http://soulim.com" %>
+        </p>
       </div>
-      <div class="span6">
+      <div class="span4 offset2">
         <p><%= t(".hosting", :link => link_to(content_tag(:span, "locum.ru", :class => "label"), "http://locum.ru?code=f07cb8b5a66f6116967a13f8b2818e45fb644306")).html_safe %></p>
       </div>
-      <nav class="span6">
-        <ul>
+      <nav class="span4">
+        <ul class="pull-right">
           <li><%= link_to t(".pages.about"), page_url(:about) %></li>
           <li><%= link_to t(".pages.terms"), page_url(:terms) %></li>
           <li><%= link_to t(".pages.contacts"), page_url(:contacts) %></li>
@@ -87,22 +90,22 @@
       </nav>
     </footer>
   </div>
-  
+
   <%= javascript_include_tag "application" %>
   <%= yield(:js) %>
   <% if Rails.env.production? %>
   <script type="text/javascript">
-  
+
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-391915-13']);
   _gaq.push(['_trackPageview']);
-  
+
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-  
+
   </script>
   <% end %>
 </body>

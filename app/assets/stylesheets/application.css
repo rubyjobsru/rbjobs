@@ -1,6 +1,8 @@
-// = require bootstrap
-// = require_self
-// = require_tree .
+/*
+ *= require bootstrap
+ *= require_self
+ *= require_tree .
+*/
 
 .button_to {
   display:inline-block;

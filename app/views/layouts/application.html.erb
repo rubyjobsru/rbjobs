@@ -7,7 +7,9 @@
   <title><%= yield(:meta_title) %></title>
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= auto_discovery_link_tag :rss, "http://feeds.feedburner.com/rubyjobsru", { :title => t("layouts.application.meta_title") } %>
+  <%= auto_discovery_link_tag :rss,
+                              "http://feeds.feedburner.com/rubyjobsru",
+                              { :title => t("layouts.application.meta_title") } %>
   <%= favicon_link_tag %>
 </head>
 <body>
@@ -21,7 +23,11 @@
     <div class="row content-section">
       <div class="span2 sidebar">
         <div class="logo">
-          <%= link_to_if !current_page?(root_url), image_tag("rubyjobs-logo.png", :size => "76x67", :alt => t(".meta_title")), root_url %>
+          <%= link_to_if !current_page?(root_url),
+                         image_tag("rubyjobs-logo.png",
+                                   :size => "76x67",
+                                   :alt => t(".meta_title")),
+                         root_url %>
         </div>
         <div class="tips">
           <%= yield(:sidebar) %>
@@ -41,18 +47,22 @@
         <div class="row">
           <div class="span4">
             <div class="event-logo">
-              <%= link_to image_tag('http://f.cl.ly/items/1c3s0a1b2L403n44191n/brainwashing.png', :size => '249x40'), 'http://brainwashing.pro/rails' %>
+              <%= link_to image_tag('http://f.cl.ly/items/1c3s0a1b2L403n44191n/brainwashing.png',
+                                    :size => '249x40'),
+                          'http://brainwashing.pro/rails' %>
             </div>
             <p>
               Brainwashing&nbsp;&mdash; двухдневный практический курс по разработке на
               Ruby on Rails от Evil Martians для опытных программистов и
               тимлидов 19 и 20 мая в Москве.
             </p>
-            <p><%= link_to 'http://brainwashing.pro/rails', 'http://brainwashing.pro/rails' %></p>
+            <p><%= link_to 'http://brainwashing.pro/rails',
+                           'http://brainwashing.pro/rails' %></p>
           </div>
           <div class="span4">
             <div class="event-logo">
-              <%= link_to image_tag('travis-ci162x80.png', :size => '162x80'), 'http://travis-ci.org/' %>
+              <%= link_to image_tag('travis-ci162x80.png', :size => '162x80'),
+                          'http://travis-ci.org/' %>
             </div>
             <p>Travis CI&nbsp;&mdash; простой и мощный сервис непрерывной
             интеграции для ваших проектов с открытым кодом.</p>
@@ -63,30 +73,73 @@
         <div class="row">
           <div class="span4">
             <div class="event-logo">
-              <%= link_to image_tag('devconf240x55.png', :size => '240x55'), 'http://devconf.ru/' %>
+              <%= link_to image_tag('devconf240x55.png', :size => '240x55'),
+                  'http://devconf.ru/' %>
             </div>
-            <p>DevConf&nbsp;&mdash; профессиональная конференция, посвященная ведущим технологиям программирования и веб-разработки.</p>
-            <p>В рамках DevConf 2012, 9 июня 2012, пройдут 5 конференций и ряд уникальных мастер-классов.</p>
+            <p>
+               DevConf&nbsp;&mdash; профессиональная конференция, посвященная
+               ведущим технологиям программирования и веб-разработки.
+            </p>
+            <p>
+              В рамках DevConf 2012, 9 июня 2012, пройдут 5 конференций и ряд
+              уникальных мастер-классов.
+            </p>
             <p><%= link_to 'http://devconf.ru/', 'http://devconf.ru/' %></p>
           </div>
           <div class="span4">
             <div class="event-logo">
-              <%= link_to image_tag("rubyhire200x80.png", :size => "200x80"), "http://www.rubyhire.me/" %>
+              <h1 style="line-height:66px;font-family:Arial;font-size:36px;">
+                <%= link_to 'Bit Byte', 'http://www.itmozg.ru/bitbyte/' %>
+              </h1>
             </div>
-            <p>Есть мнение, что на современном рынке веб-разработки спрос на Ruby on Rails программистов превышает предложение квалифицированных кадров.</p>
-            <p>Задача этого проекта доказать, что хорошие специалисты есть всегда и нужно лишь помочь работодателям и разработчикам найти друг друга.</p>
-            <p><%= link_to 'http://www.rubyhire.me', 'http://www.rubyhire.me' %></p>
+            <p>
+              19 мая компания ITmozg проводит в Санкт-Петербурге крупнейший
+              фестиваль профессионального развития для
+              IT-специалистов&nbsp;&mdash; Bit Byte.
+            </p>
+            <p>
+              <%= link_to 'http://www.itmozg.ru/bitbyte',
+                          'http://www.itmozg.ru/bitbyte' %>
+            </p>
           </div>
         </div>
+        <hr />
         <div class="row">
           <div class="span4">
             <div class="event-logo">
-              <%= link_to image_tag("rubyflow135x80.png", :size => "135x80"), "http://rubyflow.ru/" %>
+              <%= link_to image_tag("rubyflow135x80.png", :size => "135x80"),
+                          "http://rubyflow.ru/" %>
             </div>
             <p>Коллективный блог сообщества разработчиков.</p>
-            <p>Более 1 200 статей на тему Ruby, Rails, Sinatra и других известных и не очень библиотек. Советы, обзоры и примеры кода.</p>
-            <p>Формат коллективного блога позволяет каждому опубликовать статью. Без регистрации :)</p>
+            <p>
+              Более 1 200 статей на тему Ruby, Rails, Sinatra и других
+              известных и не очень библиотек. Советы, обзоры и примеры кода.
+            </p>
+            <p>
+              Формат коллективного блога позволяет каждому опубликовать
+              статью. Без регистрации :)
+            </p>
             <p><%= link_to 'http://rubyflow.ru', 'http://rubyflow.ru' %></p>
+          </div>
+          <div class="span4">
+            <div class="event-logo">
+              <%= link_to image_tag("rubyhire200x80.png", :size => "200x80"),
+                          "http://www.rubyhire.me/" %>
+            </div>
+            <p>
+              Есть мнение, что на современном рынке веб-разработки спрос на
+              Ruby on Rails программистов превышает предложение
+              квалифицированных кадров.
+            </p>
+            <p>
+              Задача этого проекта доказать, что хорошие специалисты есть
+              всегда и нужно лишь помочь работодателям и разработчикам найти
+              друг друга.
+            </p>
+            <p>
+              <%= link_to 'http://www.rubyhire.me',
+                          'http://www.rubyhire.me' %>
+            </p>
           </div>
         </div>
       </div>
@@ -100,7 +153,13 @@
         </p>
       </div>
       <div class="span4 offset2">
-        <p><%= t(".hosting", :link => link_to(content_tag(:span, "locum.ru", :class => "label"), "http://locum.ru?code=f07cb8b5a66f6116967a13f8b2818e45fb644306")).html_safe %></p>
+        <p>
+          <%= t(".hosting",
+                :link => link_to(content_tag(:span,
+                                             "locum.ru",
+                                             :class => "label"),
+                                 "http://locum.ru?code=f07cb8b5a66f6116967a13f8b2818e45fb644306")).html_safe %>
+        </p>
       </div>
       <nav class="span4">
         <ul class="pull-right">

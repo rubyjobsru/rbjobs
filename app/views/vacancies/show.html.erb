@@ -70,5 +70,7 @@
       <%= link_to t(".edit"), edit_vacancy_url(@vacancy), :class => "btn" %>
     </div>
   <% end %>
-  <%= content_tag(:div, t(".expiration_notice", :expire_at => l(@vacancy.expire_at)), :class => "alert-message") if @vacancy.expired? %>
+  <%= content_tag(:div,
+                  t(".expiration_notice", :expire_at => l(@vacancy.expire_at)),
+                  :class => "alert alert-block") if @vacancy.expired? %>
 </article>

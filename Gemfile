@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.3'
+gem 'rails', '~> 3.2.6'
 gem 'jquery-rails', '~> 2.0.2'
 gem 'sqlite3', '~> 1.3.6'
 gem 'kaminari', '~> 0.13.0'
@@ -16,7 +16,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.9.0'
+  gem 'rspec-rails', '~> 2.10.1'
 end
 
 group :assets do

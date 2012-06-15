@@ -324,7 +324,7 @@ describe VacanciesController do
   
   describe "DELETE 'destroy'" do
     before do
-      vacancy.stub(:persisted? => false, :owner_token => "owner", :admin_token => "admin")
+      vacancy.stub(:owner_token => "owner", :admin_token => "admin")
       Vacancy.stub!(:find_by_id! => vacancy)
     end
     
@@ -342,13 +342,15 @@ describe VacanciesController do
         end
       end
       context "and visitor has admin token" do
+        before { vacancy.stub(:destroy => true) }
+
         it "should destroy vacancy" do
           vacancy.should_receive(:destroy)
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token
         end
         it "should redirect to vacancies page" do
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token
-          response.should redirect_to vacancies_url
+          response.should redirect_to root_url
         end
         it "should set flash notification" do
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token
@@ -380,13 +382,15 @@ describe VacanciesController do
         end
       end
       context "and visitor has admin token" do
+        before { vacancy.stub(:destroy => true) }
+
         it "should destroy vacancy" do
           vacancy.should_receive(:destroy)
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token
         end
         it "should redirect to vacancies page" do
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token
-          response.should redirect_to vacancies_url
+          response.should redirect_to root_url
         end
         it "should set flash notification" do
           delete 'destroy', :id => vacancy, :token => vacancy.admin_token

@@ -53,7 +53,7 @@ class VacanciesController < ApplicationController
   def destroy
     if authorize!(:destroy, @vacancy)
       @vacancy.destroy and flash[:success] = t("vacancies.destroy.success")
-      respond_with(@vacancy)
+      respond_with(@vacancy, :location => root_url)
     else
       render(:file => 'public/404', :layout => false, :status => :not_found)
     end

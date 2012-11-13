@@ -11,3 +11,5 @@ config/email.yml
 Capfile
 config/deploy.rb
 config/deploy
+# RubyMine
+.idea

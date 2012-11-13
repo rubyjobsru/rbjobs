@@ -1,4 +1,6 @@
 .company {
-  line-height:36px;
+  line-height:20px;
   font-weight:normal;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

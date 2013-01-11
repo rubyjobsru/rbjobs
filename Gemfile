@@ -7,7 +7,6 @@ gem 'kaminari', '~> 0.14.1'
 gem 'redcarpet', '~> 2.2.2'
 
 group :production do
-  gem 'postmark-rails', '~> 0.4.1'
   gem 'exception_notification', '~> 3.0.0'
   gem 'newrelic_rpm', '~> 3.5.5.38'
 end

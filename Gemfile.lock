@@ -68,13 +68,6 @@ GEM
     multipart-post (1.1.5)
     newrelic_rpm (3.5.5.38)
     polyglot (0.3.3)
-    postmark (0.9.16)
-      json
-      rake
-    postmark-rails (0.4.1)
-      actionmailer
-      postmark (>= 0.9.0)
-      rake
     rack (1.4.3)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -151,7 +144,6 @@ DEPENDENCIES
   kaminari (~> 0.14.1)
   letter_opener (~> 1.0.0)
   newrelic_rpm (~> 3.5.5.38)
-  postmark-rails (~> 0.4.1)
   rails (~> 3.2.11)
   redcarpet (~> 2.2.2)
   rspec-rails (~> 2.12.1)

@@ -8,6 +8,7 @@ tmp/
 .sass-cache/
 config/database.yml
 config/email.yml
+config/newrelic.yml
 Capfile
 config/deploy.rb
 config/deploy

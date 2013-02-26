@@ -4,11 +4,8 @@ require "html_generator"
 class Vacancy < ActiveRecord::Base
   attr_accessible :title, :description, :location, :company, :url, :name, :email, :phone, :expire_at
   
-  validates :title, :presence => true
-  validates :description, :presence => true
-  validates :location, :presence => true
+  validates :title, :description, :location, :expire_at, :presence => true
   validates :email, :presence => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :unless => Proc.new { |vacancy| vacancy.email.blank? } }
-  validates :expire_at, :presence => true
   
   before_create do |vacancy|
     vacancy.owner_token = TokenGenerator.generate_token

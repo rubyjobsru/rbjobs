@@ -16,6 +16,7 @@ end
 
 group :development do
   gem 'letter_opener', '~> 1.1.0'
+  gem 'mina', :git => 'git://github.com/nadarei/mina.git'
 end
 
 group :development, :test do

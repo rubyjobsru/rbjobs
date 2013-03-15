@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
@@ -35,6 +35,9 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    figaro (0.6.3)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.1)
     i18n (0.6.4)
     journey (1.0.4)
@@ -119,6 +122,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  figaro (~> 0.6.3)
   jquery-rails (~> 2.2.1)
   kaminari (~> 0.14.1)
   letter_opener (~> 1.1.0)

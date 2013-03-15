@@ -1,10 +1,11 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.12'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'kaminari', '~> 0.14.1'
 gem 'redcarpet', '~> 2.2.2'
 gem 'pg', '~> 0.14.1'
+gem 'figaro', '~> 0.6.3'
 
 group :production do
   gem 'newrelic_rpm', '~> 3.5.8.72'

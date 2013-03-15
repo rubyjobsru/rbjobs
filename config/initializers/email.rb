@@ -1,7 +1,10 @@
-config = YAML.load_file(File.join(Rails.root, "config", "email.yml"))[Rails.env]
-
-ActionMailer::Base.default_url_options = config['default_url_options'].symbolize_keys
-ActionMailer::Base.delivery_method = config['delivery_method'].to_sym
-if config['smtp_settings']
-  ActionMailer::Base.smtp_settings = config['smtp_settings'].symbolize_keys
-end
+ActionMailer::Base.default_url_options = {
+  :host => ENV['DEFAULT_URL_OPTIONS_HOST']
+}
+ActionMailer::Base.delivery_method = ENV['EMAIL_DELIVERY_METHOD']
+ActionMailer::Base.smtp_settings = {
+  :address => ENV['SMTP_ADDRESS'],
+  :port => ENV['SMTP_PORT'],
+  :user_name => ENV['SMTP_USERNAME'],
+  :password => ENV['SMTP_PASSWORD']
+}

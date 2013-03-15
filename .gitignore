@@ -14,3 +14,5 @@ config/deploy.rb
 config/deploy
 # RubyMine
 .idea
+# Ignore application configuration
+/config/application.yml

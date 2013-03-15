@@ -1,6 +1,6 @@
 .bundle
 .DS_Store
-.rvmrc
+.ruby-version
 db/schema.rb
 db/*.sqlite3
 log/*.log

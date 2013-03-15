@@ -7,6 +7,8 @@ gem 'redcarpet', '~> 2.2.2'
 gem 'pg', '~> 0.14.1'
 gem 'figaro', '~> 0.6.3'
 gem 'bugsnag', '~> 1.2.18'
+gem 'foreman', '~> 0.62.0'
+gem 'unicorn', '~> 4.6.2'
 
 group :production do
   gem 'newrelic_rpm', '~> 3.5.8.72'

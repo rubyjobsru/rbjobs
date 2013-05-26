@@ -1,29 +1,29 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
-gem 'jquery-rails', '~> 2.2.1'
-gem 'kaminari', '~> 0.14.1'
-gem 'redcarpet', '~> 2.2.2'
-gem 'pg', '~> 0.14.1'
-gem 'figaro', '~> 0.6.3'
-gem 'bugsnag', '~> 1.2.18'
-gem 'foreman', '~> 0.62.0'
-gem 'unicorn', '~> 4.6.2'
+gem 'rails'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'redcarpet'
+gem 'pg'
+gem 'figaro'
+gem 'bugsnag'
+gem 'foreman'
+gem 'unicorn'
 
 group :production do
-  gem 'newrelic_rpm', '~> 3.5.8.72'
+  gem 'newrelic_rpm'
 end
 
 group :development do
-  gem 'letter_opener', '~> 1.1.0'
+  gem 'letter_opener'
   gem 'mina', :git => 'git://github.com/nadarei/mina.git'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.13.0'
+  gem 'rspec-rails'
 end
 
 group :assets do
-  gem 'uglifier', '~> 1.3.0'
-  gem 'therubyracer', '~> 0.11.4'
+  gem 'uglifier'
+  gem 'therubyracer'
 end

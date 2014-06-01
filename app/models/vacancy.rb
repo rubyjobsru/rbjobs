@@ -18,11 +18,11 @@ class Vacancy < ActiveRecord::Base
     vacancy.description_html = HtmlGenerator.render vacancy.description
   end
 
-  scope :approved, -> { where("approved_at IS NOT NULL") }
-  scope :not_approved, -> { where({ :approved_at => nil }) }
-  scope :not_outdated, -> (date) { where("expire_at >= ?", date) }
-  scope :descent_order, -> { order("id DESC") }
-  scope :available, -> { approved.not_outdated(Date.current).descent_order }
+  scope :approved, lambda { where("approved_at IS NOT NULL") }
+  scope :not_approved, lambda { where({ :approved_at => nil }) }
+  scope :not_outdated, lambda { |date| where("expire_at >= ?", date) }
+  scope :descent_order, lambda { order("id DESC") }
+  scope :available, lambda { approved.not_outdated(Date.current).descent_order }
 
   def approved?
     self.approved_at.present?

@@ -1,7 +1,7 @@
 bind 'unix:///tmp/puma.rubyjobs.sock'
-environment (ENV['RAILS_ENV'] || 'production' )
-threads 4, 4
-workers 2
+environment (ENV['RAILS_ENV'] || 'development' )
+threads (ENV['PUMA_MIN_THREADS'] || 4 ), (ENV['PUMA_MAX_THREADS'] || 4 )
+workers (ENV['PUMA_WORKERS'] || 2 )
 preload_app!
 
 on_worker_boot do

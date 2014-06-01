@@ -1,5 +1,5 @@
 bind 'unix:///tmp/puma.rubyjobs.sock'
-environment ENV['RAILS_ENV']
+environment (ENV['RAILS_ENV'] || 'production' )
 threads 4, 4
 workers 2
 preload_app!

@@ -150,5 +150,6 @@ DEPENDENCIES
   rails
   redcarpet
   rspec-rails
+  sprockets-rails
   therubyracer
   uglifier

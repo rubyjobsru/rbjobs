@@ -9,6 +9,9 @@ gem 'figaro'
 gem 'bugsnag'
 gem 'foreman'
 gem 'puma'
+gem 'sprockets-rails', require: 'sprockets/railtie'
+gem 'uglifier'
+gem 'therubyracer'
 
 group :production do
   gem 'newrelic_rpm'
@@ -21,9 +24,4 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-end
-
-group :assets do
-  gem 'uglifier'
-  gem 'therubyracer'
 end

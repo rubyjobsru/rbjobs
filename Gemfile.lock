@@ -132,7 +132,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.8.3)
+    unicorn (4.6.2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -155,4 +155,4 @@ DEPENDENCIES
   rspec-rails
   therubyracer
   uglifier
-  unicorn
+  unicorn (~> 4.6.2)

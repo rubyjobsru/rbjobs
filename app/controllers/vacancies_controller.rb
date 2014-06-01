@@ -1,10 +1,10 @@
 class VacanciesController < ApplicationController
   before_filter :assign_vacancy, :except => [:index, :new, :create]
   before_filter :store_token, :except => [:index, :new, :create]
-  
+
   respond_to :html
   respond_to :xml, :only => :index
-  
+
   def index
     @vacancies = Vacancy.available.page(params[:page]).per(6)
     respond_with(@vacancies)
@@ -15,13 +15,13 @@ class VacanciesController < ApplicationController
   end
 
   def create
-    @vacancy = Vacancy.new(params[:vacancy])
+    @vacancy = Vacancy.new(parameters)
 
     if @vacancy.save
       VacancyMailer.creation_notice(@vacancy).deliver
       flash[:success] = t("vacancies.create.success")
     end
-    
+
     respond_with(@vacancy, :location => @vacancy.persisted? ?  root_url : nil)
   end
 
@@ -43,7 +43,7 @@ class VacanciesController < ApplicationController
 
   def update
     if authorize!(:update, @vacancy)
-      @vacancy.update_attributes(params[:vacancy]) and flash[:success] = t("vacancies.update.success")
+      @vacancy.update_attributes(parameters) and flash[:success] = t("vacancies.update.success")
       respond_with(@vacancy)
     else
       render(:file => 'public/404', :layout => false, :status => :not_found)
@@ -58,7 +58,7 @@ class VacanciesController < ApplicationController
       render(:file => 'public/404', :layout => false, :status => :not_found)
     end
   end
-  
+
   def approve
     if authorize!(:approve, @vacancy)
       @vacancy.approve! and flash[:success] = t("vacancies.approve.success")
@@ -70,12 +70,19 @@ class VacanciesController < ApplicationController
   end
 
   private
-  
+
+  def parameters
+    params.require(:vacancy).permit(
+      :title, :description, :location, :company, :url, :name, :email,
+      :phone, :expire_at
+    )
+  end
+
   # TODO: Move authorization code to separete module
   def assign_vacancy
     @vacancy = Vacancy.find_by_id!(params[:id])
   end
-  
+
   def authorize!(action, vacancy)
     case action
     when :read
@@ -88,7 +95,7 @@ class VacanciesController < ApplicationController
       raise StandartError
     end
   end
-  
+
   def owner?(vacancy)
     tokens.include?(vacancy.owner_token)
   end

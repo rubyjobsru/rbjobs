@@ -8,7 +8,7 @@ gem 'pg'
 gem 'figaro'
 gem 'bugsnag'
 gem 'foreman'
-gem 'unicorn', '~> 4.6.2'
+gem 'puma'
 
 group :production do
   gem 'newrelic_rpm'

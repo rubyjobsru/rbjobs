@@ -25,6 +25,7 @@ ru:
         title: "Вакансии для разработчиков, использующих Ruby"
         description: "Публикация абсолютно бесплатна и не требует регистрации."
       add: "Добавить вакансию"
+      expired_at: "Вакансия размещена до: <span class=\"label\">%{expired_at}</span>"
     new:
       meta_title: "Новая вакансия ~ RubyJobs.ru"
       sidebar:
@@ -46,6 +47,7 @@ ru:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"
       expiration_notice: "Это архивная вакансия. Срок ее размещения истек %{expire_at}"
+      expired_at: "Вакансия размещена до: <span class=\"label\">%{expired_at}</span>"
     edit:
       meta_title: "Редактирование описания вакансии ~ RubyJobs.ru"
       title: "Редактирование"

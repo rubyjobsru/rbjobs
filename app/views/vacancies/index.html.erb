@@ -10,7 +10,10 @@
   <% for vacancy in group %>
   <article class="span4">
     <h1><%= link_to vacancy.title, vacancy %></h1>
-    <h4 class="muted company"><%= company_location_tag(vacancy) %></h4>
+    <h3 class="muted company">
+      <%= company_location_tag(vacancy) %><br/>
+      <small><%== t('.expired_at', expired_at: l(vacancy.expire_at)) %></small>
+    </h3>
     <%= vacancy.excerpt_html.html_safe %>
   </article>
   <% end %>

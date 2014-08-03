@@ -4,6 +4,10 @@
  *= require_tree .
 */
 
+h3 small {
+  font-size: 13px;
+}
+
 .button_to {
   display:inline-block;
   margin:0;

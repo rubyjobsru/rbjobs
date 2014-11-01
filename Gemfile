@@ -1,23 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'bugsnag'
+gem 'figaro'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'redcarpet'
 gem 'pg'
-gem 'figaro'
-gem 'bugsnag'
-gem 'foreman'
 gem 'puma'
+gem 'rails'
+gem 'redcarpet'
 gem 'sprockets-rails', require: 'sprockets/railtie'
-gem 'uglifier'
 gem 'therubyracer'
+gem 'uglifier'
 
 group :production do
   gem 'newrelic_rpm'
 end
 
 group :development do
+  gem 'foreman'
   gem 'letter_opener'
   gem 'mina'
 end

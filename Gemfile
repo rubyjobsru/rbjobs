@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bugsnag'
 gem 'figaro'
+gem 'foreman'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg'
@@ -17,7 +18,6 @@ group :production do
 end
 
 group :development do
-  gem 'foreman'
   gem 'letter_opener'
   gem 'mina'
 end

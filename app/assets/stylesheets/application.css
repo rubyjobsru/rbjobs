@@ -27,10 +27,14 @@ h3 small {
   font-size:20px;
   line-height:24px;
 }
+.sidebar h5 {
+  margin-bottom:1em;
+}
 .sidebar .logo {
   margin-bottom:104px;
 }
-.sidebar .tips {
+.sidebar .tips,
+.sidebar .subscriptions {
   margin-bottom:65px;
 }
 .sidebar .delivery-methods a {

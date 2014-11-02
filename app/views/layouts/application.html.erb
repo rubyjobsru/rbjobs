@@ -32,6 +32,17 @@
         <div class="tips">
           <%= yield(:sidebar) %>
         </div>
+        <div class="subscriptions">
+          <h5><%= t("layouts.application.subscriptions") %></h5>
+          <p>
+            <a href="https://www.twitter.com/rubyjobsru">
+              <span class="label label-info">Twitter</span>
+            </a>
+            <a href="http://feeds.feedburner.com/rubyjobsru">
+              <span class="label label-warning">RSS</span>
+            </a>
+          </p>
+        </div>
       </div>
       <div class="span8 offset2">
         <%= yield %>

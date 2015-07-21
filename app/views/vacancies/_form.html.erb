@@ -96,11 +96,11 @@
 </fieldset>
 <div class="form-actions">
   <% if form.object.persisted? %>
-    <%= form.submit t(".update"), class: "btn btn-success" %> 
+    <%= form.submit t(".update"), class: "btn btn-success" %>
     <%= link_to t(".cancel"), vacancy_url(form.object), class: "btn" %>
   <% else %>
     <p><%= t(".notes.terms.text", link: link_to(t(".notes.terms.link"), page_url(:terms))).html_safe %></p>
-    <%= form.submit t(".create"), class: "btn btn-success" %> 
+    <%= form.submit t(".create"), class: "btn btn-success" %>
     <%= link_to t(".cancel"), root_url, class: "btn" %>
   <% end %>
 </div>

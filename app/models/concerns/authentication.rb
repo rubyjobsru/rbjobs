@@ -10,7 +10,7 @@ module Authentication
     when :destroy, :approve
       return admin?(vacancy)
     else
-      raise StandartError
+      raise StandardError, "Unknown action #{action.inspect}"
     end
   end
 

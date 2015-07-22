@@ -1,22 +1,23 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe PagesController do
-  let(:page) { stub_model(Page) }
+RSpec.describe PagesController do
+  let(:page) { instance_double(Page) }
+
   describe "GET 'show'" do
     context "when page exists" do
-      before{ Page.stub(:find_by_id => page) }
+      before { allow(Page).to receive(:find_by_id).and_return(page) }
 
       it "should be successful" do
         get 'show', :id => page
-        response.should be_success
+        expect(response).to be_success
       end
     end
     context "when page doesn't exist" do
-      before{ Page.stub(:find_by_id => nil) }
+      before { allow(Page).to receive(:find_by_id).and_return(nil) }
 
       it "should be not found" do
         get 'show', :id => page
-        response.should be_not_found
+        expect(response).to be_not_found
       end
     end
   end

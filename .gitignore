@@ -1,7 +1,6 @@
 .bundle
 .DS_Store
 .ruby-version
-db/schema.rb
 db/*.sqlite3
 log/*.log
 tmp/
@@ -9,9 +8,7 @@ tmp/
 config/database.yml
 config/email.yml
 config/newrelic.yml
-Capfile
 config/deploy.rb
-config/deploy
 # RubyMine
 .idea
 # Ignore application configuration

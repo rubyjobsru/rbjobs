@@ -47,15 +47,15 @@
                    class: 'control-label' %>
     <div class="controls">
       <label class="radio">
-        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week %>
+        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week, id: 'vacancy_expires_in_one_week' %>
         <span><%= t(".notes.expire_at_one_week") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week)) %></span></span>
       </label>
       <label class="radio">
-        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks %>
+        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks, id: 'vacancy_expires_in_two_weeks' %>
         <span><%= t(".notes.expire_at_two_weeks") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks)) %></span></span>
       </label>
       <label class="radio">
-        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month %>
+        <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month, id: 'vacancy_expires_in_one_month' %>
         <span><%= t(".notes.expire_at_one_month") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month)) %></span></span>
       </label>
       <% for error in form.object.errors.get(:expire_at) %>
@@ -96,11 +96,11 @@
 </fieldset>
 <div class="form-actions">
   <% if form.object.persisted? %>
-    <%= form.submit t(".update"), class: "btn btn-success" %> 
+    <%= form.submit t(".update"), class: "btn btn-success" %>
     <%= link_to t(".cancel"), vacancy_url(form.object), class: "btn" %>
   <% else %>
     <p><%= t(".notes.terms.text", link: link_to(t(".notes.terms.link"), page_url(:terms))).html_safe %></p>
-    <%= form.submit t(".create"), class: "btn btn-success" %> 
+    <%= form.submit t(".create"), class: "btn btn-success" %>
     <%= link_to t(".cancel"), root_url, class: "btn" %>
   <% end %>
 </div>

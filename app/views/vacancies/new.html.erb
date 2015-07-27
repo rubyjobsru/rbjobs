@@ -4,6 +4,10 @@
   <p><%= t(".sidebar.description") %></p>
 <% end %>
 
+<div class="page-header">
+  <%= t('.title') %>
+</div>
+
 <div>
   <%= form_for(@vacancy, html: { class: 'form-horizontal' }) { |f| render f } %>
 </div>

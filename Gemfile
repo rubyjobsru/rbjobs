@@ -23,9 +23,10 @@ end
 
 group :development do
   gem 'letter_opener'
-  gem 'mina'
+  gem 'mina', require: false
 end
 
 group :test do
+  gem 'capybara'
   gem 'factory_girl_rails'
 end

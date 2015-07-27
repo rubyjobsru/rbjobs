@@ -39,6 +39,11 @@ GEM
     dotenv-deployment (0.0.2)
     erubis (2.7.0)
     execjs (2.2.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     figaro (1.0.0)
       thor (~> 0.14)
     foreman (0.75.0)
@@ -138,6 +143,7 @@ PLATFORMS
 
 DEPENDENCIES
   bugsnag
+  factory_girl_rails
   figaro
   foreman
   jquery-rails

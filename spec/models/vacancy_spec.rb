@@ -1,104 +1,113 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Vacancy do
-  subject do
-    stub_model(Vacancy, {
-      :title       => "Foo",
-      :description => "Lorem ipsum",
-      :location    => "Neverland",
-      :company     => "Foo Inc.",
-      :email       => "person@example.com",
-      :expire_at   => 1.week.from_now
-    }).as_new_record
-  end
-  
-  it "isn't valid without title" do
+RSpec.describe Vacancy do
+  subject { build(:vacancy) }
+
+  it 'is not valid without title' do
     subject.title = nil
-    subject.should_not be_valid
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:title)
   end
 
-  it "isn't valid without description" do
+  it 'is not valid without description' do
     subject.description = nil
-    should_not be_valid
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:description)
   end
 
-  it "isn't valid without location" do
+  it 'is not valid without location' do
     subject.location = nil
-    should_not be_valid
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:location)
   end
 
-  it "isn't valid without email" do
+  it 'is not valid without email' do
     subject.email = nil
-    should_not be_valid
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:email)
   end
 
-  it "isn't valid with email in wrong format" do
-    subject.email = "wrong@email"
-    should_not be_valid
+  it 'is not valid with email in wrong format' do
+    subject.email = 'wrong@email'
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:email)
   end
 
-  it "isn't valid without expiration date" do
+  it 'is not valid without expiration date' do
     subject.expire_at = nil
-    subject.should_not be_valid
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:expire_at)
   end
 
-  context "after creating a new record" do
-    it "assigns owner token" do
-      subject.owner_token = nil
-      subject.save!
-      subject.owner_token.should_not be_blank
+  context 'when vacancy has been saved' do
+    before { subject.save! }
+
+    it 'assigns an owner token' do
+      expect(subject.owner_token).not_to be_blank
     end
-    it "assigns admin token" do
-      subject.admin_token = nil
-      subject.save!
-      subject.admin_token.should_not be_blank
+
+    it 'assigns an admin token' do
+      expect(subject.admin_token).not_to be_blank
     end
-  end
-  
-  context "after saving the vacancy" do
-    it "assigns vacancy's excerpt" do
-      subject.excerpt_html = nil
-      subject.save!
-      subject.excerpt_html.should_not be_blank
+
+    it 'generates excerpt' do
+      expect(subject.excerpt_html).not_to be_blank
     end
-    it "assigns vacancy's description as html" do
-      subject.description_html = nil
-      subject.save!
-      subject.description_html.should_not be_blank
+
+    it 'generates html description' do
+      expect(subject.description_html).not_to be_blank
     end
   end
 
-  describe "#approved?" do
-    context "when vacancy has approving mark" do
-      before{ subject.approved_at = Date.current }
-      
-      it "should return true" do
-        subject.should be_approved
-      end
+  describe '#approved?' do
+    context 'when vacancy has approval mark' do
+      before { subject.approved_at = Date.current }
+
+      it { is_expected.to be_approved }
     end
-    context "when vacancy doesn't have approving mark" do
-      before{ subject.approved_at = nil }
-      
-      it "should return false" do
-        subject.should_not be_approved
-      end
+
+    context 'when vacancy does not have approval mark' do
+      before { subject.approved_at = nil }
+
+      it { is_expected.not_to be_approved }
     end
   end
-  
-  describe "#expired?" do
-    context "when expiration date is in future" do
+
+  describe '#approve!' do
+    context 'when vacancy does not have approval mark' do
+      before do
+        subject.approved_at = nil
+        subject.approve!
+      end
+
+      it { is_expected.to be_approved }
+
+      it { is_expected.to be_persisted}
+    end
+
+    context 'when vacancy have approval mark' do
+      before do
+        subject.approved_at = Date.current
+        subject.approve!
+      end
+
+      it { is_expected.to be_approved }
+
+      it { is_expected.to be_persisted}
+    end
+  end
+
+  describe '#expired?' do
+    context 'when expiration date is in the future' do
       before { subject.expire_at = 2.days.from_now }
-      
-      it "should return false" do
-        subject.should_not be_expired
-      end
+
+      it { is_expected.not_to be_expired }
     end
-    context "when expiration date is in past" do
+
+    context 'when expiration date is in the past' do
       before { subject.expire_at = 2.days.ago }
-      
-      it "should return true" do
-        subject.should be_expired
-      end
+
+      it { is_expected.to be_expired }
     end
   end
 end

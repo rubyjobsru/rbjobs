@@ -5,6 +5,8 @@ class VacanciesController < ApplicationController
   respond_to :html
   respond_to :xml, :only => :index
 
+  include Authentication
+
   def index
     @vacancies = Vacancy.available.page(params[:page]).per(6)
     respond_with(@vacancies)
@@ -78,22 +80,8 @@ class VacanciesController < ApplicationController
     )
   end
 
-  # TODO: Move authorization code to separete module
   def assign_vacancy
     @vacancy = Vacancy.find_by_id!(params[:id])
-  end
-
-  def authorize!(action, vacancy)
-    case action
-    when :read
-      return vacancy.approved? || admin?(vacancy)
-    when :edit, :update
-      return (vacancy.approved? && owner?(vacancy)) || admin?(vacancy)
-    when :destroy, :approve
-      return admin?(vacancy)
-    else
-      raise StandartError
-    end
   end
 
   def owner?(vacancy)

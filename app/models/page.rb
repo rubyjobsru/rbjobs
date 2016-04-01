@@ -6,7 +6,7 @@ class Page
   def initialize(id = nil)
     @id = id
   end
-  
+
   def self.find_by_id(id)
     return self.exists?(id) ? self.new(id) : nil
   end
@@ -14,15 +14,15 @@ class Page
   def self.exists?(id)
     self.ids.include?(id.to_s)
   end
-  
+
   def self.ids
     ["about", "terms", "contacts"]
   end
-  
+
   def persisted?
     false
   end
-  
+
   def title
     Page.get_field(self.id, :title)
   end
@@ -34,9 +34,9 @@ class Page
   def body_html
     HtmlGenerator.render(self.body_markdown)
   end
-  
+
   private
-  
+
   def self.i18n_key_for_field(id, field)
     "pages.show.#{id}.#{field}"
   end

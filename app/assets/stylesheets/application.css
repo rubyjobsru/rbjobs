@@ -1,5 +1,6 @@
 /*
- *= require bootstrap
+ *= require bootstrap.min
+ *= require bootstrap-theme.min
  *= require_self
  *= require_tree .
 */

@@ -9,7 +9,7 @@
                           class: 'form-control',
                           autofocus: true,
                           placeholder: t(".placeholders.title") %>
-      <% for error in form.object.errors.get(:title) %>
+      <% for error in form.object.errors[:title] %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
@@ -23,7 +23,7 @@
                       rows: 20,
                       class: 'form-control',
                       placeholder: t(".placeholders.description") %>
-      <% for error in form.object.errors.get(:description) %>
+      <% for error in form.object.errors[:description] %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
@@ -36,7 +36,7 @@
       <%= form.text_field :location,
                           class: 'form-control',
                           placeholder: t(".placeholders.location") %>
-      <% for error in form.object.errors.get(:location) %>
+      <% for error in form.object.errors[:location] %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
@@ -64,7 +64,7 @@
           <span><%= t(".notes.expire_at_one_month") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month)) %></span></span>
         </label>
       </div>
-      <% for error in form.object.errors.get(:expire_at) %>
+      <% for error in form.object.errors[:expire_at] %>
         <%= content_tag(:span, error, :class => "help-block") %>
       <% end %>
      </div>
@@ -78,7 +78,7 @@
                    class: 'col-md-2 control-label' %>
     <div class="col-md-10">
       <%= form.email_field :email, class: 'form-control' %>
-      <% for error in form.object.errors.get(:email) %>
+      <% for error in form.object.errors[:email] %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
      </div>
@@ -119,7 +119,7 @@
       <p><%= t('.notes.terms.text', link: link_to(t('.notes.terms.link'), page_url(:terms))).html_safe %></p>
     </div>
   </div>
-    <%= form.submit t('.create'), class: 'btn btn-success' %>
+    <%= form.submit t('.create'), class: 'btn btn-success', data: { disable_with: t('.processing') } %>
     <%= link_to t('.cancel'), root_url, class: 'btn' %>
   <% end %>
   </div>

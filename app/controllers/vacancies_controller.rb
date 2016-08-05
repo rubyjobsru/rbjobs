@@ -1,87 +1,84 @@
 class VacanciesController < ApplicationController
-  before_filter :assign_vacancy, :except => [:index, :new, :create]
-  before_filter :store_token, :except => [:index, :new, :create]
+  before_action :store_token, except: [:index, :new, :create]
 
-  respond_to :html
-  respond_to :xml, :only => :index
+  def index; end
 
-  def index
-    @vacancies = Vacancy.available.page(params[:page]).per(6)
-    respond_with(@vacancies)
-  end
-
-  def new
-    respond_with(@vacancy = Vacancy.new)
-  end
+  def new; end
 
   def create
-    @vacancy = Vacancy.new(parameters)
-
-    if @vacancy.save
-      VacancyMailer.creation_notice(@vacancy).deliver
-      flash[:success] = t("vacancies.create.success")
+    if vacancy.save
+      VacancyMailer.creation_notice(vacancy).deliver
+      flash[:success] = t('vacancies.create.success')
+      redirect_to root_url
+    else
+      render :new
     end
-
-    respond_with(@vacancy, :location => @vacancy.persisted? ?  root_url : nil)
   end
 
   def show
-    if authorize!(:read, @vacancy)
-      respond_with(@vacancy)
-    else
-      render(:file => 'public/404', :layout => false, :status => :not_found)
-    end
+    respond_with_404 unless authorize!(:read, vacancy)
   end
 
   def edit
-    if authorize!(:edit, @vacancy)
-      respond_with(@vacancy)
-    else
-      render(:file => 'public/404', :layout => false, :status => :not_found)
-    end
+    respond_with_404 unless authorize!(:edit, vacancy)
   end
 
   def update
-    if authorize!(:update, @vacancy)
-      @vacancy.update_attributes(parameters) and flash[:success] = t("vacancies.update.success")
-      respond_with(@vacancy)
+    respond_with_404 unless authorize!(:update, vacancy)
+
+    if vacancy.update(parameters)
+      flash[:success] = t('vacancies.update.success')
+      redirect_to vacancy_url(vacancy)
     else
-      render(:file => 'public/404', :layout => false, :status => :not_found)
+      render :edit
     end
   end
 
   def destroy
-    if authorize!(:destroy, @vacancy)
-      @vacancy.destroy and flash[:success] = t("vacancies.destroy.success")
-      respond_with(@vacancy, :location => root_url)
-    else
-      render(:file => 'public/404', :layout => false, :status => :not_found)
-    end
+    respond_with_404 unless authorize!(:destroy, vacancy)
+
+    vacancy.destroy and flash[:success] = t('vacancies.destroy.success')
+    redirect_to root_url
   end
 
   def approve
-    if authorize!(:approve, @vacancy)
-      @vacancy.approve! and flash[:success] = t("vacancies.approve.success")
-      VacancyMailer.approval_notice(@vacancy).deliver
-      respond_with(@vacancy)
-    else
-      render(:file => 'public/404', :layout => false, :status => :not_found)
-    end
+    respond_with_404 unless authorize!(:approve, vacancy)
+
+    vacancy.approve! and flash[:success] = t('vacancies.approve.success')
+    VacancyMailer.approval_notice(vacancy).deliver
   end
 
   private
 
   def parameters
+    return {} if params[:vacancy].blank?
+
     params.require(:vacancy).permit(
-      :title, :description, :location, :company, :url, :name, :email,
-      :phone, :expire_at
+      :title,
+      :description,
+      :location,
+      :company,
+      :url,
+      :name,
+      :email,
+      :phone,
+      :expire_at
     )
   end
 
-  # TODO: Move authorization code to separete module
-  def assign_vacancy
-    @vacancy = Vacancy.find_by_id!(params[:id])
+  def vacancies
+    @vacancies ||= Vacancy.available.page(params[:page]).per(6)
   end
+  helper_method :vacancies
+
+  def vacancy
+    @vacancy ||= if params[:id]
+                   Vacancy.find(params[:id])
+                 else
+                   Vacancy.new(parameters)
+                 end
+  end
+  helper_method :vacancy
 
   def authorize!(action, vacancy)
     case action

@@ -5,6 +5,7 @@ ru:
       create: "Отправить"
       update: "Сохранить"
       cancel: "Отмена"
+      processing: "Обработка..."
       placeholders:
         title: "Например, 'Ведущий разработчик' или 'Ruby-ниндзя'"
         description: "Для форматирования можно использовать Markdown"

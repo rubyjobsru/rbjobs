@@ -1,19 +1,12 @@
 class PagesController < ApplicationController
-  before_filter :assign_page
-  
-  respond_to :html
-  
   def show
-    if @page.present?
-      respond_with(@page)
-    else
-      render(:file => "public/404", :layout => false, :status => :not_found)
-    end
+    respond_with_404 unless page.present?
   end
-  
+
   private
-  
-  def assign_page
-    @page = Page.find_by_id(params[:id])
+
+  def page
+    @page ||= Page.find_by_id(params[:id])
   end
+  helper_method :page
 end

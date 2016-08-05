@@ -7,7 +7,7 @@
   </div>
 <% end %>
 
-<% @vacancies.in_groups_of(2, false) do |group| %>
+<% vacancies.in_groups_of(2, false) do |group| %>
 <div class="row">
   <% for vacancy in group %>
   <article class="col-md-6">
@@ -22,4 +22,4 @@
 </div>
 <% end %>
 
-<%= paginate @vacancies %>
+<%= paginate vacancies %>

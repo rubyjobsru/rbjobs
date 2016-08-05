@@ -14,7 +14,7 @@ threads threads_count, threads_count
 
 # Specifies the `socket` that Puma will listen to.
 #
-bind        ENV.fetch("SOCKET") { 'unix:///tmp/puma.rubyjobs.sock' }
+bind        ENV.fetch("PUMA_SOCKET") { 'unix:///tmp/puma.rubyjobs.sock' }
 
 # Specifies the `environment` that Puma will run in.
 #

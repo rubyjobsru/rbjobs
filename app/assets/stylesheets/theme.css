@@ -28,23 +28,23 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
-@media (min-width: 768px) {
-  .logo {
-    padding-top:40px;
-    padding-bottom: 60px;
-  }
+.logo {
+  padding-top: 0;
+  padding-bottom: 40px;
 }
 
-@media (min-width: 768px) and (min-height: 700px) {
+@media (min-width: 768px) {
   body {
     padding-top: 40px;
     padding-bottom: 40px;
   }
   .logo {
-    padding-top:10px;
+    padding-top: 25px;
     padding-bottom: 120px;
   }
+}
+
+@media (min-width: 992px) {
 }
 
 @media (min-width: 1170px) {

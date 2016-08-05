@@ -1,13 +1,10 @@
 /*
  *= require bootstrap.min
- *= require bootstrap-theme.min
+ *= require simple-line-icons
+ *= require theme
  *= require_self
  *= require_tree .
 */
-
-h3 small {
-  font-size: 13px;
-}
 
 .button_to {
   display:inline-block;
@@ -17,63 +14,6 @@ h3 small {
 .field_with_errors {
   display:inline;
 }
-.sidebar {
-  color:#808080;
-}
-.sidebar h1, .sidebar h5 {
-  color:#707070;
-}
-.sidebar h1 {
-  margin-bottom:1em;
-  font-size:20px;
-  line-height:24px;
-}
-.sidebar h5 {
-  margin-bottom:1em;
-}
-.sidebar .logo {
-  margin-bottom:104px;
-}
-.sidebar .tips,
-.sidebar .subscriptions {
-  margin-bottom:65px;
-}
-.sidebar .delivery-methods a {
-  color:#808080;
-}
-.share-buttons {
-  margin-left:0;
-  padding-top:0.2em;
-  list-style:none outside;
-}
-.share-buttons li {
-  display:inline-block;
-  vertical-align:middle;
-  margin:0;
-  padding:0 5px 0 0;
-}
 .event-logo {
   height:100px;
-}
-
-.content-section {
-  padding-top:39px;
-}
-
-.footer {
-  margin-top: 45px;
-  padding:35px 0;
-  border-top: 1px solid #E5E5E5;
-}
-.footer, .footer a {
-  color:#808080;
-}
-.footer nav ul {
-  list-style:none;
-  margin-left:0;
-  padding:0;
-}
-.footer nav ul li {
-  display:inline-block;
-  margin-right:26px;
 }

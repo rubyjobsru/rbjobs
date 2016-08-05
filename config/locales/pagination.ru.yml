@@ -3,6 +3,6 @@ ru:
     pagination:
       first: "&laquo;"
       last: "&raquo;"
-      previous: "&larr;"
-      next: "&rarr;"
+      previous: "&laquo;"
+      next: "&raquo;"
       truncate: "..."

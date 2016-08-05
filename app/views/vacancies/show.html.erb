@@ -1,5 +1,4 @@
-<%# content_for :sidebar %>
-<% content_for :meta_title, t(".meta_title", :vacancy => @vacancy.title) %>
+<% content_for :meta_title, t('.meta_title', vacancy: @vacancy.title) %>
 <% content_for :js do %>
   <!-- Facebook -->
   <div id="fb-root"></div>
@@ -19,61 +18,65 @@
 <article>
   <div class="page-header">
     <h1><%= @vacancy.title %></h1>
-    <h3 class="muted company">
+    <h4 class="text-muted">
       <%= company_location_tag(@vacancy) %><br/>
       <small><%== t('.expired_at', expired_at: l(@vacancy.expire_at)) %></small>
-    </h3>
+    </h4>
   </div>
   <%= @vacancy.description_html.html_safe %>
   <div class="row">
-    <div class="span3">
+    <div class="col-md-4">
       <address>
-        <strong><%= t(".company") %></strong><br />
+        <strong><%= t('.company') %></strong><br />
         <%= @vacancy.company %><br />
         <% unless @vacancy.url.blank? %>
           <%= link_to @vacancy.url, @vacancy.url %><br />
         <% end %>
         <% unless @vacancy.phone.blank? %>
-          <%= t(".phone") %>: <%= @vacancy.phone %>
+          <%= t('.phone') %>: <%= @vacancy.phone %>
         <% end %>
       </address>
     </div>
-    <div class="span3">
+    <div class="col-md-4">
       <address>
-        <strong><%= t(".contacts") %></strong><br />
+        <strong><%= t('.contacts') %></strong><br />
         <% unless @vacancy.name.blank? %>
           <%= @vacancy.name %><br />
         <% end %>
-        <%= mail_to @vacancy.email, nil, :encode => "hex", :replace_at => "[at]" %>
+        <%= mail_to @vacancy.email, nil, encode: "hex", replace_at: "[at]" %>
       </address>
     </div>
-     <div class="span2">
-      <strong><%= t(".share_links") %></strong><br />
-      <ul class="share-buttons">
-        <li>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= vacancy_url(@vacancy) %>" data-text="<%= @vacancy.title %>" data-count="none" data-via="rubyjobsru">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-        </li>
-        <li>
-          <div class="g-plusone" data-size="medium" data-annotation="none"></div>
-        </li>
-        <li>
-          <div style="display:inline-block;vertical-align:bottom;" class="fb-like" data-href="<%= vacancy_url(@vacancy) %>" data-send="false" data-layout="button_count" data-width="" data-show-faces="false" data-action="like"></div>
-        </li>
-      </ul>
-     </div>
-   </div>
+    <div class="col-md-4">
+      <dl>
+        <dt><%= t('.share_links') %></dt>
+        <dd>
+          <ul class="list-inline">
+            <li>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= vacancy_url(@vacancy) %>" data-text="<%= @vacancy.title %>" data-count="none" data-via="rubyjobsru">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+            </li>
+            <li>
+              <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+            </li>
+            <li>
+              <div class="fb-like" data-href="<%= vacancy_url(@vacancy) %>" data-send="false" data-layout="button_count" data-width="" data-show-faces="false" data-action="like"></div>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  </div>
   <% if admin?(@vacancy) %>
     <div class="form-actions">
-      <%= button_to(t(".publish"), approve_vacancy_url(@vacancy), :method => "put", :class => "btn btn-success") unless @vacancy.approved? %>
-      <%= link_to t(".edit"), edit_vacancy_url(@vacancy), :class => "btn" %>
-      <%= button_to t(".destroy.button"), vacancy_url(@vacancy), :method => "delete", :confirm => t(".destroy.confirmation"), :class => "btn btn-danger" %>
+      <%= button_to(t('.publish'), approve_vacancy_url(@vacancy), method: :put, class: 'btn btn-success') unless @vacancy.approved? %>
+      <%= link_to t('.edit'), edit_vacancy_url(@vacancy), class: 'btn btn-default' %>
+      <%= button_to t('.destroy.button'), vacancy_url(@vacancy), method: :delete, confirm: t('.destroy.confirmation'), class: 'btn btn-danger' %>
     </div>
   <% elsif owner?(@vacancy) %>
     <div class="form-actions">
-      <%= link_to t(".edit"), edit_vacancy_url(@vacancy), :class => "btn" %>
+      <%= link_to t('.edit'), edit_vacancy_url(@vacancy), class: "btn" %>
     </div>
   <% end %>
   <%= content_tag(:div,
-                  t(".expiration_notice", :expire_at => l(@vacancy.expire_at)),
-                  :class => "alert alert-block") if @vacancy.expired? %>
+                  t('.expiration_notice', expire_at: l(@vacancy.expire_at)),
+                  class: 'alert alert-block') if @vacancy.expired? %>
 </article>

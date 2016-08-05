@@ -46,6 +46,7 @@ class VacanciesController < ApplicationController
 
     vacancy.approve! and flash[:success] = t('vacancies.approve.success')
     VacancyMailer.approval_notice(vacancy).deliver
+    redirect_to vacancy_url(vacancy)
   end
 
   private

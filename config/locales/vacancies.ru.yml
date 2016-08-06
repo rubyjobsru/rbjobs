@@ -48,7 +48,7 @@ ru:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"
       expiration_notice: "Это архивная вакансия. Срок ее размещения истек %{expire_at}"
-      expired_at: "Вакансия размещена до %{expired_at}"
+      expired_at: "Вакансия размещена до <span itemprop=\"validThrough\">%{expired_at}</span>"
     edit:
       meta_title: "Редактирование описания вакансии ~ RubyJobs.ru"
       title: "Редактирование"

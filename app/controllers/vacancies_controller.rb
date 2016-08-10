@@ -9,44 +9,54 @@ class VacanciesController < ApplicationController
     if vacancy.save
       VacancyMailer.creation_notice(vacancy).deliver
       flash[:success] = t('vacancies.create.success')
-      redirect_to root_url
+      redirect_to(root_url, status: :created) and return
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    respond_with_404 unless authorize!(:read, vacancy)
+    unless authorize!(:read, vacancy)
+      respond_with_404 and return
+    end
   end
 
   def edit
-    respond_with_404 unless authorize!(:edit, vacancy)
+    unless authorize!(:edit, vacancy)
+      respond_with_404 and return
+    end
   end
 
   def update
-    respond_with_404 unless authorize!(:update, vacancy)
+    unless authorize!(:update, vacancy)
+      respond_with_404 and return
+    end
 
     if vacancy.update(parameters)
       flash[:success] = t('vacancies.update.success')
-      redirect_to vacancy_url(vacancy)
+      redirect_to(vacancy_url(vacancy), status: :no_content) and return
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    respond_with_404 unless authorize!(:destroy, vacancy)
+    unless authorize!(:destroy, vacancy)
+      respond_with_404 and return
+    end
 
     vacancy.destroy and flash[:success] = t('vacancies.destroy.success')
-    redirect_to root_url
+    redirect_to(root_url, status: :no_content) and return
   end
 
   def approve
-    respond_with_404 unless authorize!(:approve, vacancy)
+    unless authorize!(:approve, vacancy)
+      respond_with_404 and return
+    end
 
     vacancy.approve! and flash[:success] = t('vacancies.approve.success')
     VacancyMailer.approval_notice(vacancy).deliver
-    redirect_to vacancy_url(vacancy)
+    redirect_to(vacancy_url(vacancy), status: :no_content) and return
   end
 
   private

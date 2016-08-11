@@ -1,3 +1,6 @@
+require 'html_generator'
+require 'token_generator'
+
 module Vacancies
   class Persister
     def initialize(vacancy)

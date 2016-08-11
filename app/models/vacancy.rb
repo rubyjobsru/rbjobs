@@ -1,6 +1,3 @@
-require "token_generator"
-require "html_generator"
-
 class Vacancy < ActiveRecord::Base
   validates :title, :presence => true
   validates :description, :presence => true
@@ -14,12 +11,18 @@ class Vacancy < ActiveRecord::Base
   scope :descent_order, lambda { order("id DESC") }
   scope :available, lambda { approved.not_outdated(Date.current).descent_order }
 
-  def approved?
-    approved_at.present?
+  def approve!
+    return if approved?
+    update!(approved_at: Time.current)
   end
 
-  def approve!
-    update!(approved_at: Time.current)
+  def refuse!
+    return unless approved?
+    update!(approved_at: nil)
+  end
+
+  def approved?
+    approved_at.present?
   end
 
   def expired?

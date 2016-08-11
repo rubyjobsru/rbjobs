@@ -78,9 +78,7 @@ RSpec.describe VacanciesController do
     end
 
     context 'when a vacancy is not approved yet' do
-      # FIXME: Implement interface on Vacancy instead of direct manipulation
-      #        via `#update!` method.
-      before { vacancy.update!(approved_at: nil) }
+      before { vacancy.refuse! }
 
       it 'responds with "HTTP 404 Not Found"' do
         get :show, params: parameters
@@ -117,9 +115,7 @@ RSpec.describe VacanciesController do
     end
 
     context 'when a vacancy is not approved yet' do
-      # FIXME: Implement interface on Vacancy instead of direct manipulation
-      #        via `#update!` method.
-      before { vacancy.update!(approved_at: nil) }
+      before { vacancy.refuse! }
 
       it 'responds with "HTTP 404 Not Found"' do
         get :edit, params: parameters
@@ -182,9 +178,7 @@ RSpec.describe VacanciesController do
     end
 
     context 'when a vacancy is not approved yet' do
-      # FIXME: Implement interface on Vacancy instead of direct manipulation
-      #        via `#update!` method.
-      before { vacancy.update!(approved_at: nil) }
+      before { vacancy.refuse! }
 
       it 'responds with "HTTP 404 Not Found"' do
         put :update, params: parameters

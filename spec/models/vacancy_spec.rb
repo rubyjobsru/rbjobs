@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Vacancy do
-  subject { build(:vacancy) }
+  subject { persist_vacancy(build(:vacancy)) }
 
   it 'is not valid without title' do
     subject.title = nil
@@ -54,26 +54,46 @@ RSpec.describe Vacancy do
   end
 
   describe '#approve!' do
-    context 'when vacancy does not have approval mark' do
-      before do
-        subject.approved_at = nil
+    context 'when vacancy does not have approval timestamp' do
+      before { subject.update!(approved_at: nil) }
+
+      it 'sets an approval timestamp on the vacancy' do
         subject.approve!
+        expect(subject.approved_at).not_to be_nil
       end
-
-      it { is_expected.to be_approved }
-
-      it { is_expected.to be_persisted}
     end
 
-    context 'when vacancy have approval mark' do
-      before do
-        subject.approved_at = Date.current
-        subject.approve!
+    context 'when vacancy have approval timestamp' do
+      let(:approval_timestamp) { Time.current - 1.day }
+
+      before { subject.update!(approved_at: approval_timestamp) }
+
+      it 'does not change an approval timestamp on the vacancy' do
+        expect {
+          subject.approve!
+        }.not_to change { subject.approved_at }
       end
+    end
+  end
 
-      it { is_expected.to be_approved }
+  describe '#refuse!' do
+    context 'when vacancy have approval timestamp' do
+      before { subject.update!(approved_at: Time.current) }
 
-      it { is_expected.to be_persisted}
+      it 'drops an approval timestamp on the vacancy' do
+        subject.refuse!
+        expect(subject.approved_at).to be_nil
+      end
+    end
+
+    context 'when vacancy does not have approval timestamp' do
+      before { subject.update!(approved_at: nil) }
+
+      it 'does not change an approval timestamp on the vacancy' do
+        expect {
+          subject.refuse!
+        }.not_to change { subject.approved_at }
+      end
     end
   end
 

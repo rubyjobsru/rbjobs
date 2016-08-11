@@ -39,26 +39,6 @@ RSpec.describe Vacancy do
     expect(subject.errors).to include(:expire_at)
   end
 
-  context 'when vacancy has been saved' do
-    before { subject.save! }
-
-    it 'assigns an owner token' do
-      expect(subject.owner_token).not_to be_blank
-    end
-
-    it 'assigns an admin token' do
-      expect(subject.admin_token).not_to be_blank
-    end
-
-    it 'generates excerpt' do
-      expect(subject.excerpt_html).not_to be_blank
-    end
-
-    it 'generates html description' do
-      expect(subject.description_html).not_to be_blank
-    end
-  end
-
   describe '#approved?' do
     context 'when vacancy has approval mark' do
       before { subject.approved_at = Date.current }

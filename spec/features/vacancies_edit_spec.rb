@@ -4,7 +4,7 @@ RSpec.describe 'Edit vacancy page' do
   subject { page }
 
   context 'when vacancy is approved' do
-    let(:vacancy) { create(:approved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
 
     it 'is not available for random visitor' do
       visit edit_vacancy_path(vacancy)
@@ -30,7 +30,7 @@ RSpec.describe 'Edit vacancy page' do
   end
 
   context 'when vacancy is not approved yet' do
-    let(:vacancy) { create(:disapproved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:disapproved_vacancy)) }
 
     it 'is not available for random visitor' do
       visit edit_vacancy_path(vacancy)

@@ -55,7 +55,7 @@ RSpec.describe VacanciesController do
   end
 
   describe '#show' do
-    let(:vacancy) { create(:approved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
     let(:parameters) { { id: vacancy.id } }
 
     it 'responds with "HTTP 200 OK"' do
@@ -94,7 +94,7 @@ RSpec.describe VacanciesController do
   end
 
   describe '#edit' do
-    let(:vacancy) { create(:approved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
     let(:parameters) { { id: vacancy.id, token: vacancy.owner_token } }
 
     it 'responds with "HTTP 200 OK"' do
@@ -133,7 +133,7 @@ RSpec.describe VacanciesController do
   end
 
   describe '#update' do
-    let(:vacancy) { create(:approved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
     let(:attributes) { attributes_for(:vacancy) }
     let(:parameters) do
       {
@@ -198,7 +198,7 @@ RSpec.describe VacanciesController do
   end
 
   describe '#destroy' do
-    let(:vacancy) { create(:approved_vacancy) }
+    let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
     let(:parameters) { { id: vacancy.id, token: vacancy.admin_token } }
 
     it 'responds with "HTTP 204 No Content"' do
@@ -231,7 +231,7 @@ RSpec.describe VacanciesController do
   end
 
   describe '#approve' do
-    let(:vacancy) { create(:vacancy) }
+    let(:vacancy) { persist_vacancy(build(:vacancy)) }
     let(:parameters) { { id: vacancy.id, token: vacancy.admin_token } }
 
     it 'responds with "HTTP 204 No Content"' do

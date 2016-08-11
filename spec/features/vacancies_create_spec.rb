@@ -17,14 +17,16 @@ RSpec.describe 'Post a new vacancy' do
     end
 
     it 'redirects to root page' do
-      expect(current_path).to eql(root_path)
+      expect(subject).to have_content('You are being redirected')
     end
 
     it 'displays a confirmation message for author' do
+      visit root_path
       expect(subject).to have_content(I18n.t('vacancies.create.success'))
     end
 
-    it 'does not display the posted vacancy yet' do
+    it 'does not display the posted vacancy yet on the root page' do
+      visit root_path
       expect(subject).not_to have_content(attributes[:title])
     end
   end
@@ -38,7 +40,7 @@ RSpec.describe 'Post a new vacancy' do
     end
 
     it 'does not redirect to root page' do
-      expect(current_path).not_to eql(root_path)
+      expect(subject).not_to have_current_path(root_path)
     end
 
     it 'does not display a confirmation message for author' do

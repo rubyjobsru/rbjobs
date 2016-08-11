@@ -1,65 +1,71 @@
 class VacanciesController < ApplicationController
   before_action :store_token, except: [:index, :new, :create]
+  before_action :ensure_authorized, except: [:index, :new, :create]
 
   def index; end
 
   def new; end
 
   def create
-    if vacancy.save
-      VacancyMailer.creation_notice(vacancy).deliver
-      flash[:success] = t('vacancies.create.success')
-      redirect_to(root_url, status: :created) and return
+    create_vacancy!
+
+    if vacancy.persisted?
+      redirect_to(root_url, status: :created,
+                            flash: { success: t('vacancies.create.success') })
+      return
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show
-    unless authorize!(:read, vacancy)
-      respond_with_404 and return
-    end
-  end
+  def show; end
 
-  def edit
-    unless authorize!(:edit, vacancy)
-      respond_with_404 and return
-    end
-  end
+  def edit; end
 
   def update
-    unless authorize!(:update, vacancy)
-      respond_with_404 and return
-    end
+    update_vacancy!
 
-    if vacancy.update(parameters)
-      flash[:success] = t('vacancies.update.success')
-      redirect_to(vacancy_url(vacancy), status: :no_content) and return
+    if vacancy.errors.empty?
+      redirect_to(vacancy_url(vacancy), status: :no_content,
+                                        flash: { success: t('vacancies.update.success') })
+      return
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    unless authorize!(:destroy, vacancy)
-      respond_with_404 and return
-    end
+    destroy_vacancy!
 
-    vacancy.destroy and flash[:success] = t('vacancies.destroy.success')
-    redirect_to(root_url, status: :no_content) and return
+    flash[:success] = t('vacancies.destroy.success') if vacancy.destroyed?
+    redirect_to(root_url, status: :no_content)
   end
 
   def approve
-    unless authorize!(:approve, vacancy)
-      respond_with_404 and return
-    end
+    approve_vacancy!
 
-    vacancy.approve! and flash[:success] = t('vacancies.approve.success')
-    VacancyMailer.approval_notice(vacancy).deliver
-    redirect_to(vacancy_url(vacancy), status: :no_content) and return
+    flash[:success] = t('vacancies.approve.success') if vacancy.approved?
+    redirect_to(vacancy_url(vacancy), status: :no_content)
   end
 
   private
+
+  def create_vacancy!
+    @vacancy = Vacancies::Creator.run(vacancy)
+  end
+
+  def update_vacancy!
+    @vacancy.attributes = parameters
+    @vacancy = Vacancies::Updater.run(vacancy)
+  end
+
+  def destroy_vacancy!
+    @vacancy = Vacancies::Destroyer.run(vacancy)
+  end
+
+  def approve_vacancy!
+    @vacancy = Vacancies::Approver.run(vacancy)
+  end
 
   def parameters
     return {} if params[:vacancy].blank?
@@ -91,16 +97,16 @@ class VacanciesController < ApplicationController
   end
   helper_method :vacancy
 
-  def authorize!(action, vacancy)
+  def authorized?(action, vacancy)
     case action
-    when :read
+    when :show
       return vacancy.approved? || admin?(vacancy)
     when :edit, :update
       return (vacancy.approved? && owner?(vacancy)) || admin?(vacancy)
     when :destroy, :approve
       return admin?(vacancy)
     else
-      raise StandartError
+      raise StandardError
     end
   end
 
@@ -120,6 +126,10 @@ class VacanciesController < ApplicationController
 
   def tokens
     session[:tokens] || []
+  end
+
+  def ensure_authorized
+    respond_with_404 unless authorized?(action_name.to_sym, vacancy)
   end
 
   def store_token

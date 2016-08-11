@@ -9,5 +9,6 @@ Bundler.require(*Rails.groups)
 module Rbjobs
   class Application < Rails::Application
     config.i18n.default_locale = :ru
+    config.active_job.queue_adapter = :sucker_punch
   end
 end

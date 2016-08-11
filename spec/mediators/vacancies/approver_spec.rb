@@ -12,14 +12,19 @@ RSpec.describe Vacancies::Approver do
       expect(result.approved_at).not_to be_nil
     end
 
-    # FIXME: Make example more pricise. The test should check that an email has
-    #        been sent to the owner.
-    it 'sends an email notification' do
+    it 'sets a background job for email delivery' do
       expect {
         subject.run(vacancy)
-      }.to change {
-        ActionMailer::Base.deliveries.size
-      }.by(1)
+      }.to have_enqueued_job(ActionMailer::DeliveryJob)
+    end
+
+    it 'sends an email notification to the owner' do
+      perform_enqueued_jobs do
+        subject.run(vacancy)
+      end
+
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to[0]).to eql(vacancy.email)
     end
 
     context 'when a vacancy cannot be approved' do
@@ -28,9 +33,7 @@ RSpec.describe Vacancies::Approver do
       it 'does not send any email notification' do
         expect {
           subject.run(vacancy)
-        }.not_to change {
-          ActionMailer::Base.deliveries.size
-        }
+        }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
       end
     end
   end

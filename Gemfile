@@ -12,6 +12,7 @@ gem 'puma', require: false
 gem 'rails'
 gem 'redcarpet'
 gem 'sprockets-rails', require: 'sprockets/railtie'
+gem 'sucker_punch'
 gem 'therubyracer'
 gem 'uglifier'
 

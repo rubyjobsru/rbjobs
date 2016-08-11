@@ -18,7 +18,7 @@ module Vacancies
     private
 
     def notify
-      VacancyMailer.approval_notice(@vacancy).deliver
+      VacancyMailer.approval_notice(@vacancy).deliver_later
     end
   end
 end

@@ -18,7 +18,7 @@ module Vacancies
     private
 
     def notify
-      VacancyMailer.creation_notice(@vacancy).deliver
+      VacancyMailer.creation_notice(@vacancy).deliver_later
     end
   end
 end

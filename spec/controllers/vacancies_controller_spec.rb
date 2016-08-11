@@ -29,14 +29,19 @@ RSpec.describe VacanciesController do
       expect(response.location).to eql(root_url)
     end
 
-    # FIXME: Make example more pricise. The test should check that an email has
-    #        been sent to the admin.
-    it 'sends an email notification' do
+    it 'sets a background job for email delivery' do
       expect {
         post :create, params: parameters
-      }.to change {
-        ActionMailer::Base.deliveries.size
-      }.by(1)
+      }.to have_enqueued_job(ActionMailer::DeliveryJob)
+    end
+
+    it 'sends an email notification to the admin' do
+      perform_enqueued_jobs do
+        post :create, params: parameters
+      end
+
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to[0]).to eql(ENV['SUPPORT_EMAIL'])
     end
 
     context 'when supplied non-valid vacancy attributes' do
@@ -244,14 +249,19 @@ RSpec.describe VacanciesController do
       expect(response.location).to eql(vacancy_url(vacancy))
     end
 
-    # FIXME: Make example more pricise. The test should check that an email has
-    #        been sent to the vacancy owner.
-    it 'sends an email notification' do
+    it 'sets a background job for email delivery' do
       expect {
         put :approve, params: parameters
-      }.to change {
-        ActionMailer::Base.deliveries.size
-      }.by(1)
+      }.to have_enqueued_job(ActionMailer::DeliveryJob)
+    end
+
+    it 'sends an email notification to the owner' do
+      perform_enqueued_jobs do
+        put :approve, params: parameters
+      end
+
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to[0]).to eql(vacancy.email)
     end
 
     context 'when a vacancy does not exist' do

@@ -152,6 +152,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sucker_punch (2.0.2)
+      concurrent-ruby (~> 1.0.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -187,6 +189,7 @@ DEPENDENCIES
   redcarpet
   rspec-rails
   sprockets-rails
+  sucker_punch
   therubyracer
   uglifier
 

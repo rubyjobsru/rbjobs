@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 ruby '2.3.1'
@@ -27,6 +28,7 @@ end
 group :development do
   gem 'letter_opener'
   gem 'mina', require: false
+  gem 'rubocop', require: false
 end
 
 group :test do

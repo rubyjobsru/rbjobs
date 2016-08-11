@@ -1,15 +1,19 @@
+# frozen_string_literal: true
 class Vacancy < ActiveRecord::Base
-  validates :title, :presence => true
-  validates :description, :presence => true
-  validates :location, :presence => true
-  validates :email, :presence => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :unless => Proc.new { |vacancy| vacancy.email.blank? } }
-  validates :expire_at, :presence => true
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :location, presence: true
+  validates :email, presence: true, format: {
+    with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+    unless: proc { |vacancy| vacancy.email.blank? }
+  }
+  validates :expire_at, presence: true
 
-  scope :approved, lambda { where("approved_at IS NOT NULL") }
-  scope :not_approved, lambda { where({ :approved_at => nil }) }
-  scope :not_outdated, lambda { |date| where("expire_at >= ?", date) }
-  scope :descent_order, lambda { order("id DESC") }
-  scope :available, lambda { approved.not_outdated(Date.current).descent_order }
+  scope :approved, -> { where('approved_at IS NOT NULL') }
+  scope :not_approved, -> { where(approved_at: nil) }
+  scope :not_outdated, ->(date) { where('expire_at >= ?', date) }
+  scope :descent_order, -> { order('id DESC') }
+  scope :available, -> { approved.not_outdated(Date.current).descent_order }
 
   def approve!
     return if approved?

@@ -1,4 +1,5 @@
-require "html_generator"
+# frozen_string_literal: true
+require 'html_generator'
 
 class Page
   attr_reader :id
@@ -6,42 +7,42 @@ class Page
   def initialize(id = nil)
     @id = id
   end
-  
+
   def self.find_by_id(id)
-    return self.exists?(id) ? self.new(id) : nil
+    exists?(id) ? new(id) : nil
   end
 
   def self.exists?(id)
-    self.ids.include?(id.to_s)
+    ids.include?(id.to_s)
   end
-  
+
   def self.ids
-    ["about", "terms", "contacts"]
+    %w(about terms contacts)
   end
-  
+
   def persisted?
     false
   end
-  
+
   def title
-    Page.get_field(self.id, :title)
+    get_field(id, :title)
   end
 
   def body_markdown
-    Page.get_field(self.id, :body)
+    get_field(id, :body)
   end
 
   def body_html
-    HtmlGenerator.render(self.body_markdown)
-  end
-  
-  private
-  
-  def self.i18n_key_for_field(id, field)
-    "pages.show.#{id}.#{field}"
+    HtmlGenerator.render(body_markdown)
   end
 
-  def self.get_field(id, field)
-    I18n.translate i18n_key_for_field(id, field)
+  private
+
+  def get_field(id, field)
+    I18n.translate(i18n_key_for_field(id, field))
+  end
+
+  def i18n_key_for_field(id, field)
+    "pages.show.#{id}.#{field}"
   end
 end

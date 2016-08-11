@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Vacancies::Approver do
@@ -13,9 +14,9 @@ RSpec.describe Vacancies::Approver do
     end
 
     it 'sets a background job for email delivery' do
-      expect {
+      expect do
         subject.run(vacancy)
-      }.to have_enqueued_job(ActionMailer::DeliveryJob)
+      end.to have_enqueued_job(ActionMailer::DeliveryJob)
     end
 
     it 'sends an email notification to the owner' do
@@ -31,9 +32,9 @@ RSpec.describe Vacancies::Approver do
       before { allow(vacancy).to receive(:approved?).and_return(false) }
 
       it 'does not send any email notification' do
-        expect {
+        expect do
           subject.run(vacancy)
-        }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+        end.not_to have_enqueued_job(ActionMailer::DeliveryJob)
       end
     end
   end

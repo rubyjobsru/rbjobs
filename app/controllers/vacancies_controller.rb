@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class VacanciesController < ApplicationController
   before_action :store_token, except: [:index, :new, :create]
   before_action :ensure_authorized, except: [:index, :new, :create]
@@ -27,7 +28,9 @@ class VacanciesController < ApplicationController
 
     if vacancy.errors.empty?
       redirect_to(vacancy_url(vacancy), status: :no_content,
-                                        flash: { success: t('vacancies.update.success') })
+                                        flash: {
+                                          success: t('vacancies.update.success')
+                                        })
       return
     else
       render :edit, status: :unprocessable_entity

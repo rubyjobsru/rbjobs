@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Vacancy do
@@ -69,9 +70,9 @@ RSpec.describe Vacancy do
       before { subject.update!(approved_at: approval_timestamp) }
 
       it 'does not change an approval timestamp on the vacancy' do
-        expect {
+        expect do
           subject.approve!
-        }.not_to change { subject.approved_at }
+        end.not_to change { subject.approved_at }
       end
     end
   end
@@ -90,9 +91,9 @@ RSpec.describe Vacancy do
       before { subject.update!(approved_at: nil) }
 
       it 'does not change an approval timestamp on the vacancy' do
-        expect {
+        expect do
           subject.refuse!
-        }.not_to change { subject.approved_at }
+        end.not_to change { subject.approved_at }
       end
     end
   end

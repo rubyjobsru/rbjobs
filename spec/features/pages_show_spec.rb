@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe 'A static page' do
@@ -21,7 +22,8 @@ RSpec.describe 'A static page' do
     end
 
     it 'responds with 404 page' do
-      expect(subject).to have_content('Такой страницы не существует на этом сайте')
+      message = 'Такой страницы не существует на этом сайте'
+      expect(subject).to have_content(message)
     end
   end
 end

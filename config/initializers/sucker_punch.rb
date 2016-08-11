@@ -1,1 +1,2 @@
-SuckerPunch.exception_handler = -> (ex, klass, args) { Bugsnag.notify(ex) }
+# frozen_string_literal: true
+SuckerPunch.exception_handler = -> (ex, _klass, _args) { Bugsnag.notify(ex) }

@@ -54,15 +54,15 @@ class Vacancy < ActiveRecord::Base
   }
   validates :salary_currency, inclusion: {
     in: CURRENCIES,
-    allow_nil: true
+    allow_blank: true
   }
   validates :salary_unit, inclusion: {
     in: SALARY_UNITS,
-    allow_nil: true
+    allow_blank: true
   }
   validates :employment_type, inclusion: {
     in: EMPLOYMENT_TYPES,
-    allow_nil: true
+    allow_blank: true
   }
 
   scope :approved, -> { where('approved_at IS NOT NULL') }

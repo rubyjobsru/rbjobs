@@ -29,6 +29,7 @@ ru:
         salary_max: "до"
         salary_currency: "..."
         salary_unit: "..."
+        employment_type: "..."
       notes:
         expire_at_one_week: "Неделя"
         expire_at_two_weeks: "Две недели"

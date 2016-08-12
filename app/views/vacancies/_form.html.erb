@@ -1,10 +1,10 @@
 <fieldset>
   <legend><%= t(".description") %></legend>
-  <div class="form-group <%= "has-error" if form.object.errors.include?(:title) %>">
+  <div class="form-group">
     <%= form.label :title,
                    "#{t("activerecord.attributes.vacancy.title")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
+    <div class="col-md-6  <%= "has-error" if form.object.errors.include?(:title) %>">
       <%= form.text_field :title,
                           class: 'form-control',
                           autofocus: true,
@@ -16,16 +16,15 @@
     <div class="col-md-4">
       <%= form.select :employment_type,
                       employment_type_options_for_select,
-                      # { prompt: t(".placeholders.employment_type") },
-                      {},
+                      { include_blank: t(".placeholders.employment_type") },
                       class: 'form-control' %>
     </div>
   </div>
-  <div class="form-group <%= "has-error" if form.object.errors.include?(:description) %>">
+  <div class="form-group">
     <%= form.label :description,
                    "#{t("activerecord.attributes.vacancy.description")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
+    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:description) %>">
       <%= form.text_area :description,
                       rows: 20,
                       class: 'form-control',
@@ -35,11 +34,11 @@
       <% end %>
     </div>
   </div>
-  <div class="form-group <%= "has-error" if form.object.errors.include?(:location) %>">
+  <div class="form-group">
     <%= form.label :location,
                    "#{t("activerecord.attributes.vacancy.location")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-6">
+    <div class="col-md-6 <%= "has-error" if form.object.errors.include?(:location) %>">
       <%= form.text_field :location,
                           class: 'form-control',
                           placeholder: t(".placeholders.location") %>
@@ -60,36 +59,49 @@
   <div class="form-group">
     <%= form.label :salary_min,
                    "#{t("activerecord.attributes.vacancy.salary")}",
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-3">
-      <%= form.number_field :salary_min,
+                   class: 'col-md-2 control-label',
+                   value: number_with_delimiter(form.object.salary_min) %>
+    <div class="col-md-3 <%= "has-error" if form.object.errors.include?(:salary_min) %>">
+      <%= form.text_field :salary_min,
                           class: 'form-control',
                           placeholder: t(".placeholders.salary_min") %>
+      <% for error in form.object.errors[:salary_min] %>
+        <%= content_tag(:span, error, class: "help-block") %>
+      <% end %>
     </div>
-    <div class="col-md-3">
-      <%= form.number_field :salary_max,
+    <div class="col-md-3 <%= "has-error" if form.object.errors.include?(:salary_max) %>">
+      <%= form.text_field :salary_max,
                           class: 'form-control',
                           placeholder: t(".placeholders.salary_max") %>
+      <% for error in form.object.errors[:salary_max] %>
+        <%= content_tag(:span, error, class: "help-block") %>
+      <% end %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 <%= "has-error" if form.object.errors.include?(:salary_currency) %>">
       <%= form.select :salary_currency,
                       currency_options_for_select,
-                      { prompt: t(".placeholders.salary_currency") },
+                      { include_blank: t(".placeholders.salary_currency") },
                       class: 'form-control' %>
+      <% for error in form.object.errors[:salary_currency] %>
+        <%= content_tag(:span, error, class: "help-block") %>
+      <% end %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 <%= "has-error" if form.object.errors.include?(:salary_unit) %>">
       <%= form.select :salary_unit,
                       salary_unit_options_for_select,
-                      { prompt: t(".placeholders.salary_unit") },
+                      { include_blank: t(".placeholders.salary_unit") },
                       class: 'form-control' %>
+      <% for error in form.object.errors[:salary_unit] %>
+        <%= content_tag(:span, error, class: "help-block") %>
+      <% end %>
     </div>
   </div>
 
-  <div class="form-group <%= "has-error" if form.object.errors.include?(:expire_at) %>">
+  <div class="form-group">
     <%= form.label :expire_at,
                    "#{t("activerecord.attributes.vacancy.expire_at")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
+    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:expire_at) %>">
       <div class="radio">
         <label>
           <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week, id: 'vacancy_expires_in_one_week' %>
@@ -116,11 +128,11 @@
 </fieldset>
 <fieldset>
   <legend><%= t(".legends.contacts") %></legend>
-  <div class="form-group <%= "has-error" if form.object.errors.include?(:email) %>">
+  <div class="form-group">
     <%= form.label :email,
                    "#{t("activerecord.attributes.vacancy.email")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
+    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:email) %>">
       <%= form.email_field :email, class: 'form-control' %>
       <% for error in form.object.errors[:email] %>
         <%= content_tag(:span, error, class: "help-block") %>

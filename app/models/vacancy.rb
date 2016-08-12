@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 class Vacancy < ActiveRecord::Base
+  CURRENCY_RUB = 'RUB'
+  CURRENCY_EUR = 'EUR'
+  CURRENCY_USD = 'USD'
+
+  SALARY_UNIT_HOUR    = 'hour'
+  SALARY_UNIT_MONTH   = 'month'
+  SALARY_UNIT_YEAR    = 'year'
+  SALARY_UNIT_PROJECT = 'project'
+
+  EMPLOYMENT_TYPE_FULLTIME   = 'full-time'
+  EMPLOYMENT_TYPE_PARTTIME   = 'part-time'
+  EMPLOYMENT_TYPE_CONTRACT   = 'contract'
+  EMPLOYMENT_TYPE_TEMPORARY  = 'temporary'
+  EMPLOYMENT_TYPE_INTERNSHIP = 'internship'
+
   validates :title, presence: true
   validates :description, presence: true
   validates :location, presence: true

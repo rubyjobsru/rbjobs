@@ -4,7 +4,7 @@
     <%= form.label :title,
                    "#{t("activerecord.attributes.vacancy.title")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
+    <div class="col-md-6">
       <%= form.text_field :title,
                           class: 'form-control',
                           autofocus: true,
@@ -12,6 +12,13 @@
       <% for error in form.object.errors[:title] %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form.select :employment_type,
+                      employment_type_options_for_select,
+                      # { prompt: t(".placeholders.employment_type") },
+                      {},
+                      class: 'form-control' %>
     </div>
   </div>
   <div class="form-group <%= "has-error" if form.object.errors.include?(:description) %>">

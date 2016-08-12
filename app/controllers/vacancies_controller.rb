@@ -82,6 +82,7 @@ class VacanciesController < ApplicationController
       :salary_max,
       :salary_currency,
       :salary_unit,
+      :employment_type,
       :company,
       :url,
       :name,

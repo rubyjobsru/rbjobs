@@ -15,4 +15,10 @@ module VacanciesHelper
       a << [t("vacancies.salary_units.#{i}"), i]
     end
   end
+
+  def employment_type_options_for_select
+    Vacancy::EMPLOYMENT_TYPES.reduce([]) do |a, i|
+      a << [t("vacancies.employment_types.#{i}"), i]
+    end
+  end
 end

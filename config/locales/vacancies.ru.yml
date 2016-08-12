@@ -9,6 +9,12 @@ ru:
       month: "в месяц"
       year: "в год"
       project: "за проект"
+    employment_types:
+      "full-time": "полная занятость"
+      "part-time": "частичная занятость"
+      "contract": "работа по контракту"
+      "temporary": "временная работа"
+      "internship": "интернатура"
     form:
       description: "Описание"
       create: "Отправить"
@@ -16,9 +22,9 @@ ru:
       cancel: "Отмена"
       processing: "Обработка..."
       placeholders:
-        title: "Например, 'Ведущий разработчик' или 'Ruby-ниндзя'"
+        title: "\"Ведущий разработчик\" или \"Ruby-ниндзя\""
         description: "Для форматирования можно использовать Markdown"
-        location: "Город"
+        location: "Город, страна"
         salary_min: "от"
         salary_max: "до"
         salary_currency: "..."

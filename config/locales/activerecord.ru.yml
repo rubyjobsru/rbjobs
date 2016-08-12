@@ -4,15 +4,17 @@ ru:
       vacancy: "Вакансия"
     attributes:
       vacancy:
-        title: "Должность"
+        title: "Позиция"
         description: "Требования и детали"
         location: "Место"
+        remote_position: "Возможна удаленная работа"
         expire_at: "Срок размещения"
         company: "Компания"
         email: "Электронная почта"
         url: "Сайт"
         phone: "Телефон"
         name: "Контактное лицо"
+        salary: "Оплата"
     errors:
       models:
         vacancy:

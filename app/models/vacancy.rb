@@ -4,10 +4,23 @@ class Vacancy < ActiveRecord::Base
   CURRENCY_EUR = 'EUR'
   CURRENCY_USD = 'USD'
 
+  CURRENCIES = [
+    CURRENCY_RUB,
+    CURRENCY_EUR,
+    CURRENCY_USD
+  ].freeze
+
   SALARY_UNIT_HOUR    = 'hour'
   SALARY_UNIT_MONTH   = 'month'
   SALARY_UNIT_YEAR    = 'year'
   SALARY_UNIT_PROJECT = 'project'
+
+  SALARY_UNITS = [
+    SALARY_UNIT_HOUR,
+    SALARY_UNIT_MONTH,
+    SALARY_UNIT_YEAR,
+    SALARY_UNIT_PROJECT
+  ].freeze
 
   EMPLOYMENT_TYPE_FULLTIME   = 'full-time'
   EMPLOYMENT_TYPE_PARTTIME   = 'part-time'
@@ -15,9 +28,17 @@ class Vacancy < ActiveRecord::Base
   EMPLOYMENT_TYPE_TEMPORARY  = 'temporary'
   EMPLOYMENT_TYPE_INTERNSHIP = 'internship'
 
+  EMPLOYMENT_TYPES = [
+    EMPLOYMENT_TYPE_FULLTIME,
+    EMPLOYMENT_TYPE_PARTTIME,
+    EMPLOYMENT_TYPE_CONTRACT,
+    EMPLOYMENT_TYPE_TEMPORARY,
+    EMPLOYMENT_TYPE_INTERNSHIP
+  ].freeze
+
   validates :title, presence: true
   validates :description, presence: true
-  validates :location, presence: true
+  validates :location, presence: true, unless: :remote_position?
   validates :email, presence: true, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
     unless: proc { |vacancy| vacancy.email.blank? }
@@ -32,30 +53,15 @@ class Vacancy < ActiveRecord::Base
     allow_nil: true
   }
   validates :salary_currency, inclusion: {
-    in: [
-      CURRENCY_RUB,
-      CURRENCY_EUR,
-      CURRENCY_USD
-    ],
+    in: CURRENCIES,
     allow_nil: true
   }
   validates :salary_unit, inclusion: {
-    in: [
-      SALARY_UNIT_HOUR,
-      SALARY_UNIT_MONTH,
-      SALARY_UNIT_YEAR,
-      SALARY_UNIT_PROJECT
-    ],
+    in: SALARY_UNITS,
     allow_nil: true
   }
   validates :employment_type, inclusion: {
-    in: [
-      EMPLOYMENT_TYPE_FULLTIME,
-      EMPLOYMENT_TYPE_PARTTIME,
-      EMPLOYMENT_TYPE_CONTRACT,
-      EMPLOYMENT_TYPE_TEMPORARY,
-      EMPLOYMENT_TYPE_INTERNSHIP
-    ],
+    in: EMPLOYMENT_TYPES,
     allow_nil: true
   }
 
@@ -81,5 +87,9 @@ class Vacancy < ActiveRecord::Base
 
   def expired?
     expire_at.past?
+  end
+
+  def remote_position?
+    remote_position
   end
 end

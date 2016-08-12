@@ -32,7 +32,7 @@
     <%= form.label :location,
                    "#{t("activerecord.attributes.vacancy.location")} *".html_safe,
                    class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
+    <div class="col-md-6">
       <%= form.text_field :location,
                           class: 'form-control',
                           placeholder: t(".placeholders.location") %>
@@ -40,7 +40,44 @@
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
+    <div class="col-md-4">
+      <div class="checkbox">
+        <%= form.label :remote_position do %>
+          <%= form.check_box :remote_position %>
+          <%= t('activerecord.attributes.vacancy.remote_position') %>
+        <% end %>
+      </div>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= form.label :salary_min,
+                   "#{t("activerecord.attributes.vacancy.salary")}",
+                   class: 'col-md-2 control-label' %>
+    <div class="col-md-3">
+      <%= form.number_field :salary_min,
+                          class: 'form-control',
+                          placeholder: t(".placeholders.salary_min") %>
+    </div>
+    <div class="col-md-3">
+      <%= form.number_field :salary_max,
+                          class: 'form-control',
+                          placeholder: t(".placeholders.salary_max") %>
+    </div>
+    <div class="col-md-2">
+      <%= form.select :salary_currency,
+                      currency_options_for_select,
+                      { prompt: t(".placeholders.salary_currency") },
+                      class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <%= form.select :salary_unit,
+                      salary_unit_options_for_select,
+                      { prompt: t(".placeholders.salary_unit") },
+                      class: 'form-control' %>
+    </div>
+  </div>
+
   <div class="form-group <%= "has-error" if form.object.errors.include?(:expire_at) %>">
     <%= form.label :expire_at,
                    "#{t("activerecord.attributes.vacancy.expire_at")} *".html_safe,

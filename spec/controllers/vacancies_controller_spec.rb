@@ -20,9 +20,9 @@ RSpec.describe VacanciesController do
     let(:attributes) { attributes_for(:vacancy) }
     let(:parameters) { { vacancy: attributes } }
 
-    it 'responds with "HTTP 201 Created"' do
+    it 'responds with "HTTP 303 See Other"' do
       post :create, params: parameters
-      expect(response.status).to eql(201)
+      expect(response.status).to eql(303)
     end
 
     it 'redirects to the root URL' do
@@ -145,9 +145,9 @@ RSpec.describe VacanciesController do
       }
     end
 
-    it 'responds with "HTTP 204 No Content"' do
+    it 'responds with "HTTP 303 See Other"' do
       put :update, params: parameters
-      expect(response.status).to eql(204)
+      expect(response.status).to eql(303)
     end
 
     it 'redirects to the vacancy URL' do
@@ -189,9 +189,9 @@ RSpec.describe VacanciesController do
       context 'and an admin token is supplied' do
         before { parameters[:token] = vacancy.admin_token }
 
-        it 'responds with "HTTP 204 No Content"' do
+        it 'responds with "HTTP 303 See Other"' do
           put :update, params: parameters
-          expect(response.status).to eql(204)
+          expect(response.status).to eql(303)
         end
       end
     end
@@ -201,9 +201,9 @@ RSpec.describe VacanciesController do
     let(:vacancy) { persist_vacancy(build(:approved_vacancy)) }
     let(:parameters) { { id: vacancy.id, token: vacancy.admin_token } }
 
-    it 'responds with "HTTP 204 No Content"' do
+    it 'responds with "HTTP 303 See Other"' do
       delete :destroy, params: parameters
-      expect(response.status).to eql(204)
+      expect(response.status).to eql(303)
     end
 
     it 'redirects to the root URL' do
@@ -234,9 +234,9 @@ RSpec.describe VacanciesController do
     let(:vacancy) { persist_vacancy(build(:vacancy)) }
     let(:parameters) { { id: vacancy.id, token: vacancy.admin_token } }
 
-    it 'responds with "HTTP 204 No Content"' do
+    it 'responds with "HTTP 303 See Other"' do
       put :approve, params: parameters
-      expect(response.status).to eql(204)
+      expect(response.status).to eql(303)
     end
 
     it 'redirects to the vacancy URL' do

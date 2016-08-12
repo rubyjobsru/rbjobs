@@ -11,7 +11,7 @@ class VacanciesController < ApplicationController
     create_vacancy!
 
     if vacancy.persisted?
-      redirect_to(root_url, status: :created,
+      redirect_to(root_url, status: :see_other,
                             flash: { success: t('vacancies.create.success') })
       return
     else
@@ -27,7 +27,7 @@ class VacanciesController < ApplicationController
     update_vacancy!
 
     if vacancy.errors.empty?
-      redirect_to(vacancy_url(vacancy), status: :no_content,
+      redirect_to(vacancy_url(vacancy), status: :see_other,
                                         flash: {
                                           success: t('vacancies.update.success')
                                         })
@@ -41,14 +41,14 @@ class VacanciesController < ApplicationController
     destroy_vacancy!
 
     flash[:success] = t('vacancies.destroy.success') if vacancy.destroyed?
-    redirect_to(root_url, status: :no_content)
+    redirect_to(root_url, status: :see_other)
   end
 
   def approve
     approve_vacancy!
 
     flash[:success] = t('vacancies.approve.success') if vacancy.approved?
-    redirect_to(vacancy_url(vacancy), status: :no_content)
+    redirect_to(vacancy_url(vacancy), status: :see_other)
   end
 
   private
@@ -77,6 +77,11 @@ class VacanciesController < ApplicationController
       :title,
       :description,
       :location,
+      :remote_position,
+      :salary_min,
+      :salary_max,
+      :salary_currency,
+      :salary_unit,
       :company,
       :url,
       :name,

@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20160812100857) do
     t.text     "excerpt_html"
     t.text     "description_html"
     t.string   "location",         limit: 255
-    t.decimal  "salary_min",                   default: "0.0"
-    t.decimal  "salary_max",                   default: "0.0"
-    t.string   "salary_currency",  limit: 3,   default: "RUB"
-    t.string   "salary_unit",                  default: "month"
+    t.decimal  "salary_min"
+    t.decimal  "salary_max"
+    t.string   "salary_currency",  limit: 3
+    t.string   "salary_unit"
     t.string   "employment_type",              default: "full-time"
     t.boolean  "remote_position",              default: false
     t.index ["admin_token"], name: "index_vacancies_on_admin_token", using: :btree

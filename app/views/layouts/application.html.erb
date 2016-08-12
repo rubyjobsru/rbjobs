@@ -164,7 +164,7 @@
     </footer>
     <%= javascript_include_tag 'application' %>
     <%= yield(:js) %>
-    <% render 'google_analytics' if google_analytics_id %>
-    <% render 'intercom' if intercom_id %>
+    <%= render 'layouts/google_analytics' if google_analytics_id %>
+    <%= render 'layouts/intercom' if intercom_id %>
   </body>
 </html>

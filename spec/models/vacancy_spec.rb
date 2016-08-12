@@ -40,6 +40,36 @@ RSpec.describe Vacancy do
     expect(subject.errors).to include(:expire_at)
   end
 
+  it 'is not valid with minimal salary less than 0.0' do
+    subject.salary_min = -1
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:salary_min)
+  end
+
+  it 'is not valid with maximal salary less than 0.0' do
+    subject.salary_max = -1
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:salary_max)
+  end
+
+  it 'is not valid with unexpected salary currency' do
+    subject.salary_currency = 'foo'
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:salary_currency)
+  end
+
+  it 'is not valid with unexpected salary unit' do
+    subject.salary_unit = 'foo'
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:salary_unit)
+  end
+
+  it 'is not valid with unexpected employment type' do
+    subject.employment_type = 'foo'
+    expect(subject).not_to be_valid
+    expect(subject.errors).to include(:employment_type)
+  end
+
   describe '#approved?' do
     context 'when vacancy has approval mark' do
       before { subject.approved_at = Date.current }

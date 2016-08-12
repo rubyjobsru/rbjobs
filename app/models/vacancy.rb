@@ -23,6 +23,41 @@ class Vacancy < ActiveRecord::Base
     unless: proc { |vacancy| vacancy.email.blank? }
   }
   validates :expire_at, presence: true
+  validates :salary_min, numericality: {
+    greater_than_or_equal_to: 0.0,
+    allow_nil: true
+  }
+  validates :salary_max, numericality: {
+    greater_than_or_equal_to: 0.0,
+    allow_nil: true
+  }
+  validates :salary_currency, inclusion: {
+    in: [
+      CURRENCY_RUB,
+      CURRENCY_EUR,
+      CURRENCY_USD
+    ],
+    allow_nil: true
+  }
+  validates :salary_unit, inclusion: {
+    in: [
+      SALARY_UNIT_HOUR,
+      SALARY_UNIT_MONTH,
+      SALARY_UNIT_YEAR,
+      SALARY_UNIT_PROJECT
+    ],
+    allow_nil: true
+  }
+  validates :employment_type, inclusion: {
+    in: [
+      EMPLOYMENT_TYPE_FULLTIME,
+      EMPLOYMENT_TYPE_PARTTIME,
+      EMPLOYMENT_TYPE_CONTRACT,
+      EMPLOYMENT_TYPE_TEMPORARY,
+      EMPLOYMENT_TYPE_INTERNSHIP
+    ],
+    allow_nil: true
+  }
 
   scope :approved, -> { where('approved_at IS NOT NULL') }
   scope :not_approved, -> { where(approved_at: nil) }

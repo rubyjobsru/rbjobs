@@ -17,6 +17,7 @@
 
 <article itemscope itemtype="http://schema.org/JobPosting">
   <meta itemprop="url" content="<%= vacancy_url(vacancy) %>" />
+  <meta itemprop="datePosted" content="<%= vacancy.approved_at.iso8601 %>" />
   <div class="page-header">
     <h1 itemprop="title"><%= vacancy.title %></h1>
     <h4 class="text-muted">

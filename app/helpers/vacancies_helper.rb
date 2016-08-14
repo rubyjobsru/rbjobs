@@ -1,5 +1,24 @@
 # frozen_string_literal: true
 module VacanciesHelper
+  def meta_title(vacancy)
+    parts = [t('vacancies.show.meta_title.title', title: vacancy.title)]
+
+    if vacancy.company.present?
+      parts << t('vacancies.show.meta_title.company', company: vacancy.company)
+    end
+
+    if vacancy.remote_position?
+      parts << t('vacancies.show.meta_title.remote_position')
+    end
+
+    parts << t(
+      'vacancies.show.meta_title.expire_at',
+      expire_at: l(vacancy.expire_at)
+    )
+
+    parts.join('. ')
+  end
+
   def company_location_tag(vacancy)
     [vacancy.company, vacancy.location].reject(&:blank?).join(' - ')
   end

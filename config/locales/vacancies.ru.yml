@@ -57,7 +57,11 @@ ru:
     create:
       success: "**Вакансия добавлена.** Она будет проверена, после чего допущена к публикации"
     show:
-      meta_title: "%{vacancy} ~ RubyJobs.ru"
+      meta_title:
+        title: "Вакансия \"%{title}\""
+        company: "Компания \"%{company}\""
+        remote_position: "Возможна удаленная работа"
+        expire_at: "Размещена до %{expire_at}"
       company: "Компания"
       phone: "Телефон"
       contacts: "Контактная информация"

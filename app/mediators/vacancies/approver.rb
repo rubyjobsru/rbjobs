@@ -19,7 +19,7 @@ module Vacancies
     private
 
     def notify
-      VacancyMailer.approval_notice(@vacancy).deliver_later
+      MailJob.perform_later('approval_notice', @vacancy.id)
     end
   end
 end

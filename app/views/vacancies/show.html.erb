@@ -1,4 +1,5 @@
-<% content_for :meta_title, meta_title(vacancy) %>
+<% content_for :meta_title, vacancy.seo_title %>
+<% content_for :meta_description, vacancy.seo_description %>
 <% content_for :js do %>
   <!-- Facebook -->
   <div id="fb-root"></div>

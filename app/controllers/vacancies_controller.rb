@@ -99,7 +99,7 @@ class VacanciesController < ApplicationController
 
   def vacancy
     @vacancy ||= if params[:id]
-                   Vacancy.find(params[:id])
+                   Vacancies::Default.new(Vacancy.find(params[:id]))
                  else
                    Vacancy.new(parameters)
                  end

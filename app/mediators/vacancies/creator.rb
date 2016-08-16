@@ -19,7 +19,7 @@ module Vacancies
     private
 
     def notify
-      VacancyMailer.creation_notice(@vacancy).deliver_later
+      MailJob.perform_later('creation_notice', @vacancy.id)
     end
   end
 end

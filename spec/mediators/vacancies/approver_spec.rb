@@ -16,7 +16,7 @@ RSpec.describe Vacancies::Approver do
     it 'sets a background job for email delivery' do
       expect do
         subject.run(vacancy)
-      end.to have_enqueued_job(ActionMailer::DeliveryJob)
+      end.to have_enqueued_job(MailJob)
     end
 
     it 'sends an email notification to the owner' do

@@ -1,5 +1,30 @@
 ru:
   vacancies:
+    seo_title:
+      position: "Вакансия \"%{position}\""
+      company: "Компания \"%{company}\""
+      remote_position: "Возможна удаленная работа"
+      expire_at: "Размещена до %{expire_at}"
+      expired: "Вакансия в архиве"
+    seo_description:
+      company:
+        present: "В компании %{company} открыта вакансия '%{position}'"
+        blank: "Разыскивается '%{position}'"
+      remote_position: "Возможна удаленная работа"
+      salary:
+        present: "Оплата %{salary}"
+        blank: "Оплата оговаривается отдельно"
+        currency:
+          RUB: "рублей"
+          EUR: "евро"
+          USD: "долларов"
+        unit:
+          hour: "в час"
+          month: "в месяц"
+          year: "в год"
+          project: "за проект"
+      expire_at: "Заявления принимаются до %{expire_at}"
+      expired: "Вакансия уже неактуальна и находится в архиве"
     currencies:
       RUB: "рублей"
       EUR: "евро"
@@ -57,11 +82,6 @@ ru:
     create:
       success: "**Вакансия добавлена.** Она будет проверена, после чего допущена к публикации"
     show:
-      meta_title:
-        title: "Вакансия \"%{title}\""
-        company: "Компания \"%{company}\""
-        remote_position: "Возможна удаленная работа"
-        expire_at: "Размещена до %{expire_at}"
       company: "Компания"
       phone: "Телефон"
       contacts: "Контактная информация"

@@ -33,7 +33,7 @@ RSpec.describe VacanciesController do
     it 'sets a background job for email delivery' do
       expect do
         post :create, params: parameters
-      end.to have_enqueued_job(ActionMailer::DeliveryJob)
+      end.to have_enqueued_job(MailJob)
     end
 
     it 'sends an email notification to the admin' do
@@ -247,7 +247,7 @@ RSpec.describe VacanciesController do
     it 'sets a background job for email delivery' do
       expect do
         put :approve, params: parameters
-      end.to have_enqueued_job(ActionMailer::DeliveryJob)
+      end.to have_enqueued_job(MailJob)
     end
 
     it 'sends an email notification to the owner' do

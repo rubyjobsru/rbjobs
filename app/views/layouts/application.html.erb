@@ -8,7 +8,7 @@
          any other head content must come *after* these tags -->
     <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
     <meta name="keywords" content="<%= t('.meta_keywords') -%>" />
-    <title><%= yield(:meta_title) -%></title>
+    <title><%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%></title>
     <%= stylesheet_link_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= auto_discovery_link_tag :rss,

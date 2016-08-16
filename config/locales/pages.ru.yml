@@ -1,7 +1,7 @@
 ru:
   pages:
     show:
-      meta_title: "%{title} ~ RubyJobs.ru"
+      meta_title: "%{title} - rubyjobs.ru"
       about:
         title: "О проекте"
         body: |

@@ -2,10 +2,11 @@
 Rails.application.routes.draw do
   root to: 'vacancies#index'
 
-  resources :vacancies do
-    get 'page/:page', action: :index, on: :collection
-    put 'approve', on: :member
-  end
   resources :pages, only: :show
-  resource :sitemap, only: :show
+  resource  :sitemap, only: :show
+  resources :vacancies do
+    put 'approve', on: :member
+    resources :events, only: :create
+    get 'page/:page', action: :index, on: :collection
+  end
 end

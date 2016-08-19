@@ -14,6 +14,17 @@
   <!-- G+ -->
   <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
   <!-- /G+ -->
+
+  <script>
+    (function () {
+      var analytics = new Analytics({
+        uid:'123',
+        endpointURL: '<%= vacancy_events_url(vacancy) -%>'
+      });
+
+      analytics.addClickListeners();
+    })()
+  </script>
 <% end %>
 
 <article itemscope itemtype="http://schema.org/JobPosting">
@@ -39,7 +50,7 @@
         <strong><%= t('.company') %></strong>
         <div itemprop="name"><%= vacancy.company %></div>
         <% unless vacancy.url.blank? %>
-          <div itemprop="url"><%= link_to vacancy.url, vacancy.url %></div>
+          <div itemprop="url"><%= link_to vacancy.url, vacancy.url, data: { toggle: 'analytics', event: 'vacancy:company_url:click' } %></div>
         <% end %>
         <% unless vacancy.phone.blank? %>
           <div><%= t('.phone') %>: <span itemprop="telephone"><%= vacancy.phone %></span></div>
@@ -52,7 +63,7 @@
         <% unless vacancy.name.blank? %>
           <div itemprop="name"><%= vacancy.name %></div>
         <% end %>
-        <div itemprop="email"><%= mail_to vacancy.email, nil, encode: "hex", replace_at: "[at]" %></div>
+        <div itemprop="email"><%= mail_to vacancy.email, nil, data: { toggle: 'analytics', event: 'vacancy:company_email:click' } %></div>
       </address>
     </div>
     <div class="col-md-4">

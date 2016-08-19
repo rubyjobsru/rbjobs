@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'foreman', require: false
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'keen'
 gem 'pg'
 gem 'puma', require: false
 gem 'rails'

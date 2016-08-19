@@ -73,6 +73,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    keen (0.7.8)
+      multi_json (~> 1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -91,6 +93,7 @@ GEM
       rake
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    multi_json (1.12.1)
     newrelic_rpm (3.16.0.318)
     nio4r (1.2.1)
     nokogiri (1.6.8)
@@ -193,6 +196,7 @@ DEPENDENCIES
   foreman
   jquery-rails
   kaminari
+  keen
   letter_opener
   mina
   newrelic_rpm

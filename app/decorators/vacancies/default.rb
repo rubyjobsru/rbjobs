@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Vacancies
   class Default < SimpleDelegator
     include ActiveSupport::NumberHelper

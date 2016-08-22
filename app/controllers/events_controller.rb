@@ -1,16 +1,25 @@
 # frozen_string_literal: true
+
 class EventsController < ApplicationController
   def create
-    Events::Creator.run(event_code, vacancy)
+    Events::Reporter.run(event)
   end
 
   private
 
-  def vacancy
-    @vacancy ||= Vacancy.find(params[:vacancy_id])
+  def event
+    @event ||= begin
+      _event = Event.new do |event|
+        event.code = params[:event_code]
+        event.vacancy = vacancy
+        event.visitor = current_visitor
+      end
+
+      Events::Trackable.new(_event)
+    end
   end
 
-  def event_code
-    @event_code ||= params[:event_code]
+  def vacancy
+    @vacancy ||= Vacancy.find(params[:vacancy_id])
   end
 end

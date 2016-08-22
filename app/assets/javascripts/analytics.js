@@ -1,6 +1,5 @@
 (function () {
   var Analytics = function (options) {
-    this.uid = options.uid;
     this.endpointURL = options.endpointURL;
   };
 

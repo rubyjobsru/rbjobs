@@ -1,20 +1,6 @@
 <% content_for :meta_title, vacancy.seo_title %>
 <% content_for :meta_description, vacancy.seo_description %>
 <% content_for :js do %>
-  <!-- Facebook -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=293040454063703";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-  <!-- /Facebook -->
-  <!-- G+ -->
-  <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-  <!-- /G+ -->
-
   <script>
     (function () {
       var analytics = new Analytics({
@@ -56,32 +42,15 @@
         <% end %>
       </address>
     </div>
-    <div class="col-md-4">
-      <address itemprop="employee" itemscope itemtype="http://schema.org/Person">
+    <div class="col-md-4" itemprop="employee" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="email" content="<%= vacancy.email %>" />
+      <address>
         <strong><%= t('.contacts') %></strong>
-        <% unless vacancy.name.blank? %>
-          <div itemprop="name"><%= vacancy.name %></div>
-        <% end %>
-        <div itemprop="email"><%= mail_to vacancy.email, nil, data: { toggle: 'analytics', event: 'vacancy:company_email:click' } %></div>
+        <div itemprop="name"><%= vacancy.name ? vacancy.name : '&mdash;' %></div>
       </address>
     </div>
     <div class="col-md-4">
-      <dl>
-        <dt><%= t('.share_links') %></dt>
-        <dd>
-          <ul class="list-inline">
-            <li>
-              <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= vacancy_url(vacancy) %>" data-text="<%= vacancy.title %>" data-count="none" data-via="rubyjobsru">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-            </li>
-            <li>
-              <div class="g-plusone" data-size="medium" data-annotation="none"></div>
-            </li>
-            <li>
-              <div class="fb-like" data-href="<%= vacancy_url(vacancy) %>" data-send="false" data-layout="button_count" data-width="" data-show-faces="false" data-action="like"></div>
-            </li>
-          </ul>
-        </dd>
-      </dl>
+      <%= mail_to vacancy.email, t('.apply').html_safe, class: "btn btn-success btn-lg", data: { toggle: 'analytics', event: 'vacancy:company_email:click' } %></div>
     </div>
   </div>
   <% if admin?(vacancy) %>

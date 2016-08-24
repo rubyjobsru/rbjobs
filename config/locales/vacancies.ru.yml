@@ -84,9 +84,9 @@ ru:
       company: "Компания"
       phone: "Телефон"
       contacts: "Контактная информация"
-      share_links: "Поделитесь ссылкой"
       publish: "Опубликовать"
       edit: "Редактировать"
+      apply: "Откликнуться <div class=\"small\">на вакансию</div>"
       destroy:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"

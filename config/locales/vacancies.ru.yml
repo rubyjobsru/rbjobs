@@ -104,7 +104,7 @@ ru:
 
           Желаю вам отличного настроения,
           <YOUR_NAME>
-      apply: "Откликнуться <div class=\"small\">на вакансию</div>"
+      apply: "Откликнуться <div class=\"small\">по электронной почте</div>"
       destroy:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"

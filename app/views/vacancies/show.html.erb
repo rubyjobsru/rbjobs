@@ -50,7 +50,14 @@
       </address>
     </div>
     <div class="col-md-4">
-      <%= mail_to vacancy.email, t('.apply').html_safe, class: "btn btn-success btn-lg", data: { toggle: 'analytics', event: 'vacancy:company_email:click' } %></div>
+      <%= mail_to vacancy.email, t('.apply').html_safe, subject: t('.email_application.subject', title: vacancy.title),
+                                                        body: t('.email_application.body', title: vacancy.title,
+                                                                                           url: vacancy_url(vacancy)),
+                                                        class: "btn btn-success btn-lg",
+                                                        data: {
+                                                          toggle: 'analytics',
+                                                          event: 'vacancy:company_email:click'
+                                                        } %></div>
     </div>
   </div>
   <% if admin?(vacancy) %>

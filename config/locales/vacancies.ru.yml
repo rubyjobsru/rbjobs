@@ -86,6 +86,24 @@ ru:
       contacts: "Контактная информация"
       publish: "Опубликовать"
       edit: "Редактировать"
+      email_application:
+        subject: "Отклик на вакансию \"%{title}\" на rubyjobs.ru"
+        body: |
+          Добрый день,
+
+          меня зовут <YOUR_NAME>. Ваша вакансия "%{title}" (%{url}) заинтересовала меня.
+
+          <YOUR_TEXT>
+
+          Мои профили
+
+          GitHub: <GITHUB_LINK>
+          Linkedin: <LINKEDIN_LINK>
+          Twitter: <TWITTER_LINK>
+
+
+          Желаю вам отличного настроения,
+          <YOUR_NAME>
       apply: "Откликнуться <div class=\"small\">на вакансию</div>"
       destroy:
         button: "Удалить"

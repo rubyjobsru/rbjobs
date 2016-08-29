@@ -12,6 +12,7 @@
     <meta name="twitter:site" content="@rubyjobsru" />
     <meta name="twitter:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
     <meta name="twitter:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
+    <meta name="twitter:image" content="<%= asset_url('rubyjobs-logo.png') -%>" />
     <title><%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%></title>
     <%= stylesheet_link_tag 'application' %>
     <%= csrf_meta_tags %>

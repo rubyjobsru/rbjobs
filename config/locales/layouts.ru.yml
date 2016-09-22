@@ -13,3 +13,5 @@ ru:
       signature: |
         Александр Сулим
         http://sul.im
+    whatshelp:
+      greeting_message: "Привет! Если вам нужна помощь, просто оставте сообщение здесь."

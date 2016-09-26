@@ -10,4 +10,8 @@ module ApplicationHelper
   def facebook_id
     ENV['FACEBOOK_ID']
   end
+
+  def current_url
+    @current_url ||= request.original_url
+  end
 end

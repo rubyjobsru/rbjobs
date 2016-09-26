@@ -13,6 +13,11 @@
     <meta name="twitter:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
     <meta name="twitter:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
     <meta name="twitter:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<%= current_url -%>" />
+    <meta property="og:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
+    <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
+    <meta property="og:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
     <title><%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%></title>
     <%= stylesheet_link_tag 'application' %>
     <%= csrf_meta_tags %>

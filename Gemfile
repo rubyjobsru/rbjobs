@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'bugsnag'
-gem 'figaro'
 gem 'foreman', require: false
 gem 'jquery-rails'
 gem 'kaminari'

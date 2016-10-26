@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# script/console: Launch a console for the application.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+# Ensure the application is up to date first.
+script/update
+bin/rails console

@@ -1,10 +1,14 @@
 machine:
   environment:
-    BUGSNAG_API_KEY: ""
-    DEFAULT_URL_OPTIONS_HOST: "example.com"
-    EMAIL_DELIVERY_METHOD: "test"
-    GOOGLE_ANALYTICS_ID: ""
-    INTERCOM_ID: ""
-    SECRET_KEY_BASE: "a547405eb83a584cd9dc8e4d351a3614"
-    SESSION_SECRET: "2ccea290bcce3461613516b191638831"
-    SUPPORT_EMAIL: "hello@sul.im"
+    APPLICATION_URL: http://www.rubyjobs.test
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+    MAIL_SERVER_URL: test://
+    SESSION_SECRET: bc6dafba65151cfd33ccbee7d5ab972ee6b3a5af6c63d6bae3942c6d9509d2df8838633902fe523dc3732b0fef2d672f80ce6d5712c01d5831f31cd318f06a2d
+    SECRET_KEY_BASE: 6940247f9a09444034e7e707650b9937fe79919dbba003ffdedcda35398372bcc5e7eb115b9b5317dfc777b38610b357a9a0181d6e2ce6ed3a4d5448ace6d478
+    SUPPORT_EMAIL: support@rubyjobs.test
+database:
+  override:
+    - bin/rake db:schema:load
+test:
+  override:
+    - script/cibuild

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# script/test: Run test suite for application. Optionally pass in a path to an
+#              individual test file to run a single test.
+
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+[ -z "$DEBUG" ] || set -x
+
+RACK_ROOT="$(cd "$(dirname "$0")"/.. && pwd)"
+export RACK_ROOT
+
+echo "==> Running tests…"
+
+if [ -n "$1" ]; then
+  foreman run --env=.env.test bin/rake spec "$1"
+else
+  foreman run --env=.env.test bin/rake spec
+fi

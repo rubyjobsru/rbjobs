@@ -1,15 +1,13 @@
 .bundle
 .DS_Store
+.env
+.env.test
+.idea
 .ruby-version
+.sass-cache/
+config/deploy.rb
+config/newrelic.yml
 db/*.sqlite3
 log/*.log
 tmp/
-.sass-cache/
-config/database.yml
-config/email.yml
-config/newrelic.yml
-config/deploy.rb
-# RubyMine
-.idea
-# Ignore application configuration
-/config/application.yml
+vendor/

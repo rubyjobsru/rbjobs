@@ -23,5 +23,8 @@ export RACK_ENV="development"
 
 export PATH="$RACK_ROOT/bin:$PATH"
 
+# run code linter
+script/lint --fail-fast
+
 # run tests
 bin/rake spec

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# script/lint: Ensure code conforms the common style.
+
+set -e
+
+bundle exec rubocop --display-cop-names \
+                  	--extra-details \
+                  	--display-style-guide \
+                  	--config .rubocop.yml \
+                  	$1

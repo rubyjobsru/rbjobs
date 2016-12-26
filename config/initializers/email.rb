@@ -11,10 +11,10 @@ end
 if ENV['MAIL_SERVER_URL'].present?
   connection_url    = URI.parse(ENV['MAIL_SERVER_URL'])
   connection_params = if connection_url.query.present?
-    Hash[URI::decode_www_form(connection_url.query)]
-  else
-    {}
-  end
+                        Hash[URI.decode_www_form(connection_url.query)]
+                      else
+                        {}
+                      end
 
   ActionMailer::Base.delivery_method = connection_url.scheme.to_sym
   ActionMailer::Base.smtp_settings   = {

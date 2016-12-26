@@ -11,15 +11,17 @@ module Vacancies
         salary_unit: salary_unit,
         employment_type: employment_type,
         remote_position: remote_position,
-        created_at: timestamp_traits_for(created_at.to_datetime),
-        approved_at: approved_at ? timestamp_traits_for(approved_at.to_datetime)
-                                 : nil
+        created_at: timestamp_traits_for(created_at),
+        approved_at: timestamp_traits_for(approved_at)
       }
     end
 
     private
 
     def timestamp_traits_for(timestamp)
+      return if timestamp.blank?
+
+      timestamp = timestamp.to_datetime
       {
         hour: timestamp.hour,
         minute: timestamp.min,

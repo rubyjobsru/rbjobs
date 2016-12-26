@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DateTimeHelpers
   def quarter_for(timestamp)
     case timestamp.month

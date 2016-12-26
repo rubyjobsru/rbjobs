@@ -30,7 +30,6 @@ RSpec.describe Vacancies::Trackable do
       trait = subject.traits[:created_at]
       timestamp = vacancy.created_at.to_datetime
 
-
       expect(trait[:hour]).to eql(timestamp.hour)
       expect(trait[:minute]).to eql(timestamp.min)
       expect(trait[:day]).to eql(timestamp.mday)
@@ -46,7 +45,6 @@ RSpec.describe Vacancies::Trackable do
     it 'represents a approval timestamp as a hash' do
       trait = subject.traits[:created_at]
       timestamp = vacancy.approved_at.to_datetime
-
 
       expect(trait[:hour]).to eql(timestamp.hour)
       expect(trait[:minute]).to eql(timestamp.min)

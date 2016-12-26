@@ -27,11 +27,3 @@ Metrics/MethodLength:
 # Offense count: 22
 Style/Documentation:
   Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: when_needed, always
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'app/helpers/application_helper.rb'

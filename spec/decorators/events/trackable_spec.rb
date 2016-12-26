@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Events::Trackable do
   include DateTimeHelpers
-  
+
   let(:event) { create(:event, vacancy: vacancy, visitor: visitor) }
   let(:vacancy) { persist_vacancy(build(:vacancy)) }
   let(:visitor) { create(:visitor) }
@@ -27,7 +27,6 @@ RSpec.describe Events::Trackable do
     it 'represents a creation timestamp as a hash' do
       trait = subject.traits[:created_at]
       timestamp = event.created_at.to_datetime
-
 
       expect(trait[:hour]).to eql(timestamp.hour)
       expect(trait[:minute]).to eql(timestamp.min)

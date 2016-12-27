@@ -1,6 +1,6 @@
 # RubyJobs.ru
 
-[![CircleCI](https://circleci.com/gh/soulim/rbjobs.svg?style=svg)](https://circleci.com/gh/soulim/rbjobs)
+[![CircleCI](https://circleci.com/gh/rubyjobsru/app.svg?style=svg)](https://circleci.com/gh/rubyjobsru/app)
 
 The job board with Ruby/Rails related vacancies.
 [http://rubyjobs.ru](http://rubyjobs.ru)

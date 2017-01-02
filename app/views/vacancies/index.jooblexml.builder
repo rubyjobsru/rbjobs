@@ -2,16 +2,16 @@ xml.instruct! :xml, version: '1.0', encoding: 'UTF-8'
 xml.jobs do
   vacancies.each do |vacancy|
     xml.job id: vacancy.id do
-      xml.link vacancy_url(vacancy)
-      xml.name vacancy.title
-      xml.region company_location_tag(vacancy)
-      xml.description vacancy.description_html
-      xml.pubdate vacancy.created_at.iso8610
-      xml.updated vacancy.updated_at.iso8610
-      xml.salary salary_range(vacancy)
-      xml.company vacancy.company
-      xml.expire vacancy.expire_at.iso8610
-      xml.jobtype vacancy.employment_type
+      xml.link { xml.cdata! vacancy_url(vacancy) }
+      xml.name { xml.cdata! vacancy.title }
+      xml.region { xml.cdata! company_location_tag(vacancy) }
+      xml.description { xml.cdata! vacancy.description_html }
+      xml.pubdate { xml.cdata! vacancy.created_at.iso8601 }
+      xml.updated { xml.cdata! vacancy.updated_at.iso8601 }
+      xml.salary { xml.cdata! salary_with_units(vacancy) }
+      xml.company { xml.cdata! vacancy.company }
+      xml.expire { xml.cdata! vacancy.expire_at.iso8601 }
+      xml.jobtype { xml.cdata! t("vacancies.employment_types.#{vacancy.employment_type}") }
     end
   end
 end

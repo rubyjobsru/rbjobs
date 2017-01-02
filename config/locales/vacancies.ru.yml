@@ -25,6 +25,11 @@ ru:
           project: "за проект"
       expire_at: "Заявления принимаются до %{expire_at}"
       expired: "Вакансия уже неактуальна и находится в архиве"
+    salary:
+      not_defined: "оплата оговаривается отдельно"
+      prefix:
+        min: "от"
+        max: "до"
     currencies:
       RUB: "рублей"
       EUR: "евро"

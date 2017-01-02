@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :events, only: :create
     get 'page/:page', action: :index, on: :collection
   end
+
+  get 'feeds/jooble', to: 'vacancies#index', defaults: { format: :jooblexml }
 end

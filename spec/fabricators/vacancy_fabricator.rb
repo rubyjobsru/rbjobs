@@ -4,6 +4,7 @@ Fabricator(:vacancy) do
   title { Faker::Lorem.sentence }
   description { Faker::Lorem.paragraph(5) }
   location { Faker::Address.city }
+  company { Faker::Company.name }
   email { Faker::Internet.email }
   expire_at { 1.week.from_now }
 end

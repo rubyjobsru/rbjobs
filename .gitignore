@@ -2,6 +2,7 @@
 .DS_Store
 .env
 .env.test
+.env.production
 .idea
 .ruby-version
 .sass-cache/

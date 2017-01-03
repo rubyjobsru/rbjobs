@@ -121,6 +121,17 @@ RSpec.describe VacanciesHelper do
         expect(subject.salary_with_currency(vacancy)).to eql(salary)
       end
     end
+
+    context 'when currency is an empty string' do
+      before do
+        vacancy.salary_currency = ''
+      end
+
+      it 'returns just salary numbers' do
+        salary = subject.salary_to_human(vacancy)
+        expect(subject.salary_with_currency(vacancy)).to eql(salary)
+      end
+    end
   end
 
   describe '#salary_with_units' do
@@ -139,6 +150,17 @@ RSpec.describe VacanciesHelper do
     context 'when units are not stated' do
       before do
         vacancy.salary_unit = nil
+      end
+
+      it 'returns just salary line' do
+        salary = subject.salary_with_currency(vacancy)
+        expect(subject.salary_with_units(vacancy)).to eql(salary)
+      end
+    end
+
+    context 'when units are an empty string' do
+      before do
+        vacancy.salary_unit = ''
       end
 
       it 'returns just salary line' do

@@ -7,4 +7,5 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'vendor/**/*'
+    - 'config/deploy.rb'
   TargetRubyVersion: 2.3

@@ -37,7 +37,7 @@ module VacanciesHelper
   def salary_with_currency(vacancy)
     salary = salary_to_human(vacancy)
 
-    if vacancy.salary_currency
+    if vacancy.salary_currency.present?
       salary << ' ' << t("vacancies.currencies.#{vacancy.salary_currency}")
     end
 
@@ -47,7 +47,7 @@ module VacanciesHelper
   def salary_with_units(vacancy)
     salary = salary_with_currency(vacancy)
 
-    if vacancy.salary_unit
+    if vacancy.salary_unit.present?
       salary << ' ' << t("vacancies.salary_units.#{vacancy.salary_unit}")
     end
 

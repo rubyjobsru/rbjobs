@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Metrics/ClassLength
 class VacanciesController < ApplicationController
   before_action :store_token, except: [:index, :new, :create]
   before_action :ensure_authorized, except: [:index, :new, :create]

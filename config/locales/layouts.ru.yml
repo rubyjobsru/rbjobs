@@ -9,6 +9,8 @@ ru:
         about: "О проекте"
         terms: "Условия"
         contacts: "Контакты"
+      events: Интересные события и проекты
+      partners: Партнеры
     vacancy_mailer:
       signature: |
         Александр Сулим

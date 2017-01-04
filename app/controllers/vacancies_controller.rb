@@ -106,6 +106,11 @@ class VacanciesController < ApplicationController
   end
   helper_method :vacancy
 
+  def feed_vacancies
+    @feed_vacancies ||= Vacancy.available
+  end
+  helper_method :feed_vacancies
+
   def authorized?(action, vacancy)
     case action
     when :show

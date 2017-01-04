@@ -1,6 +1,6 @@
 xml.instruct! :xml, version: '1.0', encoding: 'UTF-8'
 xml.jobs do
-  vacancies.each do |vacancy|
+  feed_vacancies.each do |vacancy|
     xml.job id: vacancy.id do
       xml.link { xml.cdata! vacancy_url(vacancy) }
       xml.name { xml.cdata! vacancy.title }

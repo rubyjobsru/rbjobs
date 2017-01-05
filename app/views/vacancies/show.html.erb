@@ -1,5 +1,17 @@
 <% content_for :meta_title, vacancy.seo_title %>
 <% content_for :meta_description, vacancy.seo_description %>
+<% content_for :sidebar do %>
+  <% if vacancy.expired? %>
+    <p class="bg-warning" style="padding: 15px">
+      <%= t('.expiration_notice', expire_at: l(vacancy.expire_at)) %>
+    </p>
+  <% else %>
+    <p class="text-muted">
+      <%== t('.expired_at', expired_at: l(vacancy.expire_at)) %>
+    </p>
+  <% end %>
+  <hr>
+<% end %>
 <% content_for :js do %>
   <script>
     (function () {
@@ -19,25 +31,49 @@
   <% end %>
   <div class="page-header">
     <h1 itemprop="title"><%= vacancy.title %></h1>
-    <h4 class="text-muted">
-      <div itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
-        <span itemprop="description"><%= company_location_tag(vacancy) %></span>
+    <div class="row">
+      <div class="col-md-4">
+        <dl>
+          <dt><%= t('.company') %></dt>
+          <dd><%= vacancy.company %></dd>
+        </dl>
       </div>
-      <small><%== t('.expired_at', expired_at: l(vacancy.expire_at)) %></small>
-    </h4>
+      <div class="col-md-4">
+        <dl>
+          <dt><%= t('.employment_type') %></dt>
+          <dd>
+            <%= t("vacancies.employment_types.#{vacancy.employment_type}") %>
+            <% if vacancy.remote_position %>
+              + <%= t('.remote_position') %>
+            <% end %>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-md-4">
+        <dl>
+          <dt><%= t('.salary') %></dt>
+          <dd><%== salary_with_units(vacancy) %></dd>
+        </dl>
+      </div>
+    </div>
   </div>
   <div itemprop="description">
-    <%= vacancy.description_html.html_safe %>
+    <%== vacancy.description_html %>
   </div>
   <div class="row" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
     <div class="col-md-4">
       <address>
         <strong><%= t('.company') %></strong>
         <div itemprop="name"><%= vacancy.company %></div>
-        <% unless vacancy.url.blank? %>
+        <% if vacancy.location.present? %>
+          <div itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
+            <span itemprop="description"><%= vacancy.location %></span>
+          </div>
+        <% end %>
+        <% if vacancy.url.present? %>
           <div itemprop="url"><%= link_to vacancy.url, vacancy.url, data: { toggle: 'analytics', event: 'vacancy:company_url:click' } %></div>
         <% end %>
-        <% unless vacancy.phone.blank? %>
+        <% if vacancy.phone.present? %>
           <div><%= t('.phone') %>: <span itemprop="telephone"><%= vacancy.phone %></span></div>
         <% end %>
       </address>
@@ -53,7 +89,7 @@
       <% unless vacancy.expired? %>
         <%= mail_to vacancy.email, t('.apply').html_safe, subject: t('.email_application.subject', title: vacancy.title),
                                                           body: t('.email_application.body', title: vacancy.title,
-                                                                                             url: vacancy_url(vacancy)),
+                                                                              url: vacancy_url(vacancy)),
                                                           class: "btn btn-success btn-lg",
                                                           data: {
                                                             toggle: 'analytics',
@@ -75,7 +111,4 @@
       <%= link_to t('.edit'), edit_vacancy_url(vacancy), class: "btn" %>
     </div>
   <% end %>
-  <%= content_tag(:div,
-                  t('.expiration_notice', expire_at: l(vacancy.expire_at)),
-                  class: 'alert alert-block') if vacancy.expired? %>
 </article>

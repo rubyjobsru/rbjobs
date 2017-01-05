@@ -15,7 +15,7 @@ RSpec.describe VacanciesHelper do
 
       it 'concats company and location with dash' do
         expect(subject.company_location_tag(vacancy)).to eql(
-          "#{vacancy.company} - #{vacancy.location}"
+          "#{vacancy.company} &mdash; #{vacancy.location}"
         )
       end
     end

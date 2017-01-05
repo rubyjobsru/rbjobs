@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 module VacanciesHelper
   def company_location_tag(vacancy)
-    [vacancy.company, vacancy.location].reject(&:blank?).join(' - ')
+    [
+      vacancy.company,
+      vacancy.location
+    ].reject(&:blank?).join(' &mdash; ')
   end
 
   def currency_options_for_select

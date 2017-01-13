@@ -47,11 +47,11 @@ class Vacancy < ActiveRecord::Base
   }
   validates :expire_at, presence: true
   validates :salary_min, numericality: {
-    greater_than_or_equal_to: 0.0,
+    greater_than_or_equal_to: 0,
     allow_nil: true
   }
   validates :salary_max, numericality: {
-    greater_than_or_equal_to: 0.0,
+    greater_than_or_equal_to: 0,
     allow_nil: true
   }
   validates :salary_currency, inclusion: {

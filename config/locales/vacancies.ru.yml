@@ -45,6 +45,7 @@ ru:
       "contract": "работа по контракту"
       "temporary": "временная работа"
       "internship": "интернатура"
+      "other": "другое"
     form:
       description: "Описание"
       create: "Отправить"
@@ -59,7 +60,6 @@ ru:
         salary_max: "до"
         salary_currency: "..."
         salary_unit: "..."
-        employment_type: "другое"
       notes:
         expire_at_one_week: "Неделя"
         expire_at_two_weeks: "Две недели"

@@ -5,34 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head;
-         any other head content must come *after* these tags -->
-    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
-    <meta name="keywords" content="<%= t('.meta_keywords') -%>" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@rubyjobsru" />
-    <meta name="twitter:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
-    <meta name="twitter:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
-    <meta name="twitter:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="<%= current_url -%>" />
-    <meta property="og:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
-    <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
-    <meta property="og:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
-    <title><%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%></title>
-    <%= stylesheet_link_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <%= auto_discovery_link_tag :rss,
-                                'http://feeds.feedburner.com/rubyjobsru',
-                                title: t('layouts.application.meta_title') %>
-    <%= favicon_link_tag %>
+      any other head content must come *after* these tags -->
+      <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
+      <meta name="keywords" content="<%= t('.meta_keywords') -%>" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@rubyjobsru" />
+      <meta name="twitter:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
+      <meta name="twitter:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
+      <meta name="twitter:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="<%= current_url -%>" />
+      <meta property="og:title" content="<%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%>" />
+      <meta property="og:description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : t('.meta_description') -%>" />
+      <meta property="og:image" content="<%= asset_url('rubyjobs-square-logo280x280.png') -%>" />
+      <title><%= content_for?(:meta_title) ? yield(:meta_title) : t('.meta_title') -%></title>
+      <%= stylesheet_link_tag 'application' %>
+      <%= csrf_meta_tags %>
+      <%= auto_discovery_link_tag :rss,
+        'http://feeds.feedburner.com/rubyjobsru',
+        title: t('layouts.application.meta_title') %>
+      <%= favicon_link_tag %>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and
-         media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and
+        media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
   </head>
   <body>
     <div class="container">
@@ -52,28 +52,44 @@
         <div class="col-md-4">
           <div class="logo">
             <%= link_to_if !current_page?(root_url),
-                           image_tag('rubyjobs-logo.png',
-                                     width: 120,
-                                     alt: t('.meta_title'),
-                                     class: 'img-responsive'),
-                           root_url %>
+              image_tag('rubyjobs-logo.png',
+                        width: 120,
+                        alt: t('.meta_title'),
+                        class: 'img-responsive'),
+                        root_url %>
           </div>
           <%= yield(:sidebar) %>
           <div class="row text-muted text-small">
-            <div class="col-md-4">
-              <p>
-                <a href="https://www.twitter.com/rubyjobsru"
-                   class="btn btn-default btn-md btn-default">
-                  <span class="glyphicon icon-social-twitter"></span>
-                </a>
-                <a href="http://feeds.feedburner.com/rubyjobsru"
-                   class="btn btn-default btn-md btn-default">
-                  <span class="glyphicon icon-feed"></span>
-                </a>
-              </p>
-            </div>
             <div class="col-md-8">
               <p><%= t("layouts.application.subscriptions") %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <form action="//rubyjobs.us4.list-manage.com/subscribe/post?u=8645363f0bc78d2009f9eb789&amp;id=a1114fcbf0" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+                <div class="input-group">
+                  <input type="email" value="" name="EMAIL" class="form-control" placeholder="<%= t('layouts.application.newsletter') %>">
+                  <span class="input-group-btn">
+                    <button type="submit" value="Subscribe" name="subscribe" class="btn btn-default">
+                      <span class="glyphicon icon-envelope-letter"></span>
+                    </button>
+                  </span>
+                </div>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8645363f0bc78d2009f9eb789_a1114fcbf0" tabindex="-1" value=""></div>
+              </form>
+            </div>
+            <div class="col-md-4">
+              <p>
+              <a href="https://www.twitter.com/rubyjobsru"
+                 class="btn btn-default btn-md btn-default">
+                <span class="glyphicon icon-social-twitter"></span>
+              </a>
+              <a href="http://feeds.feedburner.com/rubyjobsru"
+                 class="btn btn-default btn-md btn-default">
+                <span class="glyphicon icon-feed"></span>
+              </a>
+              </p>
             </div>
           </div>
         </div>
@@ -82,7 +98,7 @@
         </div>
       </div>
 
-      <% if current_page?(root_url) %>
+    <% if current_page?(root_url) %>
       <hr />
       <div class="row">
         <div class="col-md-4">
@@ -93,25 +109,25 @@
             <div class="col-md-6">
               <div class="event-logo">
                 <%= link_to image_tag('gohiring200x48.png', :size => '200x48'),
-                            'http://www.gohiring.com/?utm_source=rubyjobs.ru' %>
-              </div>
-              <p>
-                <strong>GoHiring Talent Marketing API</strong>&nbsp;&mdash; это мощный инструмент, который безпроблемно интегрируется с любой E-Recruiting системой.
-              </p>
-              <p><%= link_to 'http://www.gohiring.com', 'http://www.gohiring.com/?utm_source=rubyjobs.ru' %></p>
+                  'http://www.gohiring.com/?utm_source=rubyjobs.ru' %>
+            </div>
+            <p>
+            <strong>GoHiring Talent Marketing API</strong>&nbsp;&mdash; это мощный инструмент, который безпроблемно интегрируется с любой E-Recruiting системой.
+            </p>
+            <p><%= link_to 'http://www.gohiring.com', 'http://www.gohiring.com/?utm_source=rubyjobs.ru' %></p>
             </div>
             <div class="col-md-6">
               <div class="event-logo">
                 <%= link_to image_tag('https://s3.eu-central-1.amazonaws.com/rubyflow-assets/company-mood.png', :height => 65, :width => 200),
-                            'https://www.company-mood.com/?utm_source=rubyjobs.ru' %>
-              </div>
-              <p>
-                CompanyMood - это онлайн-сервис, еженедельно измеряющий настроение сотрудников вашей компании.
-              </p>
-              <p>
-                Он помогает вам принимать решения относительно HR-мероприятий, основываясь на информации полученной от самих сотрудников.
-              </p>
-              <p><%= link_to 'https://www.company-mood.com', 'https://www.company-mood.com/?utm_source=rubyjobs.ru' %></p>
+                  'https://www.company-mood.com/?utm_source=rubyjobs.ru' %>
+            </div>
+            <p>
+            CompanyMood - это онлайн-сервис, еженедельно измеряющий настроение сотрудников вашей компании.
+            </p>
+            <p>
+            Он помогает вам принимать решения относительно HR-мероприятий, основываясь на информации полученной от самих сотрудников.
+            </p>
+            <p><%= link_to 'https://www.company-mood.com', 'https://www.company-mood.com/?utm_source=rubyjobs.ru' %></p>
             </div>
           </div>
         </div>
@@ -133,25 +149,25 @@
             <div class="col-md-2">
               <div class="partner">
                 <%= link_to image_tag("rubyflow135x80.png", :size => "135x80"),
-                            "http://rubyflow.ru/?utm_source=rubyjobs.ru" %>
-              </div>
+                  "http://rubyflow.ru/?utm_source=rubyjobs.ru" %>
+            </div>
             </div>
           </div>
         </div>
       </div>
-      <% end %>
+    <% end %>
     </div>
     <footer class="footer text-muted">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
             <p>
-              &copy;&nbsp;2008&mdash;2017, <%= link_to 'Alexander Sulim', 'http://sul.im' %>
-            </p>
+            &copy;&nbsp;2008&mdash;2017, <%= link_to 'Alexander Sulim', 'http://sul.im' %>
+          </p>
           </div>
           <div class="col-md-4">
             <p>
-              <%= link_to image_tag('digitalocean-badge.png', height: 40), 'http://www.digitalocean.com?utm_source=rubyjobs.ru' %>
+            <%= link_to image_tag('digitalocean-badge.png', height: 40), 'http://www.digitalocean.com?utm_source=rubyjobs.ru' %>
             </p>
           </div>
           <div class="col-md-4">

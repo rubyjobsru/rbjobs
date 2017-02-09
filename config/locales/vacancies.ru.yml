@@ -80,7 +80,7 @@ ru:
       meta_title: "Новая вакансия ~ RubyJobs.ru"
       sidebar:
         title: "На заметку"
-        description: "Помимо сайта, ваша вакансия будет опубликована в RSS-канале и Твиттере - @rubyjobsru."
+        description: "Помимо сайта, ваша вакансия будет опубликована в RSS-канале, Твиттере&nbsp;&mdash; @rubyjobsru, и еженедельной почтовой рассылке."
       title: "Новая вакансия"
       create: "Сохранить"
     create:

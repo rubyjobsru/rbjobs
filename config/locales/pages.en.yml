@@ -1,0 +1,37 @@
+en:
+  pages:
+    show:
+      meta_title: "%{title} - rubyjobs.ru"
+      about:
+        title: "About"
+        body: "Rubyjobs.ru started in 2008. Since the day one the project is non-commercial\
+          \ and absolutely free for everyone. The main goal of rubyjobs.ru and its\
+          \ author is to support the Ruby community.\n\nIn order to prevent spam or\
+          \ job ads that are not belong to the topic of the website, all job ads are\
+          \ pre-moderated. \n\nSince 2011 rubyjobs.ru supported many local and international\
+          \ conferences. These are just few of them:\n\n  * [RubyC](http://rubyc.eu/)\n\
+          \  * [DevConf](http://devconf.ru/)\n  * [RuPy](http://rupy.eu/)\n  * [RailsClub'Moscow](http://railsclub.ru)\n\
+          \  * [HighLoad ++](http://www.highload.ru/)\n  * [Whale Rider](http://whalerider.ru/)\n\
+          \nSource code of the website is available on GitHub - [github.com/rubyjobsru/app](https://github.com/rubyjobsru/app).\n\
+          \n[Feel free to contact me](http://rubyjobs.ru/pages/contacts) if you have\
+          \ any questions, ideas, or suggestions."
+      terms:
+        title: "Terms of service"
+        body: |-
+          The service is absolutely free of charge for everyone. All job ads are published without any changes and all content rights belongs to their authors.
+
+          It is not allowed to publish a job ad that might go against any law of any country.
+
+          Author of this website take no responsibility for quality of published job ads.
+
+          In order to prevent spam or job ads that are not belong to the topic of the website, all job ads are pre-moderated. Author of the website keeps the right to refuse publication of any job ad without giving any warning or explanation.
+      contacts:
+        title: "Contacts"
+        body: |-
+          If you have any questions, ideas, or suggestions, feel free to contact me. I will do my best to answer on the same day.
+
+          Email: <hello@sul.im>
+          Twitter: [@rubyjobsru](http://twitter.com/rubyjobsru)
+
+          Alexander Sulim
+          author and editor-in-chief

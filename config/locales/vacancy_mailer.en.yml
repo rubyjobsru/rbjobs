@@ -1,0 +1,28 @@
+en:
+  vacancy_mailer:
+    creation_notice:
+      subject: "Job '%{title}' has been successfully added"
+      body:
+        text: |-
+          %{title}
+
+          %{description}
+
+          * Company: %{company}
+          * E-mail: < %{email}>
+          * URL: %{url}
+
+          %{vacancy_url}
+    approval_notice:
+      subject: "Job '%{title}' has been published"
+      body:
+        text: |-
+          Hello,
+
+          your job ad "%{title}" has been approved on http://www.rubyjobs.ru.
+
+          It is online until %{expire_at}, and then will be automatically archived.
+
+          If you need to update the job ad, please follow the link below:
+
+          %{vacancy_url}

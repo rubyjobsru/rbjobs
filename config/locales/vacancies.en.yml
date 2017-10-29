@@ -1,0 +1,132 @@
+en:
+  vacancies:
+    seo_title:
+      position: "Job \"%{position}\""
+      company: "Company \"%{company}\""
+      remote_position: "Remote work possible"
+      expire_at: "Placed for %{expire_at}"
+      expired: "Archived"
+    seo_description:
+      company:
+        present: "Job '%{position}' at %{company}"
+        blank: "Job '%{position}'"
+      remote_position: "Remote work possible"
+      salary:
+        present: "Salary %{salary}"
+        blank: "Salary is negotiated separately"
+        currency:
+          RUB: "rubles"
+          EUR: "Euro"
+          USD: "dollars"
+        unit:
+          hour: "per hour"
+          month: "per month"
+          year: "per year"
+          project: "per project"
+      expire_at: "Applications will be accepted until %{expire_at}"
+      expired: "Job is outdated and placed in the archive"
+    salary:
+      not_defined: "Salary is negotiated separately"
+      prefix:
+        min: "min"
+        max: "max"
+    currencies:
+      RUB: "rubles"
+      EUR: "Euro"
+      USD: "US dollars"
+    salary_units:
+      hour: "per hour"
+      month: "per month"
+      year: "per year"
+      project: "per project"
+    employment_types:
+      "full-time": "full employment"
+      "part-time": "part-time"
+      "contract": "contract job"
+      "temporary": "temporary job"
+      "internship": "internship"
+      "other": "other"
+    form:
+      description: "Job description"
+      create: "Send"
+      update: "Save"
+      cancel: "Cancel"
+      processing: "Processing..."
+      placeholders:
+        title: "\"Senior Developer\" or \"Ruby-ninja\""
+        description: "Formatted with Markdown."
+        location: "City, country"
+        salary_min: "Min"
+        salary_max: "Max"
+        salary_currency: "..."
+        salary_unit: "..."
+      notes:
+        expire_at_one_week: "One week"
+        expire_at_two_weeks: "Two weeks"
+        expire_at_one_month: "One month"
+        valid_until: "until %{date}"
+        terms:
+          text: "By submitting this form you agree with the %{link}."
+          link: "terms of service"
+      legends:
+        contacts: "Contact Information"
+    index:
+      sidebar:
+        title: "Jobs for Ruby and Rails developers"
+        description: "Publication is free and requires no registration."
+      add: "Post a job for free"
+      expired_at: "Placed until %{expired_at}"
+    new:
+      meta_title: "Post a job ~ rubyjobs.ru"
+      sidebar:
+        title: "Note"
+        description: "In addition to the website, your job will be published in the\
+          \ RSS-channel, Twitter &nbsp; &mdash; @rubyjobsru, and a weekly newsletter."
+      title: "A new job listing"
+      create: "Save"
+    create:
+      success: "** Job added. ** It will be reviewed and then approved for publication"
+    show:
+      company: "Company name"
+      employment_type: "Type of employment"
+      salary: "Salary"
+      remote_position: "Remote work possible"
+      phone: "Phone"
+      contacts: "Contact Information"
+      publish: "Publish"
+      edit: "Edit"
+      email_application:
+        subject: "Online application for \"%{title}\""
+        body: |-
+          Dear Sir/Madam,
+
+          I am writing to apply for the position of %{title} which was posted on http://www.rubyjobs.ru.  I have attached my cover letter and resume for your review and I believe that you will find that my qualifications meet all of your requirements.
+
+          [YOUR_TEXT]
+
+          My online profiles:
+
+          GitHub: [GITHUB_LINK]
+          Linkedin: [LINKEDIN_LINK]
+          Twitter: [TWITTER_LINK]
+
+          I look forward to hearing from you about scheduling an interview and wish you a wonderful day.
+
+          Sincerely,
+          [YOUR_NAME]
+      apply: "Apply <div class=\"small\">via email</div>"
+      destroy:
+        button: "Remove"
+        confirmation: "Are you sure the job ad must be deleted?"
+      expiration_notice: "The job is from the archive. Publication has been expired\
+        \ on %{expire_at}"
+      expired_at: "Job ad expires on <span itemprop=\"validThrough\">%{expired_at}</span>"
+    edit:
+      meta_title: "Job listing ~ rubyjobs.ru"
+      title: "Editing"
+    update:
+      success: "**Job has been updated.** All changes successfully saved"
+    destroy:
+      success: "Job successfully removed"
+    approve:
+      success: "Job successfully published and the author got notified"

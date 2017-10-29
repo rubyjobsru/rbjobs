@@ -77,14 +77,16 @@ ru:
       add: "Добавить вакансию"
       expired_at: "Вакансия размещена до %{expired_at}"
     new:
-      meta_title: "Новая вакансия ~ RubyJobs.ru"
+      meta_title: "Новая вакансия ~ rubyjobs.ru"
       sidebar:
         title: "На заметку"
-        description: "Помимо сайта, ваша вакансия будет опубликована в RSS-канале, Твиттере&nbsp;&mdash; @rubyjobsru, и еженедельной почтовой рассылке."
+        description: "Помимо сайта, ваша вакансия будет опубликована в RSS-канале\
+          , Твиттере&nbsp;&mdash; @rubyjobsru, и еженедельной почтовой рассылке."
       title: "Новая вакансия"
       create: "Сохранить"
     create:
-      success: "**Вакансия добавлена.** Она будет проверена, после чего допущена к публикации"
+      success: "**Вакансия добавлена.** Она будет проверена, после чего допущена к\
+        \ публикации"
     show:
       company: "Компания"
       employment_type: "Тип занятости"
@@ -96,22 +98,22 @@ ru:
       edit: "Редактировать"
       email_application:
         subject: "Отклик на вакансию \"%{title}\" на rubyjobs.ru"
-        body: |
+        body: |-
           Добрый день,
 
-          меня зовут <YOUR_NAME>. Ваша вакансия "%{title}" (%{url}) заинтересовала меня.
+          меня зовут [YOUR_NAME]. Ваша вакансия "%{title}" заинтересовала меня.
 
-          <YOUR_TEXT>
+          [YOUR_TEXT]
 
           Мои профили
 
-          GitHub: <GITHUB_LINK>
-          Linkedin: <LINKEDIN_LINK>
-          Twitter: <TWITTER_LINK>
+          GitHub: [GITHUB_LINK]
+          Linkedin: [LINKEDIN_LINK]
+          Twitter: [TWITTER_LINK]
 
 
           Желаю вам отличного настроения,
-          <YOUR_NAME>
+          [YOUR_NAME]
       apply: "Откликнуться <div class=\"small\">по электронной почте</div>"
       destroy:
         button: "Удалить"
@@ -119,11 +121,12 @@ ru:
       expiration_notice: "Это архивная вакансия. Срок ее размещения истек %{expire_at}"
       expired_at: "Вакансия размещена до <span itemprop=\"validThrough\">%{expired_at}</span>"
     edit:
-      meta_title: "Редактирование описания вакансии ~ RubyJobs.ru"
+      meta_title: "Редактирование описания вакансии ~ rubyjobs.ru"
       title: "Редактирование"
     update:
       success: "**Вакансия обновлена.** Все изменения успешно сохранены"
     destroy:
       success: "Вакансия успешно удалена"
     approve:
-      success: "Вакансия успешно опубликована и автору отправлено уведомление об этом"
+      success: "Вакансия успешно опубликована и автору отправлено уведомление об э\
+        том"

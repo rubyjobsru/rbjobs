@@ -1,0 +1,44 @@
+en:
+  activerecord:
+    models:
+      vacancy: "Job"
+    attributes:
+      vacancy:
+        title: "Job title"
+        description: "Job description"
+        location: "Location"
+        remote_position: "Remote work possible"
+        expire_at: "Job ad expires in"
+        company: "Company name"
+        email: "Email"
+        url: "Website"
+        phone: "Phone"
+        name: "Contact person"
+        salary: "Salary"
+    errors:
+      models:
+        vacancy:
+          attributes:
+            title:
+              blank: "Can not be empty"
+            description:
+              blank: "The field is required. Please note, a good job description is\
+                \ very important."
+            location:
+              blank: "Enter city, country, or note the ability to work remotely"
+            expire_at:
+              blank: "Select the most suitable option. Later you can always extend\
+                \ or delete job in archive"
+            company:
+              blank: "Can not be empty"
+            email:
+              blank: "The field is required. A special secret link will be also sent\
+                \ on this address. That link will give you a chance to edit the job\
+                \ ad at any time."
+              invalid: "Does not look like an email address. Example: **john@example.com**"
+            salary_min:
+              not_a_number: "Does not look like a number"
+              greater_than_or_equal_to: "Can not be a negative number"
+            salary_max:
+              not_a_number: "Does not look like a number"
+              greater_than_or_equal_to: "Can not be a negative number"

@@ -1,0 +1,6 @@
+.bash_history
+.bundle
+.cache
+.editorconfig
+/log
+/tmp

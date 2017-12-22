@@ -1,10 +1,10 @@
+.bash_history
 .bundle
+.cache
 .DS_Store
 .env
-.env.test
 .env.production
 .idea
-.ruby-version
 .sass-cache/
 config/deploy.rb
 config/newrelic.yml

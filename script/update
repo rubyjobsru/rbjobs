@@ -1,13 +1,32 @@
-#!/bin/sh
-
-# script/update: Update application to run for its current checkout.
-
-set -e
+#!/usr/bin/env sh
+#
+# Update application to run for its current checkout.
+#
+# Examples
+#
+#   script/update
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-script/bootstrap
+if which docker-compose > /dev/null
+then
+  script/bootstrap
 
-echo "==> Updating db…"
-# run all database migrations to ensure everything is up to date.
-foreman run bin/rake db:migrate
+  echo "==> Updating the development environment…"
+  docker-compose build
+  docker-compose run --rm \
+                     web "$0"
+
+  echo "==> Updating the test environment…"
+  docker-compose --project-name=app-test build
+  docker-compose --project-name=app-test \
+                 --file=docker-compose.yml \
+                 --file=docker-compose.test.yml \
+                 run --rm \
+                     web "$0"
+  exit 0
+fi
+
+echo "==> Updating the database…"
+rake db:schema:load

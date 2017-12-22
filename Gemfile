@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.4.3'
 
 gem 'bugsnag'
-gem 'foreman', require: false
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'keen'
@@ -17,18 +16,14 @@ gem 'sucker_punch'
 gem 'therubyracer'
 gem 'uglifier'
 
-group :production do
-  gem 'newrelic_rpm'
-end
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'fabrication'
 end
 
 group :development do
-  gem 'letter_opener'
-  gem 'mina', require: false
+  gem 'listen'
+  gem 'foreman', require: false
   gem 'rubocop', require: false
 end
 

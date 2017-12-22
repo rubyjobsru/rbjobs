@@ -1,29 +1,33 @@
-#!/bin/sh
-
-# script/bootstrap: Resolve all dependencies that the application requires to
-#                   run.
-
-set -e
+#!/usr/bin/env sh
+#
+# Resolve all dependencies that the application requires to run.
+#
+# Examples
+#
+#   script/bootstrap
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-ruby_required=$(grep --regexp='^ruby' Gemfile | grep --regexp='\d\.\d\.\d*' --only-matching)
-echo "$ruby_required" > .ruby-version
-
-if [ -f ".ruby-version" ] && [ -z "$(rbenv version-name 2>/dev/null)" ]; then
-  echo "==> Installing Ruby…"
-  rbenv install --skip-existing
-  which bundle >/dev/null 2>&1  || {
-    gem install bundler
-    rbenv rehash
-  }
+echo "==> Updating .env file…"
+if [ ! -f .env ]
+then
+  touch .env
+  chmod 0600 .env
 fi
 
-if [ -f "Gemfile" ]; then
-  echo "==> Installing gem dependencies…"
-  bundle check --path vendor/gems >/dev/null 2>&1  || {
-    bundle install --path vendor/gems \
-                   --quiet \
-                   --without production
-  }
-fi
+for line in `cat .env.sample`
+do
+  key="${line%%=*}"
+
+  # If .env doesn't contain this env key, add it
+  if ! `grep -qLE "^$key=" .env`
+  then
+    echo "Adding $key"
+    echo $line >> .env
+  fi
+done
+
+# Keep all keys in .env file alphabetically sorted
+sort .env > .env.sorted
+mv .env.sorted .env

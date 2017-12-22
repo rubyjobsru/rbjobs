@@ -1,18 +1,33 @@
 #!/bin/sh
-
-# script/setup: Set up application for the first time after cloning, or set it
-#               back to the initial first unused state.
-
-set -e
+#
+# Set up application for the first time after cloning, or set it
+# back to the initial first unused state.
+#
+# Examples
+#
+#   script/setup
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-script/bootstrap
+if which docker-compose > /dev/null
+then
+  script/bootstrap
 
-echo "==> Setting up DB…"
+  echo "==> Preparing the development environment…"
+  docker-compose build
+  docker-compose run --rm \
+                     web "$0"
 
-# Reset development and test databases to a fresh state.
-foreman run bin/rake db:reset
-foreman run --env=.env.test bin/rake db:reset
+  echo "==> Preparing the test environment…"
+  docker-compose --project-name=app-test build
+  docker-compose --project-name=app-test \
+                 --file=docker-compose.yml \
+                 --file=docker-compose.test.yml \
+                 run --rm \
+                     web "$0"
+  exit 0
+fi
 
-echo "==> App is now ready to go!"
+echo "==> Preparing the database…"
+bin/rake db:reset

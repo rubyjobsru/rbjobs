@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  web:
+    env_file: .env
+    environment:
+      - RAILS_ENV=test

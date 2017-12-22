@@ -16,6 +16,10 @@ on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
+before_fork do
+  ActiveRecord::Base.connection_pool.disconnect! if defined?(ActiveRecord)
+end
+
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 

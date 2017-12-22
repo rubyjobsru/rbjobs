@@ -1,9 +1,13 @@
-#!/bin/sh
-
-# script/cibuild: Setup environment for CI to run tests. This is primarily
-#                 designed to run on the continuous integration server.
-
-set -e
+#!/usr/bin/env sh
+#
+# Run code style linters and tests on the continuous integration server.
+#
+# NOTE: the script does not rely on Docker.
+#
+# Examples
+#
+#   script/cibuild
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
@@ -23,8 +27,15 @@ export RACK_ENV="development"
 
 export PATH="$RACK_ROOT/bin:$PATH"
 
-# run code linter
-script/lint --fail-fast
+echo "==> Checking the code style…"
+bundle exec rubocop --display-cop-names \
+                    --display-style-guide \
+                    --extra-details \
+                    --parallel \
+                    --fail-fast
 
-# run tests
-bin/rake spec
+
+echo "==> Starting tests…"
+bundle exec rspec --no-profile \
+                  --fail-fast
+

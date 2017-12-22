@@ -1,14 +1,19 @@
-#!/bin/sh
-
-# script/server: Launch the application and any extra required processes
-#                locally.
-
-set -e
+#!/usr/bin/env sh
+#
+# Launch the application and any extra required processes locally.
+#
+# Examples
+#
+#   script/server
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-test -z "$RACK_ENV" &&
-  RACK_ENV='development'
-
-# boot the app and any other necessary processes.
-foreman start
+if which docker-compose > /dev/null
+then
+  docker-compose up
+  exit 0
+else
+  echo "Sorry, '$0' cannot be called inside a Docker container."
+  exit 1
+fi

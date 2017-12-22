@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - postgres
+    image: rubyjobsru/app
+    volumes:
+      - .:/home/app
+  postgres:
+    image: postgres
+    volumes:
+      - data-postgres:/var/lib/postgresql/data
+
+volumes:
+  data-postgres:

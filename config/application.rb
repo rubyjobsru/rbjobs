@@ -17,5 +17,6 @@ module Rbjobs
   class Application < Rails::Application
     config.i18n.default_locale = :ru
     config.active_job.queue_adapter = :sucker_punch
+    config.load_defaults 5.1
   end
 end

@@ -1,11 +1,19 @@
-#!/bin/sh
-
-# script/console: Launch a console for the application.
-
-set -e
+#!/usr/bin/env sh
+#
+# Launch a console for the application.
+#
+# Examples
+#
+#   script/console
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-# Ensure the application is up to date first.
-script/update
+if which docker-compose > /dev/null
+then
+  docker-compose run --rm \
+                     web "$0" "$@"
+  exit 0
+fi
+
 bin/rails console

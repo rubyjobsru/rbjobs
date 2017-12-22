@@ -1,22 +1,28 @@
-#!/bin/sh
-
-# script/test: Run test suite for application. Optionally pass in a path to an
-#              individual test file to run a single test.
-
-
-set -e
+#!/usr/bin/env sh
+#
+# Run test suite for application. Optionally pass in a path to an individual
+# test file to run a single test.
+#
+# Examples
+#
+#   script/test [<FILE>]
+#
+# <FILE> - the path to a spec file.
+set -o errexit
 
 cd "$(dirname "$0")/.."
 
-[ -z "$DEBUG" ] || set -x
+if which docker-compose > /dev/null
+then
+  docker-compose --project-name=app-test \
+                 --file=docker-compose.yml \
+                 --file=docker-compose.test.yml \
+                 run --rm \
+                     web "$0" "$@"
 
-RACK_ROOT="$(cd "$(dirname "$0")"/.. && pwd)"
-export RACK_ROOT
-
-echo "==> Running tests…"
-
-if [ -n "$1" ]; then
-  foreman run --env=.env.test bin/rake spec "$1"
-else
-  foreman run --env=.env.test bin/rake spec
+  exit 0
 fi
+
+echo "==> Starting tests…"
+rspec --color \
+      "${1:-spec}"

@@ -94,7 +94,7 @@ class VacanciesController < ApplicationController
   end
 
   def vacancies
-    @vacancies ||= Vacancy.available.page(params[:page]).per(6)
+    @vacancies ||= Vacancy.online.page(params[:page]).per(6)
   end
   helper_method :vacancies
 

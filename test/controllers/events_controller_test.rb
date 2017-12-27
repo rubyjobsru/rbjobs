@@ -1,7 +1,5 @@
-require 'test_helper'
+# frozen_string_literal: true
+require 'rails_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 end

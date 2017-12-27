@@ -16,11 +16,6 @@ gem 'sucker_punch'
 gem 'therubyracer'
 gem 'uglifier'
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'fabrication'
-end
-
 group :development do
   gem 'listen'
   gem 'foreman', require: false
@@ -30,4 +25,6 @@ end
 group :test do
   gem 'capybara'
   gem 'faker'
+  gem 'minitest'
+  gem 'selenium-webdriver'
 end

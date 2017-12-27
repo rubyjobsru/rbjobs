@@ -1,0 +1,19 @@
+DEFAULTS: &DEFAULTS
+  title: <%= Faker::Lorem.sentence %>
+  description: <%= Faker::Lorem.paragraph(5) %>
+  location: <%= Faker::Address.city %>
+  email: <%= Faker::Internet.email %>
+  expire_at: <%= 1.week.from_now %>
+
+approved:
+  <<: *DEFAULTS
+  approved_at: <%= Time.current %>
+
+pending:
+  <<: *DEFAULTS
+  approved_at: null
+
+archived:
+  <<: *DEFAULTS
+  expire_at: <%= 1.week.ago %>
+  approved_at: <%= Time.current %>

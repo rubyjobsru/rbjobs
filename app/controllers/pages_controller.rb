@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   private
 
   def page
-    @page ||= Page.find_by_id(params[:id])
+    @page ||= Page.find(params[:id])
   end
   helper_method :page
 end

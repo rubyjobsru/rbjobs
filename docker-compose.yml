@@ -8,6 +8,7 @@ services:
     image: rubyjobsru/app
     volumes:
       - .:/home/app
+
   postgres:
     image: postgres
     volumes:

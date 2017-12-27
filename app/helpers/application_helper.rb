@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module ApplicationHelper
   def google_analytics_id
     ENV['GOOGLE_ANALYTICS_ID']

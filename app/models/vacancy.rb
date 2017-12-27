@@ -67,11 +67,11 @@ class Vacancy < ActiveRecord::Base
     allow_blank: true
   }
 
-  scope :approved, -> { where('approved_at IS NOT NULL') }
-  scope :not_approved, -> { where(approved_at: nil) }
-  scope :not_outdated, ->(date) { where('expire_at >= ?', date) }
-  scope :descent_order, -> { order('id DESC') }
-  scope :available, -> { approved.not_outdated(Date.current).descent_order }
+  scope :approved, -> { where.not(approved_at: nil) }
+  scope :pending, -> { where(approved_at: nil) }
+  scope :valid_on, ->(date) { where(arel_table[:expire_at].gteq(date)) }
+  scope :recent, -> { order(id: :desc) }
+  scope :online, -> { valid_on(Date.current).approved }
 
   def approve!
     return if approved?

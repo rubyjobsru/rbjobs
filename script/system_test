@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 #
-# Run test suite for application. Optionally pass in a path to an individual
-# test file to run a single test.
+# Run system test suite for application. Optionally pass in a path to an
+# individual test file to run a single test.
 #
 # Examples
 #
-#   script/test [<FILE>]
+#   script/system_test [<FILE>]
 #
 # <FILE> - the path to a spec file.
 set -o errexit
@@ -18,10 +18,10 @@ then
                  --file=docker-compose.yml \
                  --file=docker-compose.test.yml \
                  run --rm \
-                     test_runner "$0" "$@"
+                     system_test_runner "$0" "$@"
 
   exit 0
 fi
 
-echo "==> Starting tests…"
-bin/rails test "${1:-test}"
+echo "==> Starting system tests…"
+bin/rails test "${1:-test/system}"

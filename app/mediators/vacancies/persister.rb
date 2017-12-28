@@ -31,9 +31,9 @@ module Vacancies
 
     def ensure_generated_html
       vacancy.excerpt_html = HtmlGenerator.render(
-        extract_excerpt(vacancy.description)
+        extract_excerpt(vacancy.description || '')
       )
-      vacancy.description_html = HtmlGenerator.render(vacancy.description)
+      vacancy.description_html = HtmlGenerator.render(vacancy.description || '')
     end
 
     def extract_excerpt(text, divider = "\r\n\r\n")

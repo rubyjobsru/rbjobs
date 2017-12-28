@@ -1,19 +1,48 @@
 DEFAULTS: &DEFAULTS
-  title: <%= Faker::Lorem.sentence %>
-  description: <%= Faker::Lorem.paragraph(5) %>
-  location: <%= Faker::Address.city %>
-  email: <%= Faker::Internet.email %>
+  description: |
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam neque dui, gravida ac sapien eget, rhoncus condimentum sem.
+
+    - Suspendisse sagittis lacus a lectus tristique, eget vestibulum urna
+      venenatis.
+    - Phasellus sollicitudin augue eu tellus volutpat finibus.
+    - Quisque consequat fermentum arcu, sed rhoncus risus placerat volutpat.
+
+    Etiam est mi, vestibulum nec dui at, volutpat maximus eros. Donec iaculis
+    nisi at mauris tristique [suscipit](https://www.example.com).
+  description_html: |
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam neque dui,
+      gravida ac sapien eget, rhoncus condimentum sem.
+    </p>
+    <ul>
+      <li>Suspendisse sagittis lacus a lectus tristique, eget vestibulum urna
+      venenatis.</li>
+      <li>Phasellus sollicitudin augue eu tellus volutpat finibus.</li>
+      <li>Quisque consequat fermentum arcu, sed rhoncus risus placerat
+      volutpat.</li>
+    </ul>
+    <p>
+      Etiam est mi, vestibulum nec dui at, volutpat maximus eros. Donec iaculis
+      nisi at mauris tristique <a href="https://www.example.com">suscipit</a>.
+    </p>
+  location: Berlin, Germany
+  email: john@example.com
   expire_at: <%= 1.week.from_now %>
+  approved_at: <%= Time.current %>
+  owner_token: $LABEL-owner-token
+  admin_token: $LABEL-admin-token
 
 approved:
+  title: Senior Backend Engineer
   <<: *DEFAULTS
   approved_at: <%= Time.current %>
 
 pending:
+  title: Junior Backend Engineer
   <<: *DEFAULTS
   approved_at: null
 
 archived:
+  title: Full-stack Developer
   <<: *DEFAULTS
   expire_at: <%= 1.week.ago %>
-  approved_at: <%= Time.current %>

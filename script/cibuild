@@ -31,7 +31,6 @@ echo "==> Checking the code style…"
 bundle exec rubocop --display-cop-names \
                     --display-style-guide \
                     --extra-details \
-                    --parallel \
                     --fail-fast
 
 

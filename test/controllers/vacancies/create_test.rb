@@ -1,12 +1,17 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 module Test
   module Controllers
     module Vacancies
       class CreateTest < ActionDispatch::IntegrationTest
+        include ActiveJob::TestHelper
+
         def test_default
-          post vacancies_url, params: { vacancy: valid_attributes }
+          assert_difference('Vacancy.count') do
+            post vacancies_url, params: { vacancy: valid_attributes }
+          end
 
           assert_response(:see_other)
           assert_redirected_to(root_url)
@@ -14,9 +19,17 @@ module Test
         end
 
         def test_with_missing_parameters
-          post vacancies_url, params: { vacancy: invalid_attributes }
+          assert_no_difference('Vacancy.count') do
+            post vacancies_url, params: { vacancy: invalid_attributes }
+          end
 
           assert_response(:unprocessable_entity)
+        end
+
+        def test_email_delivery
+          assert_enqueued_with(job: MailJob) do
+            post vacancies_url, params: { vacancy: valid_attributes }
+          end
         end
 
         private

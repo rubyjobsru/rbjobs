@@ -1,10 +1,13 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 module Test
   module Controllers
     module Vacancies
       class ApproveTest < ActionDispatch::IntegrationTest
+        include ActiveJob::TestHelper
+
         fixtures(:vacancies)
 
         # approved
@@ -17,6 +20,7 @@ module Test
 
         def test_approved_with_owner_token
           vacancy = vacancies(:approved)
+
           put approve_vacancy_url(vacancy, token: vacancy.owner_token)
 
           assert_response(:not_found)
@@ -24,7 +28,10 @@ module Test
 
         def test_approved_with_admin_token
           vacancy = vacancies(:approved)
-          put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+
+          assert_enqueued_with(job: MailJob) do
+            put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+          end
 
           assert_response(:see_other)
           assert_redirected_to(vacancy_url(vacancy))
@@ -33,12 +40,13 @@ module Test
 
         def test_approved_with_non_existing_token
           vacancy = vacancies(:approved)
+
           put approve_vacancy_url(vacancy, token: 'foo-bar')
 
           assert_response(:not_found)
         end
 
-        # approve pending
+        # pending
 
         def test_pending
           put approve_vacancy_url(vacancies(:pending))
@@ -48,6 +56,7 @@ module Test
 
         def test_pending_with_owner_token
           vacancy = vacancies(:pending)
+
           put approve_vacancy_url(vacancy, token: vacancy.owner_token)
 
           assert_response(:not_found)
@@ -55,7 +64,10 @@ module Test
 
         def test_pending_with_admin_token
           vacancy = vacancies(:pending)
-          put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+
+          assert_enqueued_with(job: MailJob) do
+            put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+          end
 
           assert_response(:see_other)
           assert_redirected_to(vacancy_url(vacancy))
@@ -64,12 +76,13 @@ module Test
 
         def test_pending_non_existing_token
           vacancy = vacancies(:pending)
+
           put approve_vacancy_url(vacancy, token: 'foo-bar')
 
           assert_response(:not_found)
         end
 
-        # approve archived
+        # archived
 
         def test_archived
           put approve_vacancy_url(vacancies(:archived))
@@ -79,6 +92,7 @@ module Test
 
         def test_archived_with_owner_token
           vacancy = vacancies(:archived)
+
           put approve_vacancy_url(vacancy, token: vacancy.owner_token)
 
           assert_response(:not_found)
@@ -86,7 +100,10 @@ module Test
 
         def test_archived_with_admin_token
           vacancy = vacancies(:archived)
-          put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+
+          assert_enqueued_with(job: MailJob) do
+            put approve_vacancy_url(vacancy, token: vacancy.admin_token)
+          end
 
           assert_response(:see_other)
           assert_redirected_to(vacancy_url(vacancy))
@@ -95,6 +112,7 @@ module Test
 
         def test_archived_with_non_existing_token
           vacancy = vacancies(:archived)
+
           put approve_vacancy_url(vacancy, token: 'foo-bar')
 
           assert_response(:not_found)

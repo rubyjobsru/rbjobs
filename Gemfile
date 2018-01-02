@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-ruby '2.4.3'
+ruby '2.5.0'
 
 gem 'bugsnag'
 gem 'jquery-rails'
@@ -18,13 +19,11 @@ gem 'uglifier'
 
 group :development do
   gem 'listen'
-  gem 'foreman', require: false
   gem 'rubocop', require: false
 end
 
 group :test do
   gem 'capybara'
-  gem 'faker'
   gem 'minitest'
   gem 'selenium-webdriver'
 end

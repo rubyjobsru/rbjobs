@@ -8,6 +8,7 @@ services:
     env_file: .env
     environment:
       - RAILS_ENV=test
+    image: rubyjobsru/app
     volumes:
       - .:/home/app
 
@@ -21,13 +22,11 @@ services:
       - APP_URL=http://web:5000
       - RAILS_ENV=test
       - SELENIUM_URL=http://selenium:4444/wd/hub
+    image: rubyjobsru/app
     volumes:
       - .:/home/app
 
   web:
-    command: foreman start
-    depends_on:
-      - postgres
     env_file: .env
     environment:
       - RAILS_ENV=test

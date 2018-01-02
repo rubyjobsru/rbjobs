@@ -86,7 +86,7 @@ end
 class VacancyValidationsTest < ActiveSupport::TestCase
   def test_title_presence
     untitled = Vacancy.new(title: nil)
-    titled = Vacancy.new(title: Faker::Lorem.sentence)
+    titled = Vacancy.new(title: 'Senior Ruby Developer')
 
     untitled.validate
     titled.validate
@@ -97,7 +97,7 @@ class VacancyValidationsTest < ActiveSupport::TestCase
 
   def test_description_presence
     undescribed = Vacancy.new(description: nil)
-    described = Vacancy.new(description: Faker::Lorem.paragraph(5))
+    described = Vacancy.new(description: 'Foo bar. Baz quoz.')
 
     undescribed.validate
     described.validate
@@ -108,7 +108,7 @@ class VacancyValidationsTest < ActiveSupport::TestCase
 
   def test_location_presence
     unlocated = Vacancy.new(location: nil)
-    located = Vacancy.new(location: Faker::Address.city)
+    located = Vacancy.new(location: 'Berlin, Germany')
     remote = Vacancy.new(location: nil, remote_position: true)
 
     unlocated.validate

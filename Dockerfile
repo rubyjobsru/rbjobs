@@ -1,4 +1,4 @@
-FROM ruby:2.4.3
+FROM ruby:2.5.0
 ENV LANG C.UTF-8
 
 # Install dependencies:
@@ -14,7 +14,10 @@ RUN apt-get update && \
 # Create an unprivileged user, prosaically called app, to run the app inside
 # the container. If you don’t do this, then the process inside the container
 # will run as root, which is against security best practices and principles.
-RUN useradd --user-group --create-home --shell /bin/false app
+RUN useradd --user-group \
+            --create-home \
+            --shell /bin/false \
+            app
 
 ENV HOME=/home/app
 
@@ -23,6 +26,8 @@ RUN chown -R app:app $HOME/*
 
 USER app
 WORKDIR $HOME
-RUN gem install bundler \
-    && bundle install --jobs=20 \
-                      --clean
+
+RUN bundle install --jobs=20 \
+                   --clean
+
+CMD ["bundle", "exec", "puma"]

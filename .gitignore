@@ -9,6 +9,7 @@
 config/deploy.rb
 config/newrelic.yml
 db/*.sqlite3
+docker-cloud.yml
 log/*.log
 tmp/
 vendor/

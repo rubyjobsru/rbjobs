@@ -2,5 +2,6 @@
 .bundle
 .cache
 .editorconfig
-/log
-/tmp
+public/assets/
+log/
+tmp/

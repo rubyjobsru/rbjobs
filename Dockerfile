@@ -30,6 +30,7 @@ WORKDIR $HOME
 RUN bundle install --jobs=20 \
                    --clean
 
+RUN mkdir -p $HOME/public/assets
 VOLUME /home/app/public/assets
 
 EXPOSE 5000

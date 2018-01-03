@@ -30,4 +30,6 @@ WORKDIR $HOME
 RUN bundle install --jobs=20 \
                    --clean
 
+EXPOSE 5000
+
 CMD ["bundle", "exec", "puma"]

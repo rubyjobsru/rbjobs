@@ -30,6 +30,9 @@ WORKDIR $HOME
 RUN bundle install --jobs=20 \
                    --clean
 
+# Use a volume for precompiled assets.
+VOLUME $HOME/public/assets
+
 EXPOSE 5000
 
 CMD ["bundle", "exec", "puma"]

@@ -6,11 +6,7 @@ threads ENV.fetch('PUMA_MIN_THREADS') { 5 }.to_i,
         ENV.fetch('PUMA_MAX_THREADS') { 5 }.to_i
 workers ENV.fetch('PUMA_WORKERS') { 2 }.to_i
 
-if ENV['PUMA_SOCKET']
-  bind ENV.fetch('PUMA_SOCKET') { 'unix:///tmp/puma.rubyjobs.sock' }
-else
-  port ENV.fetch('PORT') { 5000 }.to_i
-end
+port 3000
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)

@@ -2,7 +2,6 @@ version: '3'
 
 services:
   test_runner:
-    build: .
     depends_on:
       - postgres
     env_file: .env
@@ -13,13 +12,12 @@ services:
       - .:/home/app
 
   system_test_runner:
-    build: .
     depends_on:
       - selenium
       - web
     env_file: .env
     environment:
-      - APP_URL=http://web:5000
+      - APP_URL=http://web:3000
       - RAILS_ENV=test
       - SELENIUM_URL=http://selenium:4444/wd/hub
     image: rubyjobsru/app
@@ -27,16 +25,12 @@ services:
       - .:/home/app
 
   web:
-    env_file: .env
     environment:
       - RAILS_ENV=test
-    ports:
-      - 5000:5000
 
   selenium:
     image: selenium/standalone-chrome-debug
     logging:
       driver: none
     ports:
-      - 4444:4444
       - 5900:5900

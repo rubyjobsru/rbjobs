@@ -12,15 +12,14 @@ cd "$(dirname "$0")/.."
 
 if which docker-compose > /dev/null
 then
+  docker build --tag rubyjobsru/app:latest .
   script/bootstrap
 
   echo "==> Preparing the development environment…"
-  docker-compose build
   docker-compose run --rm \
                      web "$0"
 
   echo "==> Preparing the test environment…"
-  docker-compose --project-name=app-test build
   docker-compose --project-name=app-test \
                  --file=docker-compose.yml \
                  --file=docker-compose.test.yml \

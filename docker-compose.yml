@@ -2,9 +2,9 @@ version: '3'
 
 services:
   web:
-    build: .
     depends_on:
       - postgres
+    env_file: .env
     image: rubyjobsru/app
     volumes:
       - .:/home/app

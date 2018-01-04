@@ -1,4 +1,4 @@
-FROM ruby:2.5.0
+FROM ruby:2.5.0-slim
 ENV LANG C.UTF-8
 
 # Install dependencies:
@@ -30,9 +30,6 @@ WORKDIR $HOME
 RUN bundle install --jobs=20 \
                    --clean
 
-RUN mkdir -p $HOME/public/assets
-VOLUME /home/app/public/assets
-
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["bundle", "exec", "puma"]

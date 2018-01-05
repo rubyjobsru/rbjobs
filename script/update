@@ -28,4 +28,4 @@ then
 fi
 
 echo "==> Updating the database…"
-rake db:schema:load
+bin/rails db:schema:load

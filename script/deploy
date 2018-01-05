@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+#
+# Deploy the application.
+#
+# Examples
+#
+#   script/deploy
+set -o errexit
+
+cd "$(dirname "$0")/.."
+
+echo "==> Precompiling assets…"
+docker-compose run --rm \
+                   --no-deps \
+                   web sh -c "bin/rails assets:precompile"
+
+echo "==> Uploading assets…"
+docker-compose run --rm \
+                   s3cmd --configure

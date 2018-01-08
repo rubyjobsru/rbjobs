@@ -30,6 +30,8 @@ COPY --chown=app:app . $HOME
 RUN bundle install --jobs=20 \
                    --clean
 
+RUN SECRET_KEY_BASE=$(bin/rails secret) bin/rails assets:precompile
+
 EXPOSE 3000
 
 CMD ["bundle", "exec", "puma"]

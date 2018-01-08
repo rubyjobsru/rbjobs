@@ -19,13 +19,13 @@ RUN useradd --user-group \
             --shell /bin/false \
             app
 
+USER app
+
 ENV HOME=/home/app
 
-COPY . $HOME
-RUN chown -R app:app $HOME/*
-
-USER app
 WORKDIR $HOME
+
+COPY --chown=app:app . $HOME
 
 RUN bundle install --jobs=20 \
                    --clean

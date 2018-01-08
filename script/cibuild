@@ -11,30 +11,13 @@ set -o errexit
 
 cd "$(dirname "$0")/.."
 
-# GC customizations
-export RUBY_GC_MALLOC_LIMIT=79000000
-export RUBY_GC_HEAP_INIT_SLOTS=800000
-export RUBY_HEAP_FREE_MIN=100000
-export RUBY_HEAP_SLOTS_INCREMENT=400000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-
-# setup environment
-RAILS_ROOT="$(cd "$(dirname "$0")"/.. && pwd)"
-export RAILS_ROOT
-export RAILS_ENV="test"
-export RACK_ROOT="$RAILS_ROOT"
-export RACK_ENV="development"
-
-export PATH="$RACK_ROOT/bin:$PATH"
-
 echo "==> Checking the code style…"
-bundle exec rubocop --display-cop-names \
-                    --display-style-guide \
-                    --extra-details \
-                    --fail-fast
-
+rubocop --display-cop-names \
+        --display-style-guide \
+        --extra-details \
+        --fail-fast \
+        --config=.rubocop.yml
 
 echo "==> Starting tests…"
-bundle exec rspec --no-profile \
-                  --fail-fast
+bin/rails test test
 

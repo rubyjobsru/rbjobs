@@ -9,11 +9,9 @@ set -o errexit
 
 cd "$(dirname "$0")/.."
 
-echo "==> Precompiling assets…"
-docker-compose run --rm \
-                   --no-deps \
-                   web sh -c "bin/rails assets:precompile"
+echo "==> Updating the Docker image…"
+docker build --tag rubyjobsru/app:latest .
+docker push rubyjobsru/app
 
-echo "==> Uploading assets…"
-docker-compose run --rm \
-                   s3cmd --configure
+echo "==> Redeploying the service…"
+docker-cloud service redeploy web

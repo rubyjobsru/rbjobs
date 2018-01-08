@@ -27,6 +27,7 @@ services:
   web:
     environment:
       - RAILS_ENV=test
+    image: rubyjobsru/app
 
   selenium:
     image: selenium/standalone-chrome-debug

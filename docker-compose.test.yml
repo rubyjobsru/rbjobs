@@ -35,7 +35,3 @@ services:
       driver: none
     ports:
       - 5900:5900
-
-  sut:
-    build: .
-    command: script/cibuild

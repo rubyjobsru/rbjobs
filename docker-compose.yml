@@ -10,9 +10,9 @@ services:
       - .:/home/app
 
   postgres:
-    image: postgres
+    image: postgres:10.1
     volumes:
-      - data-postgres:/var/lib/postgresql/data
+      - data-postgres_10_1:/var/lib/postgresql/data
 
 volumes:
-  data-postgres:
+  data-postgres_10_1:

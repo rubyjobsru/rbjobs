@@ -4,7 +4,7 @@
 
 The job board is a Rails application, so you might expect all casual Rails things like controllers, models, templates, and etc.
 
-See the app running at [http://rubyjobs.ru](http://rubyjobs.ru).
+See the app running at [http://www.rubyjobs.ru](http://www.rubyjobs.ru).
 
 ## Getting Started
 
@@ -20,7 +20,6 @@ The setup script will install all gem dependencies, create and prepare developme
 ### Development Dependencies
 
 - PostreSQL, as a database
-- foreman, as a processes manager
 - Puma, an an application server
 
 ### Testing
@@ -43,4 +42,4 @@ script/lint
 
 ## Copyright Information
 
-(c) 2008-2016, Alexander Sulim, [http://sul.im](http://sul.im)
+(c) 2008-2018, Alexander Sulim, [http://sul.im](http://sul.im)

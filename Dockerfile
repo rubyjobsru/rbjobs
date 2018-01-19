@@ -1,15 +1,16 @@
 FROM ruby:2.5.0-slim
+
+LABEL maintainer="Alexander Sulim <hello@sul.im>" \
+      version="0.1.0"
+
 ENV LANG C.UTF-8
 
 # Install dependencies:
 # - build-essential: To ensure certain gems can be compiled
 # - libpq-dev: Communicate with postgres through the postgres gem
-# - postgresql-client: In case of direct access to PostgreSQL,
-#                          e.g. `rake db:structure:load` depends on psql
 RUN apt-get update && \
     apt-get install -y build-essential \
-                       libpq-dev \
-                       postgresql-client
+                       libpq-dev
 
 # Create an unprivileged user, prosaically called app, to run the app inside
 # the container. If you don’t do this, then the process inside the container

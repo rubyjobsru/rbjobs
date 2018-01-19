@@ -1,7 +1,8 @@
-.bash_history
-.bundle
-.cache
-.editorconfig
+.bundle/
+.cache/
 public/assets/
 log/
 tmp/
+
+.bash_history
+.editorconfig

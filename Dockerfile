@@ -20,7 +20,6 @@ RUN useradd --user-group \
             --shell /bin/false \
             app
 
-
 ENV HOME=/home/app
 
 COPY . $HOME

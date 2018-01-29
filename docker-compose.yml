@@ -10,9 +10,11 @@ services:
       - .:/home/app
 
   postgres:
-    image: postgres:10.1
+    environment:
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+    image: postgres:9.6
     volumes:
-      - data-postgres_10_1:/var/lib/postgresql/data
+      - data-postgres_9_6:/var/lib/postgresql/data
 
 volumes:
-  data-postgres_10_1:
+  data-postgres_9_6:

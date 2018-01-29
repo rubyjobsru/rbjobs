@@ -19,8 +19,8 @@ The setup script will install all gem dependencies, create and prepare developme
 
 ### Development Dependencies
 
-- PostreSQL, as a database
-- Puma, an an application server
+- Docker
+- Docker Compose
 
 ### Testing
 

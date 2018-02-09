@@ -21,17 +21,18 @@ RUN useradd --user-group \
             app
 
 ENV HOME=/home/app
-
-COPY . $HOME
-RUN chown -R app:app $HOME/*
-
-USER app
 WORKDIR $HOME
 
+COPY Gemfile* $HOME/
 RUN bundle install --jobs=20 \
                    --clean
 
+COPY . $HOME/
+
 RUN SECRET_KEY_BASE=$(bin/rails secret) bin/rails assets:precompile
+RUN chown -R app:app $HOME/*
+
+USER app
 
 EXPOSE 3000
 

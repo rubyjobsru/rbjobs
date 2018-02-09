@@ -94,7 +94,7 @@ class VacanciesController < ApplicationController
   end
 
   def vacancies
-    @vacancies ||= Vacancy.online.page(params[:page]).per(6)
+    @vacancies ||= Vacancy.onlin.recent.page(params[:page]).per(6)
   end
   helper_method :vacancies
 
@@ -108,7 +108,7 @@ class VacanciesController < ApplicationController
   helper_method :vacancy
 
   def feed_vacancies
-    @feed_vacancies ||= Vacancy.available
+    @feed_vacancies ||= Vacancy.online.recent
   end
   helper_method :feed_vacancies
 

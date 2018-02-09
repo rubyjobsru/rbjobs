@@ -1,8 +1,12 @@
 .bundle/
 .cache/
+.git/
 public/assets/
 log/
 tmp/
 
 .bash_history
+.DS_Store
 .editorconfig
+.env*
+docker-*

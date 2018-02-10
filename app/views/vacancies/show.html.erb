@@ -73,9 +73,6 @@
         <% if vacancy.url.present? %>
           <div itemprop="url"><%= link_to vacancy.url, vacancy.url, data: { toggle: 'analytics', event: 'vacancy:company_url:click' } %></div>
         <% end %>
-        <% if vacancy.phone.present? %>
-          <div><%= t('.phone') %>: <span itemprop="telephone"><%= vacancy.phone %></span></div>
-        <% end %>
       </address>
     </div>
     <div class="col-md-4" itemprop="employee" itemscope itemtype="http://schema.org/Person">

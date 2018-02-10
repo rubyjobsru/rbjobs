@@ -10,39 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113094853) do
+ActiveRecord::Schema.define(version: 20180210150744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "vacancies", force: :cascade do |t|
-    t.string   "title",            limit: 255
-    t.text     "description"
-    t.string   "company",          limit: 255
-    t.string   "url",              limit: 255
-    t.string   "name",             limit: 255
-    t.string   "email",            limit: 255
-    t.string   "phone",            limit: 255
-    t.string   "owner_token",      limit: 255
-    t.date     "expire_at"
+    t.string "title", limit: 255
+    t.text "description"
+    t.string "company", limit: 255
+    t.string "url", limit: 255
+    t.string "name", limit: 255
+    t.string "email", limit: 255
+    t.string "owner_token", limit: 255
+    t.date "expire_at"
     t.datetime "approved_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "admin_token",      limit: 255
-    t.text     "excerpt_html"
-    t.text     "description_html"
-    t.string   "location",         limit: 255
-    t.integer  "salary_min"
-    t.integer  "salary_max"
-    t.string   "salary_currency",  limit: 3
-    t.string   "salary_unit"
-    t.string   "employment_type",              default: "full-time"
-    t.boolean  "remote_position",              default: false
-    t.index ["admin_token"], name: "index_vacancies_on_admin_token", using: :btree
-    t.index ["approved_at"], name: "index_vacancies_on_approved_at", using: :btree
-    t.index ["created_at"], name: "index_vacancies_on_created_at", using: :btree
-    t.index ["expire_at"], name: "index_vacancies_on_expire_at", using: :btree
-    t.index ["owner_token"], name: "index_vacancies_on_owner_token", using: :btree
+    t.string "admin_token", limit: 255
+    t.text "excerpt_html"
+    t.text "description_html"
+    t.string "location", limit: 255
+    t.integer "salary_min"
+    t.integer "salary_max"
+    t.string "salary_currency", limit: 3
+    t.string "salary_unit"
+    t.string "employment_type", default: "full-time"
+    t.boolean "remote_position", default: false
+    t.index ["admin_token"], name: "index_vacancies_on_admin_token"
+    t.index ["approved_at"], name: "index_vacancies_on_approved_at"
+    t.index ["created_at"], name: "index_vacancies_on_created_at"
+    t.index ["expire_at"], name: "index_vacancies_on_expire_at"
+    t.index ["owner_token"], name: "index_vacancies_on_owner_token"
   end
 
 end

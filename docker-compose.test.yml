@@ -7,7 +7,7 @@ services:
     env_file: .env
     environment:
       - RAILS_ENV=test
-    image: rubyjobsru/app
+    image: rubyjobsru/app:latest
     volumes:
       - .:/home/app
 
@@ -27,7 +27,7 @@ services:
   web:
     environment:
       - RAILS_ENV=test
-    image: rubyjobsru/app
+    image: rubyjobsru/app:latest
 
   selenium:
     image: selenium/standalone-chrome-debug

@@ -88,7 +88,6 @@ class VacanciesController < ApplicationController
       :url,
       :name,
       :email,
-      :phone,
       :expire_at
     )
   end

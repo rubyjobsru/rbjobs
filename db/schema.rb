@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180210150744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "vacancies", force: :cascade do |t|
+  create_table "vacancies", id: :serial, force: :cascade do |t|
     t.string "title", limit: 255
     t.text "description"
     t.string "company", limit: 255

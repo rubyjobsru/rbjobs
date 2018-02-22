@@ -42,6 +42,12 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.3.0)
+    autoprefixer-rails (8.0.0)
+      execjs
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     bugsnag (6.4.0)
     builder (3.2.3)
     capybara (2.16.1)
@@ -103,6 +109,7 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pg (0.21.0)
+    popper_js (1.12.9)
     powerpack (0.1.1)
     public_suffix (3.0.1)
     puma (3.11.0)
@@ -149,6 +156,11 @@ GEM
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    sass (3.5.5)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -181,6 +193,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap
   bugsnag
   capybara
   jquery-rails

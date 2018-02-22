@@ -1,21 +1,32 @@
 <% content_for :sidebar do %>
   <div class="page-header">
-    <h1><%= t('.sidebar.title') -%></h1>
+    <h2><%= t('.sidebar.title') -%></h2>
     <p class="lead"><%= t('.sidebar.description') -%></p>
-    <p><%= link_to t('.add'), new_vacancy_url, class: 'btn btn-primary btn-lg' -%></p>
+
+    <div class="my-5">
+      <%= link_to t('.add'), new_vacancy_url, class: 'btn btn-primary btn-lg btn-block' -%>
+    </div>
   </div>
 <% end %>
 
-<% vacancies.in_groups_of(2, false) do |group| %>
-<div class="row">
-  <% for vacancy in group %>
-  <article class="col-md-6" itemscope itemtype="http://schema.org/JobPosting">
-    <h2><%= link_to vacancy.title, vacancy, itemprop: 'url' %></h2>
-    <h4 class="text-muted"><%== company_location_tag(vacancy) %></h4>
-    <%== vacancy.excerpt_html %>
-  </article>
+<div class="list-group list-group-flush mb-5">
+  <% vacancies.each do |vacancy| %>
+  <div class="list-group-item list-group-item-action flex-column align-items-start" itemscope itemtype="http://schema.org/JobPosting">
+    <div class="d-flex w-100 justify-content-between align-items-center">
+      <h2 class="text-truncate"><%= link_to vacancy.title, vacancy, itemprop: 'url' %></h2>
+    </div>
+    <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    <div class="row">
+      <div class="col-md-7">
+        <small><%== company_location_tag(vacancy) %></small>
+      </div>
+      <div class="col-md-5 text-right">
+        <small><%== salary_with_units(vacancy) %></small>
+      </div>
+    </div>
+
+  </div>
   <% end %>
 </div>
-<% end %>
 
 <%= paginate vacancies %>

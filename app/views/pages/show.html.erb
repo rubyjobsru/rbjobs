@@ -1,7 +1,7 @@
 <% content_for :meta_title, t('.meta_title', title: page.title) %>
-<article>
-  <div class="page-header">
-    <h1><%= page.title %></h1>
-  </div>
+
+<div class="pb-5">
+  <h1 class="pt-3 pb-4"><%= page.title %></h1>
+  <hr class="shortline">
   <%== page.body %>
-</article>
+</div>

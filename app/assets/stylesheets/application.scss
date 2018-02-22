@@ -1,0 +1,13 @@
+@import "bootstrap";
+@import "bootstrap-overrides";
+@import "simple-line-icons";
+@import "theme";
+
+.button_to {
+  display:inline-block;
+  margin:0;
+  padding:0;
+}
+.field_with_errors {
+  display:inline;
+}

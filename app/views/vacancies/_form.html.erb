@@ -1,176 +1,137 @@
-<fieldset>
-  <legend><%= t(".description") %></legend>
-  <div class="form-group">
-    <%= form.label :title,
-                   "#{t("activerecord.attributes.vacancy.title")} *".html_safe,
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-6  <%= "has-error" if form.object.errors.include?(:title) %>">
-      <%= form.text_field :title,
-                          class: 'form-control',
-                          autofocus: true,
-                          placeholder: t(".placeholders.title") %>
-      <% for error in form.object.errors[:title] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form.select :employment_type,
-                      employment_type_options_for_select,
-                      {},
-                      class: 'form-control' %>
-    </div>
+<div class="form-row">
+  <div class="form-group col-md-8">
+    <%= form.label :title, "#{t("activerecord.attributes.vacancy.title")} *".html_safe %>
+    <%= form.text_field :title, class: "form-control #{'is-invalid' if form.object.errors.include?(:title)}",
+                                autofocus: true,
+                                placeholder: t(".placeholders.title"),
+                                required: true %>
+    <% for error in form.object.errors[:title] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= form.label :description,
-                   "#{t("activerecord.attributes.vacancy.description")} *".html_safe,
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:description) %>">
-      <%= form.text_area :description,
-                      rows: 20,
-                      class: 'form-control',
-                      placeholder: t(".placeholders.description") %>
-      <% for error in form.object.errors[:description] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= form.label :location,
-                   "#{t("activerecord.attributes.vacancy.location")} *".html_safe,
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-6 <%= "has-error" if form.object.errors.include?(:location) %>">
-      <%= form.text_field :location,
-                          class: 'form-control',
-                          placeholder: t(".placeholders.location") %>
-      <% for error in form.object.errors[:location] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <div class="checkbox">
-        <%= form.label :remote_position do %>
-          <%= form.check_box :remote_position %>
-          <%= t('activerecord.attributes.vacancy.remote_position') %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :salary_min,
-                   "#{t("activerecord.attributes.vacancy.salary")}",
-                   class: 'col-md-2 control-label',
-                   value: number_with_delimiter(form.object.salary_min) %>
-    <div class="col-md-3 <%= "has-error" if form.object.errors.include?(:salary_min) %>">
-      <%= form.text_field :salary_min,
-                          class: 'form-control',
-                          placeholder: t(".placeholders.salary_min") %>
-      <% for error in form.object.errors[:salary_min] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-    <div class="col-md-3 <%= "has-error" if form.object.errors.include?(:salary_max) %>">
-      <%= form.text_field :salary_max,
-                          class: 'form-control',
-                          placeholder: t(".placeholders.salary_max") %>
-      <% for error in form.object.errors[:salary_max] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-    <div class="col-md-2 <%= "has-error" if form.object.errors.include?(:salary_currency) %>">
-      <%= form.select :salary_currency,
-                      currency_options_for_select,
-                      { include_blank: t(".placeholders.salary_currency") },
-                      class: 'form-control' %>
-      <% for error in form.object.errors[:salary_currency] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-    <div class="col-md-2 <%= "has-error" if form.object.errors.include?(:salary_unit) %>">
-      <%= form.select :salary_unit,
-                      salary_unit_options_for_select,
-                      { include_blank: t(".placeholders.salary_unit") },
-                      class: 'form-control' %>
-      <% for error in form.object.errors[:salary_unit] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :expire_at,
-                   "#{t("activerecord.attributes.vacancy.expire_at")} *".html_safe,
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:expire_at) %>">
-      <div class="radio">
-        <label>
-          <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week, id: 'vacancy_expires_in_one_week' %>
-          <span><%= t(".notes.expire_at_one_week") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week)) %></span></span>
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks, id: 'vacancy_expires_in_two_weeks' %>
-          <span><%= t(".notes.expire_at_two_weeks") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks)) %></span></span>
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month, id: 'vacancy_expires_in_one_month' %>
-          <span><%= t(".notes.expire_at_one_month") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month)) %></span></span>
-        </label>
-      </div>
-      <% for error in form.object.errors[:expire_at] %>
-        <%= content_tag(:span, error, :class => "help-block") %>
-      <% end %>
-     </div>
-  </div>
-</fieldset>
-<fieldset>
-  <legend><%= t(".legends.contacts") %></legend>
-  <div class="form-group">
-    <%= form.label :email,
-                   "#{t("activerecord.attributes.vacancy.email")} *".html_safe,
-                   class: 'col-md-2 control-label' %>
-    <div class="col-md-10 <%= "has-error" if form.object.errors.include?(:email) %>">
-      <%= form.email_field :email, class: 'form-control' %>
-      <% for error in form.object.errors[:email] %>
-        <%= content_tag(:span, error, class: "help-block") %>
-      <% end %>
-     </div>
-  </div>
-  <div class="form-group">
-    <%= form.label :company, class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
-      <%= form.text_field :company, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= form.label :url, class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
-      <%= form.url_field :url, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= form.label :name, class: 'col-md-2 control-label' %>
-    <div class="col-md-10">
-      <%= form.text_field :name, class: 'form-control' %>
-    </div>
-  </div>
-</fieldset>
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-  <% if form.object.persisted? %>
-    <%= form.submit t('.update'), class: 'btn btn-success' %>
-    <%= link_to t('.cancel'), vacancy_url(form.object), class: 'btn' %>
-  <% else %>
-  <div class="panel panel-warning">
-    <div class="panel-body bg-warning">
-      <p><%= t('.notes.terms.text', link: link_to(t('.notes.terms.link'), page_url(:terms))).html_safe %></p>
-    </div>
-  </div>
-    <%= form.submit t('.create'), class: 'btn btn-success', data: { disable_with: t('.processing') } %>
-    <%= link_to t('.cancel'), root_url, class: 'btn' %>
-  <% end %>
+  <div class="form-group col-md-4">
+    <%= form.label :employment_type, "#{t("activerecord.attributes.vacancy.employment_type")} *".html_safe %>
+    <%= form.select :employment_type, employment_type_options_for_select, {}, class: "custom-select #{'is-invalid' if form.object.errors.include?(:employment_type)}",
+                                                                              required: true %>
+    <% for error in form.object.errors[:employment_type] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
   </div>
 </div>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <%= form.label :description, "#{t("activerecord.attributes.vacancy.description")} *".html_safe%>
+    <%= form.text_area :description, class: "form-control #{'is-invalid' if form.object.errors.include?(:description)}",
+                                     placeholder: t(".placeholders.description"),
+                                     required: true,
+                                     rows: 20 %>
+    <% for error in form.object.errors[:description] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <%= form.label :location, "#{t("activerecord.attributes.vacancy.location")} *".html_safe %>
+    <div class="input-group">
+      <%= form.text_field :location, class: "form-control #{'is-invalid' if form.object.errors.include?(:location)}",
+                                     placeholder: t(".placeholders.location"),
+                                     required: true %>
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <div class="form-check">
+            <%= form.check_box :remote_position, class: "form-check-input" %>
+            <%= form.label :remote_position, t('activerecord.attributes.vacancy.remote_position'), class: "form-check-label" %>
+          </div>
+        </div>
+      </div>
+      <% for error in form.object.errors[:location] %>
+        <%= content_tag(:div, error, class: "invalid-feedback") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :salary_min, "#{t("activerecord.attributes.vacancy.salary")}"  %>
+    <div class="input-group">
+      <%= form.text_field :salary_min, class: 'form-control', placeholder: t(".placeholders.salary_min") %>
+      <%= form.text_field :salary_max, class: 'form-control', placeholder: t(".placeholders.salary_max") %>
+    </div>
+    <% for error in form.object.errors[:salary_min] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
+    <% for error in form.object.errors[:salary_max] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
+  </div>
+  <div class="form-group col-md-6">
+    <label>&nbsp;</label>
+    <div class="input-group">
+      <%= form.select :salary_currency, currency_options_for_select, { include_blank: t(".placeholders.salary_currency") }, class: "custom-select" %>
+      <%= form.select :salary_unit, salary_unit_options_for_select, { include_blank: t(".placeholders.salary_unit") }, class: "custom-select" %>
+      <% for error in form.object.errors[:salary_currency] %>
+        <%= content_tag(:div, error, class: "invalid-feedback") %>
+      <% end %>
+      <% for error in form.object.errors[:salary_unit] %>
+        <%= content_tag(:div, error, class: "invalid-feedback") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <%= form.label :expire_at, "#{t("activerecord.attributes.vacancy.expire_at")} *".html_safe %>
+    <div class="custom-control custom-radio">
+      <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week, id: 'vacancy_expires_in_one_week',
+                                                                                                                           class: "custom-control-input #{'is-invalid' if form.object.errors.include?(:expire_at)}" %>
+      <label class="custom-control-label" for="vacancy_expires_in_one_week"><%= t(".notes.expire_at_one_week") %></label>
+    </div>
+    <div class="custom-control custom-radio">
+      <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks, id: 'vacancy_expires_in_two_weeks',
+                                                                                                                            class: "custom-control-input #{'is-invalid' if form.object.errors.include?(:expire_at)}" %>
+      <label class="custom-control-label" for="vacancy_expires_in_two_weeks"><%= t(".notes.expire_at_two_weeks") %></label>
+    </div>
+    <div class="custom-control custom-radio">
+      <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month, id: 'vacancy_expires_in_one_month',
+                                                                                                                            class: "custom-control-input #{'is-invalid' if form.object.errors.include?(:expire_at)}" %>
+      <label class="custom-control-label" for="vacancy_expires_in_one_month"><%= t(".notes.expire_at_one_month") %></label>
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :company %>
+    <%= form.text_field :company, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :url %>
+    <%= form.url_field :url, class: 'form-control',
+                             placeholder: 'https://www.example.com' %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :email, "#{t("activerecord.attributes.vacancy.email")} *".html_safe %>
+    <%= form.email_field :email, class: "form-control #{'is-invalid' if form.object.errors.include?(:email)}",
+                                 required: true %>
+    <% for error in form.object.errors[:email] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
+  </div>
+</div>
+<% if form.object.persisted? %>
+  <%= form.submit t('.update'), class: 'btn btn-primary btn-lg' %>
+  <%= link_to t('.cancel'), vacancy_url(form.object), class: 'btn' %>
+<% else %>
+  <div class="alert alert-warning" role="alert">
+    <%= t('.notes.terms.text', link: link_to(t('.notes.terms.link'), page_url(:terms))).html_safe %>
+  </div>
+  <hr>
+  <%= form.submit t('.create'), class: 'btn btn-primary btn-lg', data: { disable_with: t('.processing') } %>
+  <%= link_to t('.cancel'), root_url, class: 'btn' %>
+<% end %>

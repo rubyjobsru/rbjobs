@@ -47,7 +47,6 @@ ru:
       "internship": "интернатура"
       "other": "другое"
     form:
-      description: "Описание"
       create: "Отправить"
       update: "Сохранить"
       cancel: "Отмена"
@@ -115,7 +114,9 @@ ru:
       destroy:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"
-      expiration_notice: "Это архивная вакансия. Срок ее размещения истек %{expire_at}"
+      expiration_notice:
+        info: "Это архивная вакансия. Срок ее размещения истек %{expire_at}."
+        advice: '<a href="/">Перейдите на главную страницу</a>, чтобы найти актуальные вакансии.'
       expired_at: "Вакансия размещена до <span itemprop=\"validThrough\">%{expired_at}</span>"
     edit:
       meta_title: "Редактирование описания вакансии ~ RubyJobs.ru"

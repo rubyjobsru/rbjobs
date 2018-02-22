@@ -1,16 +1,16 @@
 <% content_for :meta_title, vacancy.seo_title %>
 <% content_for :meta_description, vacancy.seo_description %>
 <% content_for :sidebar do %>
-  <% if vacancy.expired? %>
-    <p class="bg-warning" style="padding: 15px">
-      <%= t('.expiration_notice', expire_at: l(vacancy.expire_at)) %>
-    </p>
-  <% else %>
-    <p class="text-muted">
-      <%== t('.expired_at', expired_at: l(vacancy.expire_at)) %>
-    </p>
-  <% end %>
-  <hr>
+  <div class="expiration-label text-muted font-italic">
+    <% if vacancy.expired? %>
+      <p><%= t('.expiration_notice.info', expire_at: l(vacancy.expire_at)) %></p>
+      <hr class="shortline">
+      <p class="mb-5"><%== t('.expiration_notice.advice') %></p>
+    <% else %>
+      <p><%== t('.expired_at', expired_at: l(vacancy.expire_at)) %></p>
+      <hr class="shortline">
+    <% end %>
+  </div>
 <% end %>
 <% content_for :js do %>
   <script>
@@ -24,13 +24,13 @@
   </script>
 <% end %>
 
-<article itemscope itemtype="http://schema.org/JobPosting">
+<div class="pt-3" itemscope itemtype="http://schema.org/JobPosting">
   <meta itemprop="url" content="<%= vacancy_url(vacancy) %>" />
   <% if vacancy.approved? %>
     <meta itemprop="datePosted" content="<%= vacancy.approved_at.iso8601 %>" />
   <% end %>
-  <div class="page-header">
-    <h1 itemprop="title"><%= vacancy.title %></h1>
+  <div class="-page-header">
+    <h1 class="mb-5" itemprop="title"><%= vacancy.title %></h1>
     <div class="row">
       <div class="col-md-4">
         <dl>
@@ -57,11 +57,12 @@
       </div>
     </div>
   </div>
-  <div itemprop="description">
+  <hr class="shortline">
+  <div class="mb-5" itemprop="description">
     <%== vacancy.description_html %>
   </div>
-  <div class="row" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
-    <div class="col-md-4">
+  <div class="row mb-5" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
+    <div class="col-md-6">
       <address>
         <strong><%= t('.company') %></strong>
         <div itemprop="name"><%= vacancy.company %></div>
@@ -75,28 +76,28 @@
         <% end %>
       </address>
     </div>
-    <div class="col-md-4" itemprop="employee" itemscope itemtype="http://schema.org/Person">
+    <div class="col-md-6" itemprop="employee" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="email" content="<%= vacancy.email %>" />
       <address>
         <strong><%= t('.contacts') %></strong>
         <div itemprop="name"><%= vacancy.name ? vacancy.name : '&mdash;' %></div>
       </address>
     </div>
-    <div class="col-md-4">
-      <% unless vacancy.expired? %>
-        <%= mail_to vacancy.email, t('.apply').html_safe, subject: t('.email_application.subject', title: vacancy.title),
-                                                          body: t('.email_application.body', title: vacancy.title,
-                                                                              url: vacancy_url(vacancy)),
-                                                          class: "btn btn-success btn-lg",
-                                                          data: {
-                                                            toggle: 'analytics',
-                                                            event: 'vacancy:company_email:click'
-                                                          } %>
-      <% else %>
-        &nbsp;
-      <% end %>
-    </div>
   </div>
+
+  <% unless vacancy.expired? %>
+    <div>
+      <%= mail_to vacancy.email, t('.apply').html_safe, subject: t('.email_application.subject', title: vacancy.title),
+                                                        body: t('.email_application.body', title: vacancy.title,
+                                                                            url: vacancy_url(vacancy)),
+                                                        class: "btn btn-success btn-lg btn-block",
+                                                        data: {
+                                                          toggle: 'analytics',
+                                                          event: 'vacancy:company_email:click'
+                                                        } %>
+    </div>
+  <% end %>
+
   <% if admin?(vacancy) %>
     <div class="form-actions">
       <%= button_to(t('.publish'), approve_vacancy_url(vacancy), method: :put, class: 'btn btn-success') unless vacancy.approved? %>
@@ -108,4 +109,4 @@
       <%= link_to t('.edit'), edit_vacancy_url(vacancy), class: "btn" %>
     </div>
   <% end %>
-</article>
+</div>

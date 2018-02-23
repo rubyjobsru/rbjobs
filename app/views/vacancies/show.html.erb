@@ -26,10 +26,17 @@
 
 <div class="pt-3" itemscope itemtype="http://schema.org/JobPosting">
   <meta itemprop="url" content="<%= vacancy_url(vacancy) %>" />
+  <meta itemprop="employmentType" content="<%= t("vacancies.employment_types.#{vacancy.employment_type}") %>" />
   <% if vacancy.approved? %>
     <meta itemprop="datePosted" content="<%= vacancy.approved_at.iso8601 %>" />
+    <meta itemprop="validThrough" content="<%= vacancy.expire_at.iso8601 %>" />
   <% end %>
-  <div class="-page-header">
+  <% if vacancy.location.present? %>
+    <span itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
+      <meta itemprop="address" content="<%= vacancy.location %>" />
+    </span>
+  <% end %>
+  <div>
     <h1 class="mb-5" itemprop="title"><%= vacancy.title %></h1>
     <div class="row">
       <div class="col-md-4">
@@ -61,26 +68,25 @@
   <div class="mb-5" itemprop="description">
     <%== vacancy.description_html %>
   </div>
-  <div class="row mb-5" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
+  <div class="row mb-5">
     <div class="col-md-6">
-      <address>
+      <address itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
         <strong><%= t('.company') %></strong>
-        <div itemprop="name"><%= vacancy.company %></div>
+          <div itemprop="name"><%= vacancy.company %></div>
         <% if vacancy.location.present? %>
-          <div itemprop="jobLocation" itemscope itemtype="http://schema.org/Place">
-            <span itemprop="description"><%= vacancy.location %></span>
-          </div>
+          <div><%= vacancy.location %></div>
         <% end %>
         <% if vacancy.url.present? %>
-          <div itemprop="url"><%= link_to vacancy.url, vacancy.url, data: { toggle: 'analytics', event: 'vacancy:company_url:click' } %></div>
+          <div itemprop="url">
+            <%= link_to vacancy.url, vacancy.url, data: { toggle: 'analytics', event: 'vacancy:company_url:click' } %>
+          </div>
         <% end %>
       </address>
     </div>
-    <div class="col-md-6" itemprop="employee" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="email" content="<%= vacancy.email %>" />
+    <div class="col-md-6">
       <address>
         <strong><%= t('.contacts') %></strong>
-        <div itemprop="name"><%= vacancy.name ? vacancy.name : '&mdash;' %></div>
+        <div><%= vacancy.name ? vacancy.name : '&mdash;' %></div>
       </address>
     </div>
   </div>

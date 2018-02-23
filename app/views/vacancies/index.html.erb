@@ -11,9 +11,9 @@
 
 <div class="list-group list-group-flush mb-5">
   <% vacancies.each do |vacancy| %>
-  <div class="list-group-item list-group-item-action flex-column align-items-start" itemscope itemtype="http://schema.org/JobPosting">
+  <div class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between align-items-center">
-      <h2 class="text-truncate"><%= link_to vacancy.title, vacancy, itemprop: 'url' %></h2>
+      <h2 class="text-truncate"><%= link_to vacancy.title, vacancy %></h2>
     </div>
     <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
     <div class="row">
@@ -29,4 +29,4 @@
   <% end %>
 </div>
 
-<%= paginate vacancies %>
+<%= paginate(vacancies) %>

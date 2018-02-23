@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210150744) do
+ActiveRecord::Schema.define(version: 20180223120730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180210150744) do
     t.string "salary_unit"
     t.string "employment_type", default: "full-time"
     t.boolean "remote_position", default: false
+    t.string "short_description", limit: 140
     t.index ["admin_token"], name: "index_vacancies_on_admin_token"
     t.index ["approved_at"], name: "index_vacancies_on_approved_at"
     t.index ["created_at"], name: "index_vacancies_on_created_at"

@@ -9,7 +9,7 @@ xml.rss version: '2.0' do
     feed_vacancies.each do |vacancy|
       xml.item do
         xml.title "#{vacancy.title}. #{company_location_tag(vacancy)}"
-        xml.description vacancy.excerpt_html
+        xml.description vacancy.short_description
         xml.pubDate vacancy.created_at.to_s(:rfc822)
         xml.link vacancy_url(vacancy)
         xml.guid vacancy_url(vacancy)

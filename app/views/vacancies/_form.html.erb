@@ -20,6 +20,19 @@
 </div>
 <div class="form-row">
   <div class="form-group col-md-12">
+    <%= form.label :short_description, "#{t("activerecord.attributes.vacancy.short_description")}".html_safe%>
+    <%= form.text_area :short_description, class: "form-control #{'is-invalid' if form.object.errors.include?(:short_description)}",
+                                     maxlength: 140,
+                                     placeholder: t(".placeholders.short_description"),
+                                     required: true,
+                                     rows: 2 %>
+    <% for error in form.object.errors[:short_description] %>
+      <%= content_tag(:div, error, class: "invalid-feedback") %>
+    <% end %>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
     <%= form.label :description, "#{t("activerecord.attributes.vacancy.description")} *".html_safe%>
     <%= form.text_area :description, class: "form-control #{'is-invalid' if form.object.errors.include?(:description)}",
                                      placeholder: t(".placeholders.description"),

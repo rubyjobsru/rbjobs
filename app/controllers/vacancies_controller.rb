@@ -76,6 +76,7 @@ class VacanciesController < ApplicationController
 
     params.require(:vacancy).permit(
       :title,
+      :short_description,
       :description,
       :location,
       :remote_position,

@@ -30,19 +30,7 @@ module Vacancies
     end
 
     def ensure_generated_html
-      vacancy.excerpt_html = HtmlGenerator.render(
-        extract_excerpt(vacancy.description || '')
-      )
       vacancy.description_html = HtmlGenerator.render(vacancy.description || '')
-    end
-
-    def extract_excerpt(text, divider = "\r\n\r\n")
-      text.lines(divider)
-          .to_a
-          .each(&:strip!)
-          .reject(&:blank?)
-          .take(3)
-          .join(divider)
     end
   end
 end

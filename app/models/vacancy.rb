@@ -39,6 +39,7 @@ class Vacancy < ActiveRecord::Base
   ].freeze
 
   validates :title, presence: true
+  validates :short_description, length: { maximum: 140 }
   validates :description, presence: true
   validates :location, presence: true, unless: :remote_position?
   validates :email, presence: true, format: {

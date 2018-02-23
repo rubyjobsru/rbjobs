@@ -24,7 +24,6 @@
     <%= form.text_area :short_description, class: "form-control #{'is-invalid' if form.object.errors.include?(:short_description)}",
                                      maxlength: 140,
                                      placeholder: t(".placeholders.short_description"),
-                                     required: true,
                                      rows: 2 %>
     <% for error in form.object.errors[:short_description] %>
       <%= content_tag(:div, error, class: "invalid-feedback") %>

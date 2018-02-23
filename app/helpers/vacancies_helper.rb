@@ -4,7 +4,7 @@ module VacanciesHelper
     [
       vacancy.company,
       vacancy.location
-    ].reject(&:blank?).join(' &mdash; ')
+    ].reject(&:blank?).join(', ')
   end
 
   def currency_options_for_select
